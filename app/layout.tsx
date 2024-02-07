@@ -1,10 +1,13 @@
+import React from "react";
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Toaster } from "sonner";
 import { Rubik as Font } from "next/font/google";
 import defaults from "@/constants/defaults";
-import React from "react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
+
 
 const font = Font({subsets: ["latin"]});
 
@@ -51,8 +54,10 @@ export default function RootLayout({children}: Readonly<{ children: React.ReactN
         <html lang="en">
         <body className={`${font.className} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-            <Toaster position="bottom-center"/>
             {children}
+            <Toaster position="bottom-center"/>
+            <SpeedInsights/>
+            <Analytics/>
         </ThemeProvider>
         </body>
         </html>
