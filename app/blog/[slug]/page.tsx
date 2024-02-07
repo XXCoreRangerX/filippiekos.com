@@ -1,5 +1,5 @@
 import React from 'react';
-import type { GetStaticPropsContext, Metadata } from 'next';
+import type { Metadata } from 'next';
 import defaults from "@/constants/defaults";
 import { notFound } from 'next/navigation';
 import { getBlogPosts } from "@/lib/blog";
@@ -9,7 +9,7 @@ import { formatDate } from "@/lib/misc";
 import { Navbar } from "@/app/blog/_components/navbar";
 import PostList from "@/components/post-list";
 
-export async function generateMetadata({ params }: GetStaticPropsContext): Promise<Metadata | undefined> {
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata | undefined> {
     if (!params) {
         return;
     }
