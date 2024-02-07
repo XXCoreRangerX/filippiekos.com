@@ -2,32 +2,233 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@layer base {
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 222.2 84% 4.9%;
+
+        --card: 0 0% 100%;
+        --card-foreground: 222.2 84% 4.9%;
+
+        --popover: 0 0% 100%;
+        --popover-foreground: 222.2 84% 4.9%;
+
+        --primary: 222.2 47.4% 11.2%;
+        --primary-foreground: 210 40% 98%;
+
+        --secondary: 210 40% 96.1%;
+        --secondary-foreground: 222.2 47.4% 11.2%;
+
+        --muted: 210 40% 96.1%;
+        --muted-foreground: 215.4 16.3% 46.9%;
+
+        --accent: 210 40% 96.1%;
+        --accent-foreground: 222.2 47.4% 11.2%;
+
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 40% 98%;
+
+        --border: 214.3 31.8% 91.4%;
+        --input: 214.3 31.8% 91.4%;
+        --ring: 222.2 84% 4.9%;
+
+        --radius: 0.5rem;
+    }
+
+    .dark {
+        --background: 222.2 84% 4.9%;
+        --foreground: 210 40% 98%;
+
+        --card: 222.2 84% 4.9%;
+        --card-foreground: 210 40% 98%;
+
+        --popover: 222.2 84% 4.9%;
+        --popover-foreground: 210 40% 98%;
+
+        --primary: 210 40% 98%;
+        --primary-foreground: 222.2 47.4% 11.2%;
+
+        --secondary: 217.2 32.6% 17.5%;
+        --secondary-foreground: 210 40% 98%;
+
+        --muted: 217.2 32.6% 17.5%;
+        --muted-foreground: 215 20.2% 65.1%;
+
+        --accent: 217.2 32.6% 17.5%;
+        --accent-foreground: 210 40% 98%;
+
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 210 40% 98%;
+
+        --border: 217.2 32.6% 17.5%;
+        --input: 217.2 32.6% 17.5%;
+        --ring: 212.7 26.8% 83.9%;
+    }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+    }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+/* Remove Safari input shadow on mobile */
+input[type='text'],
+input[type='email'] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/* code */
+code {
+    @apply bg-card text-card-foreground;
+    @apply p-1;
+    @apply rounded;
+}
+
+/* Highlight.js */
+
+pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em;
+}
+
+code.hljs {
+  padding: 3px 5px;
+}
+
+pre:has(.hljs), .hljs {
+    color: #abb2bf;
+}
+
+.hljs::selection,
+.hljs ::selection {
+  background-color: #3e4451;
+}
+
+
+/* purposely do not highlight these things */
+.hljs-formula,
+.hljs-params,
+.hljs-property
+{}
+
+/* base03 - #545862 -  Comments, Invisibles, Line Highlighting */
+.hljs-comment {
+  color: #545862;
+}
+
+/* base04 - #565c64 -  Dark Foreground (Used for status bars) */
+.hljs-tag {
+  color: #565c64;
+}
+
+/* base05 - #abb2bf -  Default Foreground, Caret, Delimiters, Operators */
+.hljs-subst,
+.hljs-punctuation,
+.hljs-operator {
+  color: #abb2bf;
+}
+
+.hljs-operator {
+  opacity: 0.7;
+}
+
+/* base08 - Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted */
+.hljs-bullet,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-selector-tag,
+.hljs-name,
+.hljs-deletion {
+  color: #e06c75;
+}
+
+/* base09 - Integers, Boolean, Constants, XML Attributes, Markup Link Url */
+.hljs-symbol,
+.hljs-number,
+.hljs-link,
+.hljs-attr,
+.hljs-variable.constant_,
+.hljs-literal {
+  color: #d19a66;
+}
+
+/* base0A - Classes, Markup Bold, Search Text Background */
+.hljs-title,
+.hljs-class .hljs-title,
+.hljs-title.class_
+{
+  color: #e5c07b;
+}
+
+.hljs-strong {
+  font-weight:bold;
+  color: #e5c07b;
+}
+
+/* base0B - Strings, Inherited Class, Markup Code, Diff Inserted */
+.hljs-code,
+.hljs-addition,
+.hljs-title.class_.inherited__,
+.hljs-string {
+  color: #98c379;
+}
+
+/* base0C - Support, Regular Expressions, Escape Characters, Markup Quotes */
+.hljs-built_in,
+.hljs-doctag, /* guessing */
+.hljs-quote,
+.hljs-keyword.hljs-atrule,
+.hljs-regexp {
+  color: #56b6c2;
+}
+
+/* base0D - Functions, Methods, Attribute IDs, Headings */
+.hljs-function .hljs-title,
+.hljs-attribute,
+.ruby .hljs-property,
+.hljs-title.function_,
+.hljs-section {
+  color: #61afef;
+}
+
+/* base0E - Keywords, Storage, Selector, Markup Italic, Diff Changed */
+.hljs-type,
+/* .hljs-selector-id, */
+/* .hljs-selector-class, */
+/* .hljs-selector-attr, */
+/* .hljs-selector-pseudo, */
+.hljs-template-tag,
+.diff .hljs-meta,
+.hljs-keyword {
+  color: #c678dd;
+}
+.hljs-emphasis {
+  color: #c678dd;
+  font-style: italic;
+}
+
+/* base0F - Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?> */
+.hljs-meta,
+/*
+  prevent top level .keyword and .string scopes
+  from leaking into meta by accident
+*/
+.hljs-meta .hljs-keyword,
+.hljs-meta .hljs-string
+{
+  color: #be5046;
+}
+
+.hljs-meta .hljs-keyword,
+/* for v10 compatible themes */
+.hljs-meta-keyword {
+  font-weight: bold;
 }
