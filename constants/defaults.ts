@@ -8,7 +8,7 @@ class Defaults {
     static description =  "Filip Piękoś's portfolio website. A place to showcase my work and share my thoughts.";
     static url = "https://filippiekos.com";
     /* Bio is a markdown-formatted string */
-    static bio = "I'm a self-proclaimed, aspiring developer, engineer, sysadmin, UI/UX/CAD/EDA designer, and a tech enthusiast. Studying at `ZSTiO, Jarosław, Poland`";
+    static bio = "I'm a self-proclaimed, aspiring developer, engineer, sysadmin, UI/UX/CAD/EDA designer, and a tech enthusiast. Studying at ZSTiO, Jarosław, Poland";
 
     static fullName = "Filip Piękoś";
     static shortName = "Filip";
@@ -27,8 +27,9 @@ class Defaults {
     static skills = ["DevOps", "Ansible", "Unix", "React", "Next.js", "UI/UX"]
 
     static achievements = [
+        ["Regeneron ISEF", "2023", "3rd", "https://isef.com"],
+        ["IEEE at ISFE", "2023", "2nd", "https://ieee.org"],
         ["Explory", "2022", "1st", "https://explory.pl"],
-        ["ISEF", "2023", "3rd", "https://isef.com"]
     ];
 }
 
