@@ -1,7 +1,7 @@
 import { Blog } from "@/app/(main)/_components/blog";
 import { Articles } from "@/app/(main)/_components/articles";
 //import { GitHubStats } from "@/app/(main)/_components/github";
-import { Stuff } from "@/app/(main)/_components/stuff";
+import { Achievements } from "@/app/(main)/_components/achievements";
 import dynamic from 'next/dynamic'
 
 const DynamicAbout = dynamic(() =>
@@ -16,11 +16,10 @@ export default function Main() {
             </div>
             <div className="md:w-5/12 flex flex-col gap-5">
                 <Blog/>
-                <Stuff/>
             </div>
             <div className="md:w-1/4 flex flex-col gap-5 max-h-screen">
                 <Articles/>
-                <Stuff/>
+                <Achievements/>
             </div>
         </div>
     );

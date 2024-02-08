@@ -38,18 +38,10 @@ export function About() {
                 <Link href={"mailto:" + defaults.email} download className={cn('gap-2 w-full', buttonVariants({ variant: "default" }))}><Mail className="w-5 h-5"/>Contact</Link>
                 <Link href="/filip.jpg" download className={cn('gap-2', buttonVariants({ variant: "secondary" }))}><Download className="w-5 h-5"/>CV</Link>
             </div>
+            <hr className="dark:border-slate-600 rounded-full"/>
             <div className="flex flex-col gap-1 text-left">
                 <h3 className="text-xl font-medium">Bio</h3>
                 <p className="leading-relaxed"><CustomMDX source={defaults.bio}/></p>
-            </div>
-            <hr className="dark:border-slate-600 rounded-full"/>
-            <div className="flex flex-col gap-1 text-left">
-                <h3 className="text-xl font-medium">Achievements</h3>
-                <ul className="list-disc list-inside dark:text-slate-300 text-slate-700">
-                    {achievements.map((achievement, index) => (
-                        <li key={index}><span className="font-bold">{achievement.place} place</span> at <Link href={achievement.url}>{achievement.title} {achievement.year}</Link></li>
-                    ))}
-                </ul>
             </div>
         </div>
     );

@@ -28,7 +28,7 @@ class Defaults {
 
     static achievements = [
         ["Regeneron ISEF", "2023", "3rd", "https://isef.com"],
-        ["IEEE at ISFE", "2023", "2nd", "https://ieee.org"],
+        ["IEEE at ISEF", "2023", "2nd", "https://ieee.org"],
         ["Explory", "2022", "1st", "https://explory.pl"],
     ];
 }
