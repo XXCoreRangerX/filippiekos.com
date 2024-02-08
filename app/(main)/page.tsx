@@ -1,6 +1,6 @@
 import { Blog } from "@/app/(main)/_components/blog";
 import { Articles } from "@/app/(main)/_components/articles";
-import { GitHubStats } from "@/app/(main)/_components/github";
+//import { GitHubStats } from "@/app/(main)/_components/github";
 import { Stuff } from "@/app/(main)/_components/stuff";
 import dynamic from 'next/dynamic'
 
@@ -16,7 +16,7 @@ export default function Main() {
             </div>
             <div className="md:w-5/12 flex flex-col gap-5">
                 <Blog/>
-                <GitHubStats/>
+                <Stuff/>
             </div>
             <div className="md:w-1/4 flex flex-col gap-5 max-h-screen">
                 <Articles/>
