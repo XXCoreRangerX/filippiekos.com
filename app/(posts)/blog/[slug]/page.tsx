@@ -3,11 +3,11 @@ import type { Metadata } from 'next';
 import defaults from "@/constants/defaults";
 import { notFound } from 'next/navigation';
 import { getBlogPosts } from "@/lib/blog";
-import { CustomMDX } from "@/app/blog/_components/mdx";
+import { CustomMDX } from "@/app/(posts)/_components/mdx";
 import Image from "next/image";
 import { formatDate } from "@/lib/misc";
-import { Navbar } from "@/app/blog/_components/navbar";
-import PostList from "@/components/post-list";
+import { Navbar } from "@/app/(posts)/_components/navbar";
+import { Footer } from "@/app/(posts)/_components/footer";
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata | undefined> {
     if (!params) {
@@ -108,10 +108,7 @@ export default function Blog({ params }: { params: { slug: string } }) {
                     className="prose max-[350px]:prose-sm lg:prose-lg prose-slate dark:prose-invert prose-img:rounded-3xl prose-a:text-blue-600 hover:prose-a:text-blue-500 max-w-none">
                     <CustomMDX source={post.content}/>
                 </article>
-                <footer className="mt-10">
-                    <Navbar/>
-                    <PostList maxPosts={2}/>
-                </footer>
+                <Footer/>
             </div>
         </div>
     );

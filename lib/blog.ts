@@ -3,8 +3,8 @@ import path from 'path';
 
 type Metadata = {
     title: string;
-    date: string;
-    description: string;
+    date?: string;
+    description?: string;
     tags?: string[];
     image?: string;
 };
@@ -61,5 +61,5 @@ function getMDXData(dir: string) {
 }
 
 export function getBlogPosts() {
-    return getMDXData(path.join(process.cwd(), 'posts'));
+    return getMDXData(path.join(process.cwd(), 'content/posts'));
 }

@@ -8,7 +8,6 @@ import defaults from "@/constants/defaults";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 
-
 const font = Font({subsets: ["latin"]});
 
 export const metadata: Metadata = {
@@ -52,7 +51,7 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: Readonly<{ children: React.ReactNode; }>) {
     return (
         <html lang="en">
-        <body className={`${font.className} antialiased`}>
+        <body className={`${font.className} antialiased`} suppressHydrationWarning={true}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
             {children}
             <Toaster position="bottom-center"/>

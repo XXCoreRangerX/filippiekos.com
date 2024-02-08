@@ -1,5 +1,5 @@
 import defaults from "@/constants/defaults";
-import { IAchievementItem } from "@/types";
+import { IAchievementItem } from "@/interfaces";
 
 const achievements: IAchievementItem[] = defaults.achievements.map((achievement) => ({
     title: achievement[0],

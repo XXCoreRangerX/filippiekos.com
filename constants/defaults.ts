@@ -1,12 +1,18 @@
+/*
+* This file contains the default values for the website's metadata, such as title, description, and socials.
+* Feel free to modify these values to your liking.
+*/
+
 class Defaults {
     static title = "Filip Piękoś | Portfolio";
     static description =  "Filip Piękoś's portfolio website. A place to showcase my work and share my thoughts.";
     static url = "https://filippiekos.com";
-    static bio = "I'm a beginner web developer. I think I'm starting to like this!";
+    /* Bio is a markdown-formatted string */
+    static bio = "I'm a self-proclaimed, aspiring developer, engineer, sysadmin, UI/UX/CAD/EDA designer, and a tech enthusiast. Studying at `ZSTiO, Jarosław, Poland`";
 
     static fullName = "Filip Piękoś";
     static shortName = "Filip";
-    static nickName = "XXCoreRangerX";
+    static username = "XXCoreRangerX";
     static email = "contact@filippiekos.com";
 
     static socials = [

@@ -84,23 +84,39 @@ input[type='email'] {
     appearance: none;
 }
 
-/* code */
 code {
-    @apply bg-card text-card-foreground;
-    @apply p-1;
-    @apply rounded;
+    @apply bg-card text-card-foreground p-0.5 rounded;
+}
+
+.prose .anchor {
+    @apply absolute invisible no-underline;
+
+    margin-left: -0.9em;
+    cursor: pointer;
+}
+
+.anchor:hover {
+    @apply visible text-slate-300 dark:text-slate-600;
+}
+
+.prose a {
+    @apply transition-all text-slate-300 dark:text-slate-600 underline-offset-2 decoration-[0.1em];
+}
+
+.prose *:hover > .anchor {
+    @apply visible;
 }
 
 /* Highlight.js */
 
 pre code.hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 1em;
+    display: block;
+    overflow-x: auto;
+    padding: 1em;
 }
 
 code.hljs {
-  padding: 3px 5px;
+    padding: 3px 5px;
 }
 
 pre:has(.hljs), .hljs {
@@ -109,35 +125,35 @@ pre:has(.hljs), .hljs {
 
 .hljs::selection,
 .hljs ::selection {
-  background-color: #3e4451;
+    background-color: #3e4451;
 }
 
 
 /* purposely do not highlight these things */
 .hljs-formula,
 .hljs-params,
-.hljs-property
-{}
+.hljs-property {
+}
 
 /* base03 - #545862 -  Comments, Invisibles, Line Highlighting */
 .hljs-comment {
-  color: #545862;
+    color: #545862;
 }
 
 /* base04 - #565c64 -  Dark Foreground (Used for status bars) */
 .hljs-tag {
-  color: #565c64;
+    color: #565c64;
 }
 
 /* base05 - #abb2bf -  Default Foreground, Caret, Delimiters, Operators */
 .hljs-subst,
 .hljs-punctuation,
 .hljs-operator {
-  color: #abb2bf;
+    color: #abb2bf;
 }
 
 .hljs-operator {
-  opacity: 0.7;
+    opacity: 0.7;
 }
 
 /* base08 - Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted */
@@ -147,7 +163,7 @@ pre:has(.hljs), .hljs {
 .hljs-selector-tag,
 .hljs-name,
 .hljs-deletion {
-  color: #e06c75;
+    color: #e06c75;
 }
 
 /* base09 - Integers, Boolean, Constants, XML Attributes, Markup Link Url */
@@ -157,20 +173,19 @@ pre:has(.hljs), .hljs {
 .hljs-attr,
 .hljs-variable.constant_,
 .hljs-literal {
-  color: #d19a66;
+    color: #d19a66;
 }
 
 /* base0A - Classes, Markup Bold, Search Text Background */
 .hljs-title,
 .hljs-class .hljs-title,
-.hljs-title.class_
-{
-  color: #e5c07b;
+.hljs-title.class_ {
+    color: #e5c07b;
 }
 
 .hljs-strong {
-  font-weight:bold;
-  color: #e5c07b;
+    font-weight: bold;
+    color: #e5c07b;
 }
 
 /* base0B - Strings, Inherited Class, Markup Code, Diff Inserted */
@@ -178,7 +193,7 @@ pre:has(.hljs), .hljs {
 .hljs-addition,
 .hljs-title.class_.inherited__,
 .hljs-string {
-  color: #98c379;
+    color: #98c379;
 }
 
 /* base0C - Support, Regular Expressions, Escape Characters, Markup Quotes */
@@ -187,7 +202,7 @@ pre:has(.hljs), .hljs {
 .hljs-quote,
 .hljs-keyword.hljs-atrule,
 .hljs-regexp {
-  color: #56b6c2;
+    color: #56b6c2;
 }
 
 /* base0D - Functions, Methods, Attribute IDs, Headings */
@@ -196,39 +211,39 @@ pre:has(.hljs), .hljs {
 .ruby .hljs-property,
 .hljs-title.function_,
 .hljs-section {
-  color: #61afef;
+    color: #61afef;
 }
 
 /* base0E - Keywords, Storage, Selector, Markup Italic, Diff Changed */
 .hljs-type,
-/* .hljs-selector-id, */
-/* .hljs-selector-class, */
-/* .hljs-selector-attr, */
-/* .hljs-selector-pseudo, */
+    /* .hljs-selector-id, */
+    /* .hljs-selector-class, */
+    /* .hljs-selector-attr, */
+    /* .hljs-selector-pseudo, */
 .hljs-template-tag,
 .diff .hljs-meta,
 .hljs-keyword {
-  color: #c678dd;
+    color: #c678dd;
 }
+
 .hljs-emphasis {
-  color: #c678dd;
-  font-style: italic;
+    color: #c678dd;
+    font-style: italic;
 }
 
 /* base0F - Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?> */
 .hljs-meta,
-/*
-  prevent top level .keyword and .string scopes
-  from leaking into meta by accident
-*/
+    /*
+      prevent top level .keyword and .string scopes
+      from leaking into meta by accident
+    */
 .hljs-meta .hljs-keyword,
-.hljs-meta .hljs-string
-{
-  color: #be5046;
+.hljs-meta .hljs-string {
+    color: #be5046;
 }
 
 .hljs-meta .hljs-keyword,
-/* for v10 compatible themes */
+    /* for v10 compatible themes */
 .hljs-meta-keyword {
-  font-weight: bold;
+    font-weight: bold;
 }

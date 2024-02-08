@@ -7,7 +7,7 @@ const MainLayout = ({ children }: {
     return (
         <div className="h-full">
             <main>
-                <ThemeToggle variant="fixed"/>
+                <ThemeToggle variant="fixed" className="invisible md:visible"/>
                 {children}
             </main>
         </div>

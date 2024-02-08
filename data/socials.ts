@@ -1,6 +1,6 @@
 import defaults from "@/constants/defaults";
 import { FaFacebook, FaGithub, FaXTwitter, FaReddit } from "react-icons/fa6";
-import { ISocialItem } from "@/types";
+import { ISocialItem } from "@/interfaces";
 
 const socials: ISocialItem[] = defaults.socials.map((social) => ({
     name: social[0],
