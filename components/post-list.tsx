@@ -1,17 +1,17 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { getBlogPosts } from "@/lib/blog";
+import { getArticles, getBlogPosts } from "@/lib/blog";
 import { formatDate } from "@/lib/misc";
 
 export interface PostListProps extends React.HTMLAttributes<HTMLDivElement> {
+    type: "blog" | "articles";
     maxPosts?: number;
-    hideImage?: boolean;
 }
 
-const PostListItem = ({post, hideImage}: {post: any, hideImage?: boolean}) => (
-    <Link key={post.slug} href={`/blog/${post.slug}`} className="flex flex-row gap-3 rounded-3xl p-2 transition-all duration-150 ease-in-out hover:bg-slate-200 dark:hover:bg-slate-700 active:bg-slate-300 dark:active:bg-slate-600 items-center">
-        {!hideImage && post.metadata.image && (
+const PostListItem = ({post, type}: {post: any, type: "blog" | "articles"}) => (
+    <Link key={post.slug} href={`/${type}/${post.slug}`} className="flex flex-row gap-3 rounded-3xl p-2 transition-all duration-150 ease-in-out hover:bg-slate-200 dark:hover:bg-slate-700 active:bg-slate-300 dark:active:bg-slate-600 items-center">
+        {post.metadata.image && (
             <Image className="ring-2 ring-slate-500 bg-slate-600 rounded-3xl" src={post.metadata.image} alt={post.metadata.title} width="80" height="80"/>
         )}
         <div className="grid">
@@ -26,15 +26,16 @@ const PostListItem = ({post, hideImage}: {post: any, hideImage?: boolean}) => (
     </Link>
 );
 
-const PostList = React.forwardRef<HTMLDivElement, PostListProps>(({maxPosts, hideImage, ...props}, ref) => {
-        const posts = maxPosts ? getBlogPosts().slice(0, maxPosts) : getBlogPosts();
+const PostList = React.forwardRef<HTMLDivElement, PostListProps>(({type, maxPosts}, ref) => {
+        const posts = type === "articles" ? getArticles() : getBlogPosts();
+        const filteredPosts = maxPosts ? posts.slice(0, maxPosts) : posts;
         return (
             <div ref={ref} className="grid gap-4">
-                {posts.map((post) => (
-                    <PostListItem key={post.slug} post={post} hideImage={hideImage}/>
+                {filteredPosts.map((post) => (
+                    <PostListItem key={post.slug} post={post} type={type}/>
                 ))}
                 {maxPosts && (
-                    <Link href="/blog" className="font-semibold text-muted-foreground active:text-slate-400 dark:active:text-slate-600 transition ease-in-out duration-200 hover:text-foreground text-center text-lg">
+                    <Link href={`/${type}`} className="font-semibold text-muted-foreground active:text-slate-400 dark:active:text-slate-600 transition ease-in-out duration-200 hover:text-foreground text-center text-lg">
                         All posts
                     </Link>
                 )}

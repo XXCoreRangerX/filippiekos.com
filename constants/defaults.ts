@@ -8,12 +8,12 @@ class Defaults {
     static description =  "Filip Piękoś's portfolio website. A self-proclaimed, aspiring developer, engineer, sysadmin, UI/UX/CAD/EDA designer, and a tech enthusiast. Studying at ZSTiO, Jarosław, Poland.";
     static url = "https://filippiekos.com";
     /* Bio is a markdown-formatted string */
-    static bio = "I'm a self-proclaimed, aspiring developer, engineer, sysadmin, UI/UX/CAD/EDA designer, and a tech enthusiast. Studying at ZSTiO, Jarosław, Poland";
+    static bio = "I'm a self-proclaimed, aspiring developer, engineer, sysadmin, UI/UX/CAD/EDA designer, and a tech enthusiast. Studying at ZSTiO, Jarosław, Poland. I enjoy long walks, skiing and heavy metal.";
 
     static fullName = "Filip Piękoś";
     static shortName = "Filip";
     static username = "XXCoreRangerX";
-    static email = "contact@filippiekos.com";
+    static email = "mail@filippiekos.com";
 
     static socials = [
         ["GitHub", "FaGithub", "https://github.com/XXCoreRangerX"],
@@ -22,7 +22,7 @@ class Defaults {
         ["Facebook", "FaFacebook", "https://facebook.com/profile.php?id=100029415751380"]
     ];
 
-    static skills = ["DevOps", "SysAdmin", "Unix", "Python", "Arduino", "UI/UX", "EDA", "CAD", "React", "Next.js",]
+    static skills = ["DevOps", "SysAdmin", "Unix", "Python", "Arduino", "UI/UX", "EDA", "CAD", "Node.js", "React", "Next.js", "TypeScript", "TailwindCSS", "HTML5", "CSS", "Kubernetes"]
 
     static achievements = [
         ["Regeneron ISEF", "2023", "3rd", "https://isef.com"],
