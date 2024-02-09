@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import fs from "fs";
+import path from "path";
 
 type Metadata = {
     title: string;
@@ -13,18 +13,18 @@ function parseFrontmatter(fileContent: string) {
     const frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
     const match = frontmatterRegex.exec(fileContent);
     const frontMatterBlock = match![1];
-    const content = fileContent.replace(frontmatterRegex, '').trim();
-    const frontMatterLines = frontMatterBlock.trim().split('\n');
+    const content = fileContent.replace(frontmatterRegex, "").trim();
+    const frontMatterLines = frontMatterBlock.trim().split("\n");
     const metadata: Partial<Metadata> = {};
     const tags: string[] = [];
 
     frontMatterLines.forEach((line) => {
-        const [key, ...valueArr] = line.split(': ');
-        let value = valueArr.join(': ').trim();
-        value = value.replace(/^['"](.*)['"]$/, '$1'); // Remove quotes
+        const [key, ...valueArr] = line.split(": ");
+        let value = valueArr.join(": ").trim();
+        value = value.replace(/^['"](.*)['"]$/, "$1"); // Remove quotes
 
-        if (key === 'tags') {
-            tags.push(...value.split(',').map((tag) => tag.trim()));
+        if (key === "tags") {
+            tags.push(...value.split(",").map((tag) => tag.trim()));
         } else {
             metadata[key as keyof Metadata] = value as any; // Store the value directly in metadata
         }
@@ -37,20 +37,19 @@ function parseFrontmatter(fileContent: string) {
     return { metadata: metadata as Metadata, content };
 }
 
-
 function getMDXFiles(dir: string) {
-    return fs.readdirSync(dir).filter((file) => path.extname(file) === '.mdx');
+    return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
 }
 
 function readMDXFile(filePath: string) {
-    let rawContent = fs.readFileSync(filePath, 'utf-8');
+    let rawContent = fs.readFileSync(filePath, "utf-8");
     return parseFrontmatter(rawContent);
 }
 
 function getMDXData(dir: string) {
     let mdxFiles = getMDXFiles(dir);
     return mdxFiles.map((file) => {
-        let {metadata, content} = readMDXFile(path.join(dir, file));
+        let { metadata, content } = readMDXFile(path.join(dir, file));
         let slug = path.basename(file, path.extname(file));
         return {
             metadata,
@@ -61,9 +60,9 @@ function getMDXData(dir: string) {
 }
 
 export function getBlogPosts() {
-    return getMDXData(path.join(process.cwd(), 'content/posts'));
+    return getMDXData(path.join(process.cwd(), "content/posts"));
 }
 
 export function getArticles() {
-    return getMDXData(path.join(process.cwd(), 'content/articles'));
+    return getMDXData(path.join(process.cwd(), "content/articles"));
 }

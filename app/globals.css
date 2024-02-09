@@ -77,19 +77,19 @@
 }
 
 /* Remove Safari input shadow on mobile */
-input[type='text'],
-input[type='email'] {
+input[type="text"],
+input[type="email"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
 }
 
 code {
-    @apply bg-card text-card-foreground p-0.5 rounded;
+    @apply rounded bg-card p-0.5 text-card-foreground;
 }
 
 .prose .anchor {
-    @apply absolute invisible no-underline;
+    @apply invisible absolute no-underline;
 
     margin-left: -0.9em;
     cursor: pointer;
@@ -100,7 +100,7 @@ code {
 }
 
 .prose a {
-    @apply transition-all text-slate-300 dark:text-slate-600 underline-offset-2 decoration-[0.1em];
+    @apply text-slate-300 decoration-[0.1em] underline-offset-2 transition-all dark:text-slate-600;
 }
 
 .prose *:hover > .anchor {
@@ -119,7 +119,8 @@ code.hljs {
     padding: 3px 5px;
 }
 
-pre:has(.hljs), .hljs {
+pre:has(.hljs),
+.hljs {
     color: #abb2bf;
 }
 
@@ -127,7 +128,6 @@ pre:has(.hljs), .hljs {
 .hljs ::selection {
     background-color: #3e4451;
 }
-
 
 /* purposely do not highlight these things */
 .hljs-formula,

@@ -41,8 +41,8 @@ Next, we need to configure Next.js to support MDX. Create a new file called `nex
 
 ```javascript
 module.exports = {
-  pageExtensions: ['js', 'jsx', 'mdx']
-}
+    pageExtensions: ["js", "jsx", "mdx"],
+};
 ```
 
 This tells Next.js to treat `.mdx` files as pages.
@@ -52,25 +52,25 @@ This tells Next.js to treat `.mdx` files as pages.
 Next, let's create a simple blog layout. Create a new file called `BlogLayout.js` in the `components` directory and add the following code:
 
 ```jsx
-import React from 'react'
-import Link from 'next/link'
+import React from "react";
+import Link from "next/link";
 
 const BlogLayout = ({ children }) => {
-  return (
-    <div>
-      <header>
-        <nav>
-          <Link href="/">
-            <a>Home</a>
-          </Link>
-        </nav>
-      </header>
-      <main>{children}</main>
-    </div>
-  )
-}
+    return (
+        <div>
+            <header>
+                <nav>
+                    <Link href="/">
+                        <a>Home</a>
+                    </Link>
+                </nav>
+            </header>
+            <main>{children}</main>
+        </div>
+    );
+};
 
-export default BlogLayout
+export default BlogLayout;
 ```
 
 ## Autolink literals
@@ -91,16 +91,17 @@ A note[^1]
 
 ## Table
 
-| a | b  |  c |  d  |
-|---|----|----|-----|
-| 1 | 2  |  3 |  4  |
+| a   | b   | c   | d   |
+| --- | --- | --- | --- |
+| 1   | 2   | 3   | 4   |
 
 ## Tasks
 
-* [ ] to do
-* [x] done
+-   [ ] to do
+-   [x] done
 
 ## Emoji
+
 💀
 
 ## HTML
@@ -111,8 +112,8 @@ A note[^1]
 <Note variant="success">a</Note>
 
 <details>
-  <summary>Click to expand</summary>
-  <p>Hidden content</p>
+    <summary>Click to expand</summary>
+    <p>Hidden content</p>
 </details>
 
 <Tweet id="1457032789883187201" />

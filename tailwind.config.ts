@@ -1,11 +1,8 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config = {
     darkMode: ["class"],
-    content: [
-        './app/**/*.{ts,tsx}',
-        './components/**/*.{ts,tsx}',
-    ],
+    content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
     prefix: "",
     theme: {
         container: {
@@ -58,12 +55,12 @@ const config = {
             },
             keyframes: {
                 "accordion-down": {
-                    from: {height: "0"},
-                    to: {height: "var(--radix-accordion-content-height)"},
+                    from: { height: "0" },
+                    to: { height: "var(--radix-accordion-content-height)" },
                 },
                 "accordion-up": {
-                    from: {height: "var(--radix-accordion-content-height)"},
-                    to: {height: "0"},
+                    from: { height: "var(--radix-accordion-content-height)" },
+                    to: { height: "0" },
                 },
             },
             animation: {
@@ -73,12 +70,12 @@ const config = {
         },
     },
     future: {
-        hoverOnlyWhenSupported: true
+        hoverOnlyWhenSupported: true,
     },
     plugins: [
         require("tailwindcss-animate"),
-        require('@tailwindcss/typography')
+        require("@tailwindcss/typography"),
     ],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;

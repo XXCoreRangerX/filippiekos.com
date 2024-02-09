@@ -15,13 +15,13 @@ export function formatDate(date: string) {
     } else if (daysAgo > 0) {
         formattedDate = `${daysAgo}d ago`;
     } else {
-        formattedDate = 'Today';
+        formattedDate = "Today";
     }
 
-    const fullDate = targetDate.toLocaleString('en-us', {
-        month: 'long',
-        day: 'numeric',
-        year: 'numeric',
+    const fullDate = targetDate.toLocaleString("en-us", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
     });
 
     return `${fullDate} (${formattedDate})`;

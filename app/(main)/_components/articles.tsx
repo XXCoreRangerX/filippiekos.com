@@ -2,9 +2,9 @@ import { PostList } from "@/components/post-list";
 
 export function Articles() {
     return (
-        <div className="grid md:flex flex-col bg-secondary border-2 dark:border-slate-700 rounded-3xl p-5 gap-3 shadow-md overflow-auto md:h-screen">
+        <div className="grid flex-col gap-3 overflow-auto rounded-3xl border-2 bg-secondary p-5 shadow-md dark:border-slate-700 md:flex md:h-screen">
             <div className="flex flex-col gap-2">
-                <PostList type="articles"/>
+                <PostList type="articles" />
             </div>
         </div>
     );

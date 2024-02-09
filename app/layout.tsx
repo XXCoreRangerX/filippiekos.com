@@ -1,22 +1,22 @@
-import React from "react";
-import type { Metadata } from "next";
-import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
-import { Toaster } from "sonner";
-import { Rubik as Font } from "next/font/google";
 import defaults from "@/constants/defaults";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import type { Metadata } from "next";
+import { Rubik as Font } from "next/font/google";
+import React from "react";
+import { Toaster } from "sonner";
+import "./globals.css";
 
-const font = Font({subsets: ["latin"]});
+const font = Font({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
     metadataBase: new URL(defaults.url),
     alternates: {
-        canonical: '/',
+        canonical: "/",
         languages: {
-            'en-US': '/en-US',
-            'pl-PL': '/pl-PL',
+            "en-US": "/en-US",
+            "pl-PL": "/pl-PL",
         },
     },
     title: defaults.title,
@@ -26,12 +26,12 @@ export const metadata: Metadata = {
         description: defaults.description,
         url: defaults.url,
         siteName: defaults.title,
-        locale: 'en_US',
-        type: 'website',
+        locale: "en_US",
+        type: "website",
     },
     twitter: {
         title: defaults.title,
-        card: 'summary_large_image',
+        card: "summary_large_image",
     },
     robots: {
         index: false,
@@ -41,24 +41,30 @@ export const metadata: Metadata = {
             index: true,
             follow: false,
             noimageindex: true,
-            'max-video-preview': -1,
-            'max-image-preview': 'large',
-            'max-snippet': -1,
+            "max-video-preview": -1,
+            "max-image-preview": "large",
+            "max-snippet": -1,
         },
-    }
+    },
 };
 
-export default function RootLayout({children}: Readonly<{ children: React.ReactNode; }>) {
+export default function RootLayout({
+    children,
+}: Readonly<{ children: React.ReactNode }>) {
     return (
         <html lang="en">
-        <body className={`${font.className} antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            {children}
-            <Toaster position="bottom-center"/>
-            <SpeedInsights/>
-            <Analytics/>
-        </ThemeProvider>
-        </body>
+            <body className={`${font.className} antialiased`}>
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="system"
+                    enableSystem
+                >
+                    {children}
+                    <Toaster position="bottom-center" />
+                    <SpeedInsights />
+                    <Analytics />
+                </ThemeProvider>
+            </body>
         </html>
     );
 }

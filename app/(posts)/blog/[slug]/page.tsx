@@ -1,20 +1,23 @@
-import React from 'react';
-import type { Metadata } from 'next';
-import defaults from "@/constants/defaults";
-import { notFound } from 'next/navigation';
-import { getBlogPosts } from "@/lib/blog";
-import { CustomMDX } from "@/app/(posts)/_components/mdx";
-import Image from "next/image";
-import { formatDate } from "@/lib/misc";
-import { Navbar } from "@/app/(posts)/_components/navbar";
 import { Footer } from "@/app/(posts)/_components/footer";
+import { CustomMDX } from "@/app/(posts)/_components/mdx";
+import { Navbar } from "@/app/(posts)/_components/navbar";
+import defaults from "@/constants/defaults";
+import { getBlogPosts } from "@/lib/blog";
+import { formatDate } from "@/lib/misc";
+import type { Metadata } from "next";
+import Image from "next/image";
+import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
     const posts = getBlogPosts().map((post) => post.slug);
     return posts.map((slug) => ({ params: { slug } }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata | undefined> {
+export async function generateMetadata({
+    params,
+}: {
+    params: { slug: string };
+}): Promise<Metadata | undefined> {
     if (!params) {
         return;
     }
@@ -24,12 +27,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
         return;
     }
 
-    const {
-        title,
-        date: publishedTime,
-        description,
-        image,
-    } = post.metadata;
+    const { title, date: publishedTime, description, image } = post.metadata;
     const fullTitle = `${title} | ${defaults.fullName}`;
     const ogImage = image
         ? defaults.url + image
@@ -41,7 +39,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
         openGraph: {
             title,
             description,
-            type: 'article',
+            type: "article",
             publishedTime,
             url: `${defaults.url}/blog/${post.slug}`,
             images: [
@@ -51,7 +49,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
             ],
         },
         twitter: {
-            card: 'summary_large_image',
+            card: "summary_large_image",
             title,
             description,
             images: [ogImage],
@@ -59,7 +57,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     };
 }
 
-export default function Blog({ params }: { params: { slug: string, metadata: Metadata, content: string } }) {
+export default function Blog({
+    params,
+}: {
+    params: { slug: string; metadata: Metadata; content: string };
+}) {
     const post = getBlogPosts().find((post) => post.slug === params.slug);
 
     if (!post) {
@@ -67,53 +69,64 @@ export default function Blog({ params }: { params: { slug: string, metadata: Met
     }
 
     return (
-        <div className="flex justify-center items-center p-5">
-            <div
-                className="w-full max-w-screen-lg p-10 bg-secondary border-2 dark:border-slate-700 rounded-3xl shadow-md">
-                <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        '@context': 'https://schema.org',
-                        '@type': 'BlogPosting',
-                        headline: post.metadata.title,
-                        datePublished: post.metadata.date,
-                        dateModified: post.metadata.date,
-                        description: post.metadata.description,
-                        image: post.metadata.image
-                            ? `${defaults.url}${post.metadata.image}`
-                            : `${defaults.url}/og?title=${post.metadata.title}`,
-                        url: `${defaults.url}/blog/${post.slug}`,
-                        author: {
-                            '@type': 'Person',
-                            name: defaults.fullName,
-                        },
-                    }),
-                }}
+        <div className="flex items-center justify-center p-5">
+            <div className="w-full max-w-screen-lg rounded-3xl border-2 bg-secondary p-10 shadow-md dark:border-slate-700">
+                <script
+                    type="application/ld+json"
+                    suppressHydrationWarning
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "BlogPosting",
+                            headline: post.metadata.title,
+                            datePublished: post.metadata.date,
+                            dateModified: post.metadata.date,
+                            description: post.metadata.description,
+                            image: post.metadata.image
+                                ? `${defaults.url}${post.metadata.image}`
+                                : `${defaults.url}/og?title=${post.metadata.title}`,
+                            url: `${defaults.url}/blog/${post.slug}`,
+                            author: {
+                                "@type": "Person",
+                                name: defaults.fullName,
+                            },
+                        }),
+                    }}
                 />
-                <Navbar/>
-                <h1 className="title font-bold text-5xl mb-4 break-words">{post.metadata.title}</h1>
-                <div className="flex flex-row flex-wrap gap-2 my-4">
+                <Navbar />
+                <h1 className="title mb-4 break-words text-5xl font-bold">
+                    {post.metadata.title}
+                </h1>
+                <div className="my-4 flex flex-row flex-wrap gap-2">
                     {post.metadata.tags?.map((tag: any, index: any) => (
-                        <span key={index} className="p-1 dark:bg-slate-700 bg-slate-200 border-slate-300 rounded-md text-xs dark:text-slate-300 text-slate-600 font-medium">
+                        <span
+                            key={index}
+                            className="rounded-md border-slate-300 bg-slate-200 p-1 text-xs font-medium text-slate-600 dark:bg-slate-700 dark:text-slate-300"
+                        >
                             {tag}
                         </span>
                     ))}
                 </div>
                 {post.metadata.image && (
-                    <Image src={post.metadata.image} alt={post.metadata.title} width={2000} height={2000}
-                           className="rounded-3xl"/>
+                    <Image
+                        src={post.metadata.image}
+                        alt={post.metadata.title}
+                        width={2000}
+                        height={2000}
+                        className="rounded-3xl"
+                    />
                 )}
-                <h2 className="description mt-3 mb-4 break-words">
+                <h2 className="description mb-4 mt-3 break-words">
                     {post.metadata.description}
                 </h2>
                 <p className="description text-muted-foreground">
                     {formatDate(post.metadata.date)}
                 </p>
-                <hr className="border-slate-600 rounded-full mt-3 mb-4"/>
-                <article
-                    className="prose max-[350px]:prose-sm lg:prose-lg prose-slate dark:prose-invert prose-img:rounded-3xl prose-a:text-blue-600 hover:prose-a:text-blue-500 max-w-none">
-                    <CustomMDX source={post.content}/>
+                <hr className="mb-4 mt-3 rounded-full border-slate-600" />
+                <article className="prose prose-slate max-w-none dark:prose-invert max-[350px]:prose-sm lg:prose-lg prose-a:text-blue-600 hover:prose-a:text-blue-500 prose-img:rounded-3xl">
+                    <CustomMDX source={post.content} />
                 </article>
-                <Footer type="blog"/>
+                <Footer type="blog" />
             </div>
         </div>
     );
