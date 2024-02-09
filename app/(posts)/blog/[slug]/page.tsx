@@ -9,6 +9,11 @@ import { formatDate } from "@/lib/misc";
 import { Navbar } from "@/app/(posts)/_components/navbar";
 import { Footer } from "@/app/(posts)/_components/footer";
 
+export async function generateStaticParams() {
+    const posts = getBlogPosts().map((post) => post.slug);
+    return posts.map((slug) => ({ params: { slug } }));
+}
+
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata | undefined> {
     if (!params) {
         return;
@@ -54,8 +59,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     };
 }
 
-export default function Blog({ params }: { params: { slug: string } }) {
-    let post = getBlogPosts().find((post) => post.slug === params.slug);
+export default function Blog({ params }: { params: { slug: string, metadata: Metadata, content: string } }) {
+    const post = getBlogPosts().find((post) => post.slug === params.slug);
 
     if (!post) {
         notFound();
@@ -87,7 +92,7 @@ export default function Blog({ params }: { params: { slug: string } }) {
                 <Navbar/>
                 <h1 className="title font-bold text-5xl mb-4 break-words">{post.metadata.title}</h1>
                 <div className="flex flex-row flex-wrap gap-2 my-4">
-                    {post.metadata.tags?.map((tag, index) => (
+                    {post.metadata.tags?.map((tag: any, index: any) => (
                         <span key={index} className="p-1 dark:bg-slate-700 bg-slate-200 border-slate-300 rounded-md text-xs dark:text-slate-300 text-slate-600 font-medium">
                             {tag}
                         </span>

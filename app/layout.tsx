@@ -50,7 +50,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children}: Readonly<{ children: React.ReactNode; }>) {
     return (
-        <html lang="en" suppressHydrationWarning>
+        <html lang="en">
         <body className={`${font.className} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             {children}

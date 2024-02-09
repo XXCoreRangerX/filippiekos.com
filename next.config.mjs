@@ -5,7 +5,7 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname: 'github-readme-stats.vercel.app',
+                hostname: 'avatars.githubusercontent.com',
                 port: '',
             },
         ],

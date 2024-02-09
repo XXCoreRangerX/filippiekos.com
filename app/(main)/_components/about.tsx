@@ -1,18 +1,17 @@
+import React from "react";
 import defaults from "@/constants/defaults";
 import socials from "@/data/socials";
 import skills from "@/data/skills";
-import achievements from "@/data/achievements";
 import Image from "next/image";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { CustomMDX } from "@/app/(posts)/_components/mdx";
 import { buttonVariants } from "@/components/ui/button";
 import { Download, Mail } from "lucide-react";
-import { cn } from "@/lib/utils";
-import React from "react";
-import { CustomMDX } from "@/app/(posts)/_components/mdx";
 
 export function About() {
     return (
-        <div className="grid md:flex flex-col h-full bg-secondary border-2 dark:border-slate-700 rounded-3xl p-5 gap-3 shadow-md overflow-auto">
+        <div className="grid md:flex flex-col h-full bg-secondary border-2 dark:border-slate-700 rounded-3xl p-5 gap-3 shadow-md md:overflow-auto md:justify-center">
             <div className="flex flex-col gap-2 text-center justify-center items-center">
                 <Image src="/filip.jpg" width="250" height="250" alt="" className="border-4 border-slate-200 rounded-full shadow-2xl" priority={true}/>
                 <h1 className="text-4xl font-bold">{defaults.fullName}</h1>
@@ -41,7 +40,7 @@ export function About() {
             <hr className="dark:border-slate-600 rounded-full"/>
             <div className="flex flex-col gap-1 text-left">
                 <h3 className="text-xl font-medium">Bio</h3>
-                <p className="leading-relaxed"><CustomMDX source={defaults.bio}/></p>
+                <CustomMDX source={defaults.bio}/>
             </div>
         </div>
     );
