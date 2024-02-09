@@ -93,7 +93,7 @@ export default function Article({ params }: { params: { slug: string, metadata: 
                     className="prose max-[350px]:prose-sm lg:prose-lg prose-slate dark:prose-invert prose-img:rounded-3xl prose-a:text-blue-600 hover:prose-a:text-blue-500 max-w-none">
                     <CustomMDX source={post.content}/>
                 </article>
-                <Footer/>
+                <Footer type="articles"/>
             </div>
         </div>
     );
