@@ -56,7 +56,7 @@ export const SearchCommand = () => {
             if (response.ok) {
                 return await response.json();
             } else {
-                throw new Error("Failed to fetch data");
+                return { articles: [], posts: [] };
             }
         } catch (error) {
             console.error(error);
