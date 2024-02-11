@@ -1,7 +1,6 @@
+import { Achievements } from "@/app/(main)/_components/achievements";
 import { Articles } from "@/app/(main)/_components/articles";
 import { Blog } from "@/app/(main)/_components/blog";
-//import { GitHubStats } from "@/app/(main)/_components/github";
-import { Achievements } from "@/app/(main)/_components/achievements";
 import dynamic from "next/dynamic";
 import { GitHubStats } from "./_components/github";
 
@@ -17,11 +16,11 @@ export default function Main() {
             </div>
             <div className="flex flex-col gap-5 md:w-7/12">
                 <Blog />
-                <GitHubStats />
+                <Achievements />
             </div>
             <div className="flex max-h-screen flex-col gap-5 md:w-3/12">
                 <Articles />
-                <Achievements />
+                <GitHubStats />
             </div>
         </div>
     );

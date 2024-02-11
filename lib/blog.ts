@@ -59,10 +59,38 @@ function getMDXData(dir: string) {
     });
 }
 
+function saveDataToJson(data: any, filePath: string, type: string) {
+    fs.writeFileSync(
+        filePath,
+        JSON.stringify(
+            data.map(
+                ({ metadata, slug }: { metadata: Metadata; slug: string }) => ({
+                    title: metadata.title,
+                    slug:
+                        type === "blog" ? `/blog/${slug}` : `/articles/${slug}`,
+                    description: metadata.description,
+                    date: metadata.date,
+                }),
+            ),
+            null,
+            2,
+        ),
+        "utf-8",
+    );
+}
+
 export function getBlogPosts() {
-    return getMDXData(path.join(process.cwd(), "content/posts"));
+    const data = getMDXData(path.join(process.cwd(), "content/posts"));
+    saveDataToJson(data, path.join(process.cwd(), "data/posts.json"), "blog");
+    return data;
 }
 
 export function getArticles() {
-    return getMDXData(path.join(process.cwd(), "content/articles"));
+    const data = getMDXData(path.join(process.cwd(), "content/articles"));
+    saveDataToJson(
+        data,
+        path.join(process.cwd(), "data/articles.json"),
+        "articles",
+    );
+    return data;
 }

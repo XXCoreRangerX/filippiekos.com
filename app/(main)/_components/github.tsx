@@ -93,16 +93,16 @@ export async function GitHubStats() {
 
     return (
         <Link href={githubUrl} target="blank">
-            <div className="flex items-center justify-center gap-6 rounded-3xl border-2 bg-secondary p-5 shadow-md dark:border-slate-700">
+            <div className="flex items-center justify-center gap-6 rounded-3xl border-2 bg-card p-5 shadow-md">
                 <Image
                     src={avatarUrl}
                     alt="GitHub Avatar"
                     width={100}
                     height={100}
-                    className="rounded-full border-2 border-slate-200 shadow-2xl"
+                    className="rounded-full shadow-2xl ring-2 ring-ring md:hidden xl:block"
                 />
                 <div>
-                    <h3 className="text-lg font-medium">GitHub Stats</h3>
+                    <h3 className="mb-1 text-xl font-medium">GitHub Stats</h3>
                     {Object.entries(stats).map(([key, value]) => (
                         <h4 key={key} className="text-md flex justify-between">
                             {key.replace("total", "")}:{" "}

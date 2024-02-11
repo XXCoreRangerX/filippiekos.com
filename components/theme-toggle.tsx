@@ -1,6 +1,6 @@
 "use client";
 
-import { Button as UIButton } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -9,12 +9,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
-import { Moon, Sun } from "lucide-react";
+import { Laptop, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import * as React from "react";
 
 const themeToggleVariants = cva(
-    "outline inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+    "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 ring-blue-400",
     {
         variants: {
             variant: {
@@ -39,8 +39,8 @@ const ThemeToggle = React.forwardRef<HTMLButtonElement, ThemeToggleProps>(
         return (
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                    <UIButton
-                        variant="theme"
+                    <Button
+                        variant="secondary"
                         size="icon"
                         className={cn(
                             themeToggleVariants({ variant, className }),
@@ -48,19 +48,22 @@ const ThemeToggle = React.forwardRef<HTMLButtonElement, ThemeToggleProps>(
                         ref={ref}
                         {...props}
                     >
-                        <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                        <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                        <Sun className="rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                        <Moon className="absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                         <span className="sr-only">Toggle theme</span>
-                    </UIButton>
+                    </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                     <DropdownMenuItem onClick={() => setTheme("light")}>
+                        <Sun className="mr-2 h-4 w-4" />
                         Light
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={() => setTheme("dark")}>
+                        <Moon className="mr-2 h-4 w-4" />
                         Dark
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={() => setTheme("system")}>
+                        <Laptop className="mr-2 h-4 w-4" />
                         System
                     </DropdownMenuItem>
                 </DropdownMenuContent>

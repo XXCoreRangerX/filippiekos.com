@@ -48,8 +48,8 @@ class Defaults {
     ];
 
     static achievements = [
-        ["Regeneron ISEF", "2023", "3rd", "https://isef.com"],
-        ["IEEE at ISEF", "2023", "2nd", "https://ieee.org"],
+        ["Regeneron ISEF", "2023 (Dallas, TX)", "3rd", "https://isef.com"],
+        ["IEEE at ISEF", "2023 (Dallas, TX)", "2nd", "https://ieee.org"],
         ["Explory", "2022", "1st", "https://explory.pl"],
     ];
 }

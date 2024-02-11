@@ -1,5 +1,6 @@
 import { CustomMDX } from "@/app/(posts)/_components/mdx";
 import { buttonVariants } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import defaults from "@/constants/defaults";
 import skills from "@/data/skills";
 import socials from "@/data/socials";
@@ -7,17 +8,16 @@ import { cn } from "@/lib/utils";
 import { Download, Mail } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
 export function About() {
     return (
-        <div className="grid h-full flex-col gap-3 rounded-3xl border-2 bg-secondary p-5 shadow-md dark:border-slate-700 md:flex md:justify-center md:overflow-auto">
-            <div className="flex flex-col items-center justify-center gap-2 text-center">
+        <div className="grid h-full flex-col gap-3 rounded-3xl border-2 bg-card p-5 shadow-md md:flex md:overflow-auto">
+            <div className="flex flex-col items-center gap-2 text-center">
                 <Image
                     src="/pfp.jpg"
                     width="250"
                     height="250"
                     alt=""
-                    className="rounded-full border-4 border-slate-200 shadow-2xl"
+                    className="rounded-full shadow-2xl ring-4 ring-ring dark:ring-slate-200"
                     priority={true}
                 />
                 <h1 className="text-4xl font-bold">{defaults.fullName}</h1>
@@ -29,24 +29,28 @@ export function About() {
                     ))}
                 </h2>
             </div>
-            <div className="flex flex-row flex-wrap items-center justify-center gap-3 text-center">
+            <div className="flex flex-wrap items-center justify-center gap-3 text-center">
                 {socials.map((social, index) => (
-                    <Link key={index} href={social.url}>
-                        <social.icon className="h-8 w-8 rounded-md bg-slate-200 p-1.5 text-black hover:bg-slate-300" />
+                    <Link
+                        key={index}
+                        href={social.url}
+                        className={buttonVariants({ size: "icon" })}
+                    >
+                        <social.icon className="h-6 w-6" />
                     </Link>
                 ))}
             </div>
-            <div className="flex flex-row flex-wrap items-center justify-center gap-2 text-center">
+            <div className="flex flex-wrap items-center justify-center gap-2 text-center">
                 {skills.map((skill, index) => (
                     <span
                         key={index}
-                        className="rounded-md border-slate-300 bg-slate-200 p-1 text-xs font-medium text-slate-600 dark:bg-slate-700 dark:text-slate-300"
+                        className="rounded-md bg-muted p-1 text-xs font-medium text-muted-foreground"
                     >
                         {skill.name}
                     </span>
                 ))}
             </div>
-            <div className="mb-1 mt-1 flex flex-row gap-2">
+            <div className="mb-1 mt-1 flex gap-2">
                 <Link
                     href={"mailto:" + defaults.email}
                     download
@@ -70,7 +74,7 @@ export function About() {
                     CV
                 </Link>
             </div>
-            <hr className="rounded-full dark:border-slate-600" />
+            <Separator />
             <div className="flex flex-col gap-1 text-left">
                 <h3 className="text-xl font-medium">Bio</h3>
                 <CustomMDX source={defaults.bio} />

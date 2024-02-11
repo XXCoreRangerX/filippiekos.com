@@ -1,6 +1,7 @@
 import { Footer } from "@/app/(posts)/_components/footer";
 import { CustomMDX } from "@/app/(posts)/_components/mdx";
 import { Navbar } from "@/app/(posts)/_components/navbar";
+import { Separator } from "@/components/ui/separator";
 import defaults from "@/constants/defaults";
 import { getArticles } from "@/lib/blog";
 import type { Metadata } from "next";
@@ -67,7 +68,7 @@ export default function Article({
 
     return (
         <div className="flex items-center justify-center p-5">
-            <div className="w-full max-w-screen-lg rounded-3xl border-2 bg-secondary p-10 shadow-md dark:border-slate-700">
+            <div className="w-full max-w-screen-lg rounded-3xl border-2 bg-card p-6 shadow-md md:p-10">
                 <script
                     type="application/ld+json"
                     suppressHydrationWarning
@@ -95,8 +96,8 @@ export default function Article({
                 <h2 className="description mb-4 mt-3 break-words">
                     {post.metadata.description}
                 </h2>
-                <hr className="mb-4 mt-3 rounded-full border-slate-600" />
-                <article className="prose prose-slate max-w-none dark:prose-invert max-[350px]:prose-sm lg:prose-lg prose-a:text-blue-600 hover:prose-a:text-blue-500 prose-img:rounded-3xl">
+                <Separator className="my-6" />
+                <article className="prose prose-slate max-w-none dark:prose-invert max-[350px]:prose-sm lg:prose-lg prose-img:rounded-3xl">
                     <CustomMDX source={post.content} />
                 </article>
                 <Footer type="articles" />

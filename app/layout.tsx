@@ -1,11 +1,11 @@
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { SearchCommand } from "@/components/search-command";
 import defaults from "@/constants/defaults";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Rubik as Font } from "next/font/google";
 import React from "react";
-import { Toaster } from "sonner";
 import "./globals.css";
 
 const font = Font({ subsets: ["latin"] });
@@ -60,9 +60,9 @@ export default function RootLayout({
                     enableSystem
                 >
                     {children}
-                    <Toaster position="bottom-center" />
                     <SpeedInsights />
                     <Analytics />
+                    <SearchCommand />
                 </ThemeProvider>
             </body>
         </html>

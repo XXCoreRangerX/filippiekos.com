@@ -1,5 +1,7 @@
+import Code from "@/app/(posts)/_components/code";
 import { TweetComponent } from "@/app/(posts)/_components/tweet";
-import { Note } from "@/components/ui/note";
+import { Callout } from "@/components/ui/callout";
+import { Separator } from "@/components/ui/separator";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
 import React from "react";
@@ -7,6 +9,7 @@ import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
 
 function slugify(str: string) {
+    if (!str) return "";
     return str
         .toString()
         .toLowerCase()
@@ -20,12 +23,12 @@ function slugify(str: string) {
 function createHeading(level: number) {
     return function Heading({ children }: { children: string }) {
         const slug = slugify(children);
-        return React.createElement("h" + level, { id: slug }, [
-            <Link key="link" href={"#" + slug} className="anchor">
-                #
-            </Link>,
-            children,
-        ]);
+        // inside link element heave a custom createlement h + level
+        return (
+            <Link href={`#${slug}`} className="no-underline">
+                {React.createElement(`h${level}`, { id: slug }, children)}
+            </Link>
+        );
     };
 }
 
@@ -50,7 +53,7 @@ function CustomLink(props: any) {
 const options = {
     mdxOptions: {
         remarkPlugins: [remarkGfm],
-        rehypePlugins: [rehypeHighlight],
+        rehypePlugins: [[rehypeHighlight, { detect: true }]],
     },
 };
 
@@ -63,7 +66,15 @@ let components = {
     h6: createHeading(6),
     a: CustomLink,
     Tweet: TweetComponent,
-    Note,
+    Callout: Callout,
+    Separator: Separator,
+    code: ({ children, className, ...props }: any) => {
+        return (
+            <Code className={className} {...props}>
+                {children}
+            </Code>
+        );
+    },
 };
 
 export function CustomMDX(props: any) {
