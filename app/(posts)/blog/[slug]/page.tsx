@@ -3,13 +3,19 @@ import { CustomMDX } from "@/app/(posts)/_components/mdx";
 import { Navbar } from "@/app/(posts)/_components/navbar";
 import { Separator } from "@/components/ui/separator";
 import defaults from "@/constants/defaults";
-import { getBlogPosts } from "@/lib/blog";
+import { getBlogPosts, saveDataToJson } from "@/lib/blog";
 import { formatDate } from "@/lib/date";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import path from "path";
 
 export async function generateStaticParams() {
+    saveDataToJson(
+        getBlogPosts(),
+        path.join(process.cwd(), "data/posts.json"),
+        "blog",
+    );
     const posts = getBlogPosts().map((post) => post.slug);
     return posts.map((slug) => ({ params: { slug } }));
 }

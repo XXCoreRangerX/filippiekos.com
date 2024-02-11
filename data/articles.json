@@ -1,22 +1,22 @@
 [
-  {
-    "title": "Audio",
-    "slug": "/articles/audio",
-    "description": "My hi-fi audio gear"
-  },
-  {
-    "title": "Homelab",
-    "slug": "/articles/homelab",
-    "description": "My homelabbing journey"
-  },
-  {
-    "title": "Keyboards",
-    "slug": "/articles/keyboards",
-    "description": "All my custom keyboards"
-  },
-  {
-    "title": "My setup",
-    "slug": "/articles/setup",
-    "description": "My PC build, peripherals, and other tech"
-  }
+    {
+        "title": "Audio",
+        "slug": "/articles/audio",
+        "description": "My hi-fi audio gear"
+    },
+    {
+        "title": "Homelab",
+        "slug": "/articles/homelab",
+        "description": "My homelabbing journey"
+    },
+    {
+        "title": "Keyboards",
+        "slug": "/articles/keyboards",
+        "description": "All my custom keyboards"
+    },
+    {
+        "title": "My setup",
+        "slug": "/articles/setup",
+        "description": "My PC build, peripherals, and other tech"
+    }
 ]

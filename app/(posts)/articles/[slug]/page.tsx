@@ -3,11 +3,17 @@ import { CustomMDX } from "@/app/(posts)/_components/mdx";
 import { Navbar } from "@/app/(posts)/_components/navbar";
 import { Separator } from "@/components/ui/separator";
 import defaults from "@/constants/defaults";
-import { getArticles } from "@/lib/blog";
+import { getArticles, saveDataToJson } from "@/lib/blog";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import path from "path";
 
 export async function generateStaticParams() {
+    saveDataToJson(
+        getArticles(),
+        path.join(process.cwd(), "data/articles.json"),
+        "articles",
+    );
     const posts = getArticles().map((post) => post.slug);
     return posts.map((slug) => ({ params: { slug } }));
 }

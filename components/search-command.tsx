@@ -9,13 +9,16 @@ import {
     CommandList,
     CommandSeparator,
 } from "@/components/ui/command";
-import articles from "@/data/articles.json";
-import posts from "@/data/posts.json";
 import { useSearch } from "@/hooks/use-search";
-import { FileText } from "lucide-react";
+import { FileText, Laptop, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
+interface SearchResultItem {
+    title: string;
+    slug: string;
+}
 
 export const SearchCommand = () => {
     const router = useRouter();
@@ -47,43 +50,75 @@ export const SearchCommand = () => {
         onClose();
     };
 
+    const fetchData = async () => {
+        try {
+            const response = await fetch("/api/search");
+            if (response.ok) {
+                return await response.json();
+            } else {
+                throw new Error("Failed to fetch data");
+            }
+        } catch (error) {
+            console.error(error);
+            return { articles: [], posts: [] };
+        }
+    };
+
+    const [data, setData] = useState<{
+        articles: SearchResultItem[];
+        posts: SearchResultItem[];
+    }>({
+        articles: [],
+        posts: [],
+    });
+
+    useEffect(() => {
+        fetchData().then(setData);
+    }, []);
+
     return (
         <CommandDialog open={isOpen} onOpenChange={onClose}>
-            <CommandInput placeholder={`Search posts...`} />
+            <CommandInput placeholder={`Search...`} />
             <CommandList>
                 <CommandEmpty>No results found.</CommandEmpty>
-                <CommandGroup heading="Articles">
-                    {articles.map((doc) => (
-                        <CommandItem
-                            key={doc.slug}
-                            onSelect={() => onSelect(doc.slug)}
-                        >
-                            <FileText className="mr-2 h-4 w-4" />
-                            <span>{doc.title}</span>
-                        </CommandItem>
-                    ))}
-                </CommandGroup>
-                <CommandSeparator />
-                <CommandGroup heading="Posts">
-                    {posts.map((doc) => (
-                        <CommandItem
-                            key={doc.slug}
-                            onSelect={() => onSelect(doc.slug)}
-                        >
-                            <FileText className="mr-2 h-4 w-4" />
-                            <span>{doc.title}</span>
-                        </CommandItem>
-                    ))}
-                </CommandGroup>
+                {data.articles.length > 0 && (
+                    <CommandGroup heading="Articles">
+                        {data.articles.map((doc) => (
+                            <CommandItem
+                                key={doc.slug}
+                                onSelect={() => onSelect(doc.slug)}
+                            >
+                                <FileText className="mr-2" />
+                                <span>{doc.title}</span>
+                            </CommandItem>
+                        ))}
+                    </CommandGroup>
+                )}
+                {data.posts.length > 0 && (
+                    <CommandGroup heading="Posts">
+                        {data.posts.map((doc) => (
+                            <CommandItem
+                                key={doc.slug}
+                                onSelect={() => onSelect(doc.slug)}
+                            >
+                                <FileText className="mr-2" />
+                                <span>{doc.title}</span>
+                            </CommandItem>
+                        ))}
+                    </CommandGroup>
+                )}
                 <CommandSeparator />
                 <CommandGroup heading="Theme">
                     <CommandItem onSelect={() => onThemeChange("light")}>
+                        <Sun className="mr-2" />
                         Light
                     </CommandItem>
                     <CommandItem onSelect={() => onThemeChange("dark")}>
+                        <Moon className="mr-2" />
                         Dark
                     </CommandItem>
                     <CommandItem onSelect={() => onThemeChange("system")}>
+                        <Laptop className="mr-2" />
                         System
                     </CommandItem>
                 </CommandGroup>

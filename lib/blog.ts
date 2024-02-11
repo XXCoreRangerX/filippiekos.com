@@ -86,6 +86,3 @@ export function getBlogPosts() {
 export function getArticles() {
     return getMDXData(path.join(process.cwd(), "content/articles"));
 }
-
-saveDataToJson(getBlogPosts(), path.join(process.cwd(), "data/posts.json"), "blog");
-saveDataToJson(getArticles(), path.join(process.cwd(), "data/articles.json"), "articles");
