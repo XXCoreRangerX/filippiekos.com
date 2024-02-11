@@ -6,7 +6,8 @@
         "dev": "next dev --turbo",
         "build": "next build",
         "start": "next start",
-        "lint": "next lint"
+        "lint": "next lint",
+        "format": "prettier --write ."
     },
     "dependencies": {
         "@radix-ui/react-dialog": "^1.0.5",
@@ -29,6 +30,7 @@
         "react-tweet": "^3.2.0",
         "rehype-highlight": "^7.0.0",
         "remark-gfm": "^3.0.1",
+        "sharp": "^0.33.2",
         "tailwind-merge": "^2.2.1",
         "tailwindcss-animate": "^1.0.7",
         "zustand": "^4.5.0"

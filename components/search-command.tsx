@@ -42,7 +42,6 @@ export const SearchCommand = () => {
     };
 
     const { setTheme } = useTheme();
-    // change theme like with the theme toggle (const { setTheme } = useTheme();) but with onClose() added too
     const onThemeChange = (theme: string) => {
         setTheme(theme);
         onClose();

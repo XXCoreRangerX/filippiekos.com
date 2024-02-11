@@ -59,7 +59,7 @@ function getMDXData(dir: string) {
     });
 }
 
-function saveDataToJson(data: any, filePath: string, type: string) {
+export function saveDataToJson(data: any, filePath: string, type: string) {
     fs.writeFileSync(
         filePath,
         JSON.stringify(
@@ -80,17 +80,12 @@ function saveDataToJson(data: any, filePath: string, type: string) {
 }
 
 export function getBlogPosts() {
-    const data = getMDXData(path.join(process.cwd(), "content/posts"));
-    saveDataToJson(data, path.join(process.cwd(), "data/posts.json"), "blog");
-    return data;
+    return getMDXData(path.join(process.cwd(), "content/posts"));
 }
 
 export function getArticles() {
-    const data = getMDXData(path.join(process.cwd(), "content/articles"));
-    saveDataToJson(
-        data,
-        path.join(process.cwd(), "data/articles.json"),
-        "articles",
-    );
-    return data;
+    return getMDXData(path.join(process.cwd(), "content/articles"));
 }
+
+saveDataToJson(getBlogPosts(), path.join(process.cwd(), "data/posts.json"), "blog");
+saveDataToJson(getArticles(), path.join(process.cwd(), "data/articles.json"), "articles");
