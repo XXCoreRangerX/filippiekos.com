@@ -8,6 +8,5 @@ export default function robots() {
             },
         ],
         sitemap: defaults.url + "/sitemap.xml",
-        host: defaults.url,
     };
 }
