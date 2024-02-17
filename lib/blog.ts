@@ -3,8 +3,9 @@ import path from "path";
 
 type Metadata = {
     title: string;
+    description: string;
     date: string;
-    description?: string;
+    order: number;
     tags?: string[];
     image?: string;
 };
@@ -63,15 +64,33 @@ export function saveDataToJson(data: any, filePath: string, type: string) {
     fs.writeFileSync(
         filePath,
         JSON.stringify(
-            data.map(
-                ({ metadata, slug }: { metadata: Metadata; slug: string }) => ({
-                    title: metadata.title,
-                    slug:
-                        type === "blog" ? `/blog/${slug}` : `/articles/${slug}`,
-                    description: metadata.description,
-                    date: metadata.date,
+            data
+                .map(
+                    ({
+                        metadata,
+                        slug,
+                    }: {
+                        metadata: Metadata;
+                        slug: string;
+                    }) => ({
+                        title: metadata.title,
+                        slug:
+                            type === "blog"
+                                ? `/blog/${slug}`
+                                : `/articles/${slug}`,
+                        description: metadata.description,
+                        date: metadata.date,
+                        order: metadata.order,
+                    }),
+                )
+                .sort((a: any, b: any) => {
+                    if (a.order && b.order) {
+                        return a.order - b.order;
+                    }
+                    return (
+                        new Date(b.date).getTime() - new Date(a.date).getTime()
+                    );
                 }),
-            ),
             null,
             2,
         ),

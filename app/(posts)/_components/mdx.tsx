@@ -23,7 +23,6 @@ function slugify(str: string) {
 function createHeading(level: number) {
     return function Heading({ children }: { children: string }) {
         const slug = slugify(children);
-        // inside link element heave a custom createlement h + level
         return (
             <Link href={`#${slug}`} className="no-underline">
                 {React.createElement(`h${level}`, { id: slug }, children)}

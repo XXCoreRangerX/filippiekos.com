@@ -44,7 +44,7 @@ function Code({ children, className = "" }: CodeProps) {
         <div>
             <div className="flex justify-between text-xs text-slate-500">
                 {language && (
-                    <span className="flex items-center gap-2">
+                    <span className="flex select-none items-center gap-2">
                         <DynamicLanguageIcon className="h-4 w-4" />
                         <span>{language}</span>
                     </span>

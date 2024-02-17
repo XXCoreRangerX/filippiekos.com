@@ -31,7 +31,7 @@ const PostListItem = ({
             />
         )}
         <div className="grid">
-            {post.metadata.date && (
+            {type === "blog" && post.metadata.date && (
                 <p className="text-sm text-muted-foreground">
                     {formatDate(post.metadata.date)}
                 </p>
@@ -48,7 +48,17 @@ const PostListItem = ({
 
 const PostList = React.forwardRef<HTMLDivElement, PostListProps>(
     ({ type, maxPosts }, ref) => {
-        const posts = type === "articles" ? getArticles() : getBlogPosts();
+        const posts =
+            type === "articles"
+                ? getArticles().sort(
+                      (a, b) =>
+                          (a.metadata.order || 0) - (b.metadata.order || 0),
+                  )
+                : getBlogPosts().sort(
+                      (a, b) =>
+                          new Date(b.metadata.date || "").getTime() -
+                          new Date(a.metadata.date || "").getTime(),
+                  );
         const filteredPosts = maxPosts ? posts.slice(0, maxPosts) : posts;
         return (
             <div ref={ref} className="grid gap-2">

@@ -19,18 +19,45 @@ export async function getStaticProps() {
     }
 }
 
+interface RepositoryNode {
+    node: {
+        stargazerCount: number;
+        forkCount: number;
+    };
+}
+
+interface GitHubUser {
+    avatarUrl: string;
+    followers: {
+        totalCount: number;
+    };
+    following: {
+        totalCount: number;
+    };
+    repositories: {
+        edges: RepositoryNode[];
+    };
+}
+
+interface GitHubData {
+    user: GitHubUser;
+    errors?: string[];
+}
+
 export async function GitHubStats() {
     if (!process.env.GITHUB_TOKEN) {
         throw new Error("GitHub token is not defined.");
     }
-    const { data } = await fetch("https://api.github.com/graphql", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-        },
-        body: JSON.stringify({
-            query: `
+    const { data }: { data?: GitHubData } = await fetch(
+        "https://api.github.com/graphql",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+            },
+            body: JSON.stringify({
+                query: `
                 {
                     user(login: "${defaults.username}") {
                         repositories(first: 100, privacy: PUBLIC) {
@@ -54,9 +81,10 @@ export async function GitHubStats() {
                     }
                 }
             `,
-        }),
-        next: { revalidate: 86400 },
-    }).then((res) => res.json());
+            }),
+            next: { revalidate: 86400 },
+        },
+    ).then((res) => res.json());
 
     if (!data || data.errors) {
         throw new Error(
@@ -68,7 +96,7 @@ export async function GitHubStats() {
         throw new Error("Failed to fetch GitHub data: User not found");
     }
 
-    let user = data.user;
+    let user = data.user as GitHubUser;
 
     let avatarUrl = user.avatarUrl;
     let totalFollowers = user.followers.totalCount;

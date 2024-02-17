@@ -107,16 +107,6 @@ export default function Blog({
                 <h1 className="title break-words text-5xl font-bold">
                     {post.metadata.title}
                 </h1>
-                <div className="my-4 flex flex-wrap gap-2">
-                    {post.metadata.tags?.map((tag: any, index: any) => (
-                        <span
-                            key={index}
-                            className="rounded-md bg-muted p-1 text-xs font-medium text-muted-foreground"
-                        >
-                            {tag}
-                        </span>
-                    ))}
-                </div>
                 {post.metadata.image && (
                     <Image
                         src={post.metadata.image}
@@ -129,6 +119,16 @@ export default function Blog({
                 <h2 className="description mt-3 break-words">
                     {post.metadata.description}
                 </h2>
+                <div className="my-4 flex flex-wrap gap-2">
+                    {post.metadata.tags?.map((tag: any, index: any) => (
+                        <span
+                            key={index}
+                            className="rounded-md bg-muted p-1 text-xs font-medium text-muted-foreground"
+                        >
+                            {tag}
+                        </span>
+                    ))}
+                </div>
                 <Separator className="my-6" />
                 <article className="prose prose-slate max-w-none dark:prose-invert max-[350px]:prose-sm lg:prose-lg prose-img:rounded-3xl">
                     <CustomMDX source={post.content} />
