@@ -3,12 +3,16 @@ import { SearchCommand } from "@/components/search-command";
 import defaults from "@/constants/defaults";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Rubik as Font } from "next/font/google";
 import React from "react";
 import "./globals.css";
 
 const font = Font({ subsets: ["latin"] });
+
+export const viewport: Viewport = {
+    themeColor: "#0f172a",
+};
 
 export const metadata: Metadata = {
     metadataBase: new URL(defaults.url),

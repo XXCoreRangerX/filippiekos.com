@@ -22,18 +22,19 @@ export function About() {
                 priority={true}
             />
             <h1 className="text-4xl font-bold">{defaults.fullName}</h1>
-            <h3 className="text-lg text-muted-foreground">
+            <h2 className="text-lg text-muted-foreground">
                 {defaults.email.split("").map((char, index) => (
                     <span key={index} className="inline-block">
                         {char}
                     </span>
                 ))}
-            </h3>
+            </h2>
             <div className="my-2 flex flex-wrap items-center justify-center gap-2 text-center">
                 {socials.map((social, index) => (
                     <Link
                         key={index}
                         href={social.url}
+                        aria-label={social.name}
                         className={cn(
                             buttonVariants({ size: "icon" }),
                             "md:h-8 md:w-8",
