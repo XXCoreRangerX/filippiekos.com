@@ -36,7 +36,7 @@
     }
 
     .dark {
-        --background: 222.2 84% 4.9%;
+        --background: 222.2 47.4% 11.2%;
         --foreground: 210 40% 98%;
 
         --card: 217.2 32.6% 17.5%;
@@ -51,7 +51,7 @@
         --accent: 215.3 25% 26.7%;
         --accent-foreground: 210 40% 98%;
 
-        --secondary: 222.2 84% 4.9%;
+        --secondary: 222.2 47.4% 11.2%;
         --secondary-foreground: 210 40% 98%;
 
         --muted: 215.3 25% 26.7%;

@@ -7,7 +7,6 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { cn } from "@/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Laptop, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
@@ -40,11 +39,9 @@ const ThemeToggle = React.forwardRef<HTMLButtonElement, ThemeToggleProps>(
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                     <Button
-                        variant="secondary"
+                        variant={variant === "fixed" ? "secondary" : "ghost"}
                         size="icon"
-                        className={cn(
-                            themeToggleVariants({ variant, className }),
-                        )}
+                        className={themeToggleVariants({ variant, className })}
                         ref={ref}
                         {...props}
                     >

@@ -19,7 +19,7 @@ const PostListItem = ({
     <Link
         key={post.slug}
         href={`/${type}/${post.slug}`}
-        className="flex items-center gap-3 rounded-3xl p-3 transition-all duration-150 ease-in-out hover:bg-slate-200 active:bg-slate-300 dark:hover:bg-slate-700 dark:active:bg-slate-600"
+        className="flex items-center gap-3 rounded-xl p-3 transition-all duration-150 ease-in-out hover:bg-slate-200 active:bg-slate-300 dark:hover:bg-slate-700 dark:active:bg-slate-600"
     >
         {post.metadata.image && (
             <Image

@@ -9,8 +9,11 @@ class Defaults {
         "Filip Piękoś's portfolio website. A self-proclaimed, aspiring developer, engineer, sysadmin, UI/UX/CAD/EDA designer, and a tech enthusiast. Studying at ZSTiO, Jarosław, Poland.";
     static url = "https://filippiekos.com";
     /* Bio is a markdown-formatted string */
-    static bio =
-        "I'm a self-proclaimed, aspiring developer, engineer, sysadmin, UI/UX/CAD/EDA designer, and a tech enthusiast. Studying at ZSTiO, Jarosław, Poland. I enjoy long walks, skiing and heavy metal.";
+    static bio = `
+    I'm an aspiring developer, engineer, sysadmin, UI/UX/CAD/EDA designer, and a **tech enthusiast**. I enjoy long walks, skiing and heavy metal.
+    
+    Studying at ZSTiO, Jarosław, Poland.
+    `;
 
     static fullName = "Filip Piękoś";
     static shortName = "Filip";
@@ -31,20 +34,23 @@ class Defaults {
     static skills = [
         "DevOps",
         "SysAdmin",
+        "CI/CD",
         "Unix",
         "Python",
+        "Rust",
         "Arduino",
-        "UI/UX",
+        "Raspberry Pi",
+        "Kubernetes",
         "EDA",
         "CAD",
-        "Node.js",
+        "UI/UX",
         "React",
+        "Vue.js",
         "Next.js",
         "TypeScript",
         "TailwindCSS",
         "HTML5",
         "CSS",
-        "Kubernetes",
     ];
 
     static achievements = [

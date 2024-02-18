@@ -1,6 +1,7 @@
 import { Footer } from "@/app/(posts)/_components/footer";
 import { CustomMDX } from "@/app/(posts)/_components/mdx";
 import { Navbar } from "@/app/(posts)/_components/navbar";
+import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import defaults from "@/constants/defaults";
 import { getBlogPosts, saveDataToJson } from "@/lib/blog";
@@ -121,12 +122,9 @@ export default function Blog({
                 </h2>
                 <div className="my-4 flex flex-wrap gap-2">
                     {post.metadata.tags?.map((tag: any, index: any) => (
-                        <span
-                            key={index}
-                            className="rounded-md bg-muted p-1 text-xs font-medium text-muted-foreground"
-                        >
+                        <Badge key={index} variant="muted">
                             {tag}
-                        </span>
+                        </Badge>
                     ))}
                 </div>
                 <Separator className="my-6" />
