@@ -105,7 +105,7 @@ export default function Blog({
                 <h3 className="description mb-2 text-muted-foreground">
                     {formatDate(post.metadata.date)}
                 </h3>
-                <h1 className="title break-words text-5xl font-bold">
+                <h1 className="title break-words text-4xl font-bold sm:text-5xl">
                     {post.metadata.title}
                 </h1>
                 {post.metadata.image && (
