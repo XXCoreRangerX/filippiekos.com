@@ -19,8 +19,7 @@ export async function generateStaticParams() {
         path.join(process.cwd(), "data/posts.json"),
         "blog",
     );
-    const posts = getBlogPosts().map((post) => post.slug);
-    return posts.map((slug) => ({ params: { slug } }));
+    return getBlogPosts().map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({

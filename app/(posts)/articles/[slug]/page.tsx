@@ -14,8 +14,7 @@ export async function generateStaticParams() {
         path.join(process.cwd(), "data/articles.json"),
         "articles",
     );
-    const posts = getArticles().map((post) => post.slug);
-    return posts.map((slug) => ({ params: { slug } }));
+    return getArticles().map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({
