@@ -12,46 +12,42 @@ import Link from "next/link";
 
 export function About() {
     return (
-        <div className="flex h-full flex-col items-center rounded-3xl border-2 bg-card p-5 text-center shadow-md md:overflow-auto">
+        <div className="flex h-full flex-col items-center rounded-3xl border-2 bg-card p-5 text-center shadow-md lg:overflow-auto">
             <Image
                 src="/pfp.jpg"
                 width="250"
                 height="250"
                 alt=""
-                className="my-2 rounded-full shadow-xl ring-4 ring-ring dark:ring-slate-200"
+                className="my-4 rounded-full shadow-xl ring-4 ring-ring dark:ring-slate-200"
                 priority={true}
             />
             <h1 className="text-4xl font-bold">{defaults.fullName}</h1>
             <h2 className="text-lg text-muted-foreground">
-                {defaults.email.split("").map((char, index) => (
-                    <span key={index} className="inline-block">
-                        {char}
-                    </span>
-                ))}
+                {defaults.subtitle}
             </h2>
-            <div className="my-2 flex flex-wrap items-center justify-center gap-2 text-center">
+            <div className="my-1 flex flex-wrap items-center justify-center gap-2 text-center">
                 {socials.map((social, index) => (
                     <Link
                         key={index}
                         href={social.url}
                         aria-label={social.name}
                         className={cn(
-                            buttonVariants({ size: "icon" }),
-                            "md:h-8 md:w-8",
+                            buttonVariants({ size: "icon", variant: "ghost" }),
+                            "h-8 w-8",
                         )}
                     >
-                        <social.icon className="h-6 w-6 md:h-5 md:w-5" />
+                        <social.icon className="h-6 w-6 lg:h-5 lg:w-5" />
                     </Link>
                 ))}
             </div>
-            <div className="my-2 flex flex-wrap items-center justify-center gap-2 text-center">
+            <div className="my-2 flex max-w-sm flex-wrap items-center justify-center gap-2 text-center lg:max-w-lg">
                 {skills.map((skill, index) => (
                     <Badge key={index} variant="muted">
                         {skill.name}
                     </Badge>
                 ))}
             </div>
-            <div className="my-2 flex w-full gap-2">
+            <div className="my-2 flex w-full max-w-sm gap-2">
                 <Link
                     href={"mailto:" + defaults.email}
                     download

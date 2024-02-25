@@ -3,6 +3,7 @@ import { CustomMDX } from "@/app/(posts)/_components/mdx";
 import { Navbar } from "@/app/(posts)/_components/navbar";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { Skeleton } from "@/components/ui/skeleton";
 import defaults from "@/constants/defaults";
 import { getBlogPosts, saveDataToJson } from "@/lib/blog";
 import { formatDate } from "@/lib/date";
@@ -10,6 +11,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import path from "path";
+import { Suspense } from "react";
 
 export async function generateStaticParams() {
     saveDataToJson(
@@ -77,7 +79,7 @@ export default function Blog({
     }
 
     return (
-        <div className="flex items-center justify-center p-5">
+        <div className="flex items-center justify-center p-5 sm:p-8 sm:px-24 lg:p-10">
             <div className="w-full max-w-screen-lg rounded-3xl border-2 bg-card p-6 shadow-md md:p-10">
                 <script
                     type="application/ld+json"
@@ -102,10 +104,16 @@ export default function Blog({
                     }}
                 />
                 <Navbar />
-                <h3 className="description mb-2 text-muted-foreground">
-                    {formatDate(post.metadata.date)}
-                </h3>
-                <h1 className="title break-words text-4xl font-bold sm:text-5xl">
+                <Suspense
+                    fallback={
+                        <Skeleton className="description mb-2 h-6 w-48" />
+                    }
+                >
+                    <h3 className="description mb-2 text-muted-foreground">
+                        {formatDate(post.metadata.date)}
+                    </h3>
+                </Suspense>
+                <h1 className="title break-words text-4xl font-bold lg:text-5xl">
                     {post.metadata.title}
                 </h1>
                 {post.metadata.image && (

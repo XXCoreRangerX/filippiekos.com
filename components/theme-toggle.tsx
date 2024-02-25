@@ -13,12 +13,12 @@ import { useTheme } from "next-themes";
 import * as React from "react";
 
 const themeToggleVariants = cva(
-    "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 ring-blue-400",
+    "inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 ring-blue-400",
     {
         variants: {
             variant: {
                 default: "",
-                fixed: "fixed bottom-5 right-5",
+                fixed: "fixed bottom-3 right-3 lg:bottom-1.5 lg:right-1.5",
             },
         },
         defaultVariants: {
@@ -39,7 +39,7 @@ const ThemeToggle = React.forwardRef<HTMLButtonElement, ThemeToggleProps>(
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                     <Button
-                        variant={variant === "fixed" ? "secondary" : "ghost"}
+                        variant={variant === "fixed" ? "outline" : "ghost"}
                         size="icon"
                         className={themeToggleVariants({ variant, className })}
                         ref={ref}

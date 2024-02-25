@@ -10,15 +10,15 @@ const DynamicAbout = dynamic(() =>
 
 export default function Main() {
     return (
-        <div className="grid h-full gap-5 p-5 md:flex md:h-screen">
-            <div className="md:w-1/3">
+        <div className="grid h-full gap-5 p-5 sm:p-8 sm:px-24 lg:flex lg:h-screen lg:p-10">
+            <div className="lg:w-1/4">
                 <DynamicAbout />
             </div>
-            <div className="flex flex-col gap-5 md:w-7/12">
+            <div className="flex flex-col gap-5 lg:w-1/2">
                 <Blog />
                 <Achievements />
             </div>
-            <div className="flex max-h-screen flex-col gap-5 md:w-3/12">
+            <div className="flex max-h-screen flex-col gap-5 lg:w-1/4">
                 <Articles />
                 <GitHubStats />
             </div>

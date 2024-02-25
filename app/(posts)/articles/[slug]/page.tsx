@@ -73,7 +73,7 @@ export default function Article({
     }
 
     return (
-        <div className="flex items-center justify-center p-5">
+        <div className="flex items-center justify-center p-5 sm:p-8 sm:px-24 lg:p-10">
             <div className="w-full max-w-screen-lg rounded-3xl border-2 bg-card p-6 shadow-md md:p-10">
                 <script
                     type="application/ld+json"
@@ -96,7 +96,7 @@ export default function Article({
                     }}
                 />
                 <Navbar />
-                <h1 className="title mb-4 break-words text-5xl font-bold">
+                <h1 className="title break-words text-4xl font-bold lg:text-5xl">
                     {post.metadata.title}
                 </h1>
                 <h2 className="description mb-4 mt-3 break-words">

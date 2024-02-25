@@ -1,6 +1,8 @@
+import { Skeleton } from "@/components/ui/skeleton";
 import defaults from "@/constants/defaults";
 import Image from "next/image";
 import Link from "next/link";
+import { Suspense } from "react";
 
 export async function getStaticProps() {
     try {
@@ -122,19 +124,29 @@ export async function GitHubStats() {
     return (
         <Link href={githubUrl} target="blank">
             <div className="flex items-center justify-center gap-6 rounded-3xl border-2 bg-card p-5 shadow-md">
-                <Image
-                    src={avatarUrl}
-                    alt="GitHub Avatar"
-                    width={100}
-                    height={100}
-                    className="rounded-full shadow-2xl ring-2 ring-ring md:hidden xl:block"
-                />
+                <Suspense
+                    fallback={
+                        <Skeleton className="h-24 w-24 rounded-full shadow-2xl ring-2 ring-ring lg:hidden xl:block" />
+                    }
+                >
+                    <Image
+                        src={avatarUrl}
+                        alt="GitHub Avatar"
+                        width={100}
+                        height={100}
+                        className="rounded-full shadow-2xl ring-2 ring-ring lg:hidden xl:block"
+                    />
+                </Suspense>
                 <div>
                     <h3 className="mb-1 text-xl font-medium">GitHub Stats</h3>
                     {Object.entries(stats).map(([key, value]) => (
                         <h4 key={key} className="text-md flex justify-between">
                             {key.replace("total", "")}:{" "}
-                            <span className="font-semibold">{value}</span>
+                            <Suspense
+                                fallback={<Skeleton className="mb-1 w-8" />}
+                            >
+                                <span className="font-semibold">{value}</span>
+                            </Suspense>
                         </h4>
                     ))}
                 </div>

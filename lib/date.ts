@@ -1,4 +1,7 @@
+import { unstable_noStore as noStore } from "next/cache";
+
 export function formatDate(date: string) {
+    noStore();
     const currentDate = new Date();
     const targetDate = new Date(date);
 

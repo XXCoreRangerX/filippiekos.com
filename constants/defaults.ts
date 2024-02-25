@@ -18,6 +18,7 @@ class Defaults {
     static fullName = "Filip Piękoś";
     static shortName = "Filip";
     static username = "XXCoreRangerX";
+    static subtitle = "Developer, Electronic Engineer";
     static email = "mail@filippiekos.com";
 
     static socials = [

@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 
 export default function Blog() {
     return (
-        <div className="grid min-h-screen p-5">
-            <div className="gap-5 rounded-3xl border-2 bg-card p-5 shadow-md">
+        <div className="flex min-h-screen justify-center p-10">
+            <div className="w-fit gap-5 rounded-3xl border-2 bg-card p-5 shadow-md">
                 <Navbar />
                 <PostList type="blog" />
             </div>
