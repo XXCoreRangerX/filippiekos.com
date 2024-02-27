@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import * as Sentry from "@sentry/nextjs";
 import { XCircle } from "lucide-react";
 import { useEffect } from "react";
 
@@ -13,6 +14,10 @@ export default function Error({
 }) {
     useEffect(() => {
         console.error(error);
+    }, [error]);
+
+    useEffect(() => {
+        Sentry.captureException(error);
     }, [error]);
 
     return (
