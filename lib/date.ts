@@ -14,6 +14,8 @@ export function formatDate(date: string) {
         formattedDate = `${monthsAgo}mo ago`;
     } else if (daysAgo > 0) {
         formattedDate = `${daysAgo}d ago`;
+    } else if (daysAgo < 0) {
+        formattedDate = "Soon";
     } else {
         formattedDate = "Today";
     }

@@ -1,4 +1,4 @@
-import { CustomMDX } from "@/app/(posts)/_components/mdx";
+import { CustomMDX } from "@/app/(content)/_components/mdx";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -12,7 +12,7 @@ import Link from "next/link";
 
 export function About() {
     return (
-        <div className="flex h-full flex-col items-center rounded-3xl border-2 bg-card p-5 text-center shadow-md lg:overflow-auto">
+        <div className="flex h-full flex-col items-center rounded-3xl border-2 p-5 text-center shadow-md lg:overflow-auto">
             <Image
                 src="/pfp.jpg"
                 width="250"
@@ -42,7 +42,7 @@ export function About() {
             </div>
             <div className="my-2 flex max-w-sm flex-wrap items-center justify-center gap-2 text-center lg:max-w-lg">
                 {skills.map((skill, index) => (
-                    <Badge key={index} variant="muted">
+                    <Badge key={index} variant="outline">
                         {skill.name}
                     </Badge>
                 ))}
@@ -64,7 +64,7 @@ export function About() {
                     download
                     className={cn(
                         "gap-2",
-                        buttonVariants({ variant: "secondary" }),
+                        buttonVariants({ variant: "outline" }),
                     )}
                 >
                     <Download className="h-5 w-5" />

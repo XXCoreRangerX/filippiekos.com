@@ -1,5 +1,5 @@
-import Code from "@/app/(posts)/_components/code";
-import { TweetComponent } from "@/app/(posts)/_components/tweet";
+import Code from "@/app/(content)/_components/code";
+import { TweetComponent } from "@/app/(content)/_components/tweet";
 import { Callout } from "@/components/ui/callout";
 import { Separator } from "@/components/ui/separator";
 import { MDXRemote } from "next-mdx-remote/rsc";

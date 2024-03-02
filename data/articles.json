@@ -1,26 +1,26 @@
 [
     {
         "title": "My setup",
-        "slug": "/articles/setup",
-        "description": "My PC build, peripherals, and other tech",
-        "order": "1"
+        "description": "My PC build, peripherals, and other tech I use",
+        "order": "1",
+        "slug": "setup"
     },
     {
         "title": "Homelab",
-        "slug": "/articles/homelab",
         "description": "My homelabbing journey",
-        "order": "2"
+        "order": "2",
+        "slug": "homelab"
     },
     {
         "title": "Keyboards",
-        "slug": "/articles/keyboards",
         "description": "All my custom keyboards",
-        "order": "3"
+        "order": "3",
+        "slug": "keyboards"
     },
     {
         "title": "Audio",
-        "slug": "/articles/audio",
         "description": "My hi-fi audio gear",
-        "order": "4"
+        "order": "4",
+        "slug": "audio"
     }
 ]

@@ -1,16 +1,25 @@
 import defaults from "@/constants/defaults";
-import { getBlogPosts } from "@/lib/blog";
+import { getArticles, getPosts, getTags } from "@/lib/blog";
 
 export default async function sitemap() {
-    let blogs = getBlogPosts().map((post) => ({
+    let posts = getPosts().map((post) => ({
         url: defaults.url + "/blog/" + post.slug,
-        lastModified: post.metadata.date,
+        lastModified: post.date,
     }));
 
-    let routes = ["", "/blog"].map((route) => ({
+    let articles = getArticles().map((article) => ({
+        url: defaults.url + "/article/" + article.slug,
+        lastModified: article.date,
+    }));
+
+    let tags = getTags().map((tag) => ({
+        url: defaults.url + "/tag/" + tag,
+    }));
+
+    let routes = ["", "/blog", "/articles", "/tags"].map((route) => ({
         url: defaults.url + route,
         lastModified: new Date().toISOString().split("T")[0],
     }));
 
-    return [...routes, ...blogs];
+    return [...routes, ...posts, ...articles, ...tags];
 }

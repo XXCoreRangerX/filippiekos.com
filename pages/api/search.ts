@@ -1,5 +1,6 @@
 import articlesData from "@/data/articles.json";
 import postsData from "@/data/posts.json";
+import tagsData from "@/data/tags.json";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
@@ -11,6 +12,7 @@ export default async function handler(
             const data = {
                 articles: articlesData,
                 posts: postsData,
+                tags: tagsData,
             };
             res.status(200).json(data);
         } else {

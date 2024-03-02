@@ -1,20 +1,20 @@
-import { Navbar } from "@/app/(posts)/_components/navbar";
+import { Navbar } from "@/app/(content)/_components/navbar";
 import { PostList } from "@/components/post-list";
 import { Separator } from "@/components/ui/separator";
 import defaults from "@/constants/defaults";
+import { contentTypes } from "@/lib/blog";
 
-export function Footer({ type }: { type: "articles" | "blog" }) {
+export function Footer({ type }: { type?: keyof typeof contentTypes }) {
     return (
-        <footer className="mt-10 items-center justify-center">
-            {type === "blog" && (
+        <footer className="items-center justify-center">
+            {type && (
                 <div>
-                    <Separator className="my-5" />
                     <PostList type={type} maxPosts={2} />
+                    <Separator className="my-5" />
                 </div>
             )}
-            <Separator className="my-5" />
             <Navbar />
-            <p className="text-center text-muted-foreground">
+            <p className="mt-2 text-center text-muted-foreground">
                 &copy; {new Date().getFullYear()} {defaults.title}
             </p>
         </footer>

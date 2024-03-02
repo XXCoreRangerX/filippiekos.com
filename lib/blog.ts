@@ -53,55 +53,54 @@ function getMDXData(dir: string) {
         let { metadata, content } = readMDXFile(path.join(dir, file));
         let slug = path.basename(file, path.extname(file));
         return {
-            metadata,
+            ...metadata,
             slug,
             content,
         };
     });
 }
 
-export function saveDataToJson(data: any, filePath: string, type: string) {
+export function saveDataToJson(data: any, filePath: string) {
     fs.writeFileSync(
-        filePath,
+        path.join(process.cwd(), filePath),
         JSON.stringify(
-            data
-                .map(
-                    ({
-                        metadata,
-                        slug,
-                    }: {
-                        metadata: Metadata;
-                        slug: string;
-                    }) => ({
-                        title: metadata.title,
-                        slug:
-                            type === "blog"
-                                ? `/blog/${slug}`
-                                : `/articles/${slug}`,
-                        description: metadata.description,
-                        date: metadata.date,
-                        order: metadata.order,
-                    }),
-                )
-                .sort((a: any, b: any) => {
-                    if (a.order && b.order) {
-                        return a.order - b.order;
-                    }
+            data.sort((a: any, b: any) => {
+                if (a.order && b.order) {
+                    return a.order - b.order;
+                }
+                if (a.date && b.date) {
                     return (
                         new Date(b.date).getTime() - new Date(a.date).getTime()
                     );
-                }),
-            null,
-            2,
+                }
+            }),
+            (key, value) => (key === "content" ? undefined : value),
+            4,
         ),
         "utf-8",
     );
 }
 
-export function getBlogPosts() {
+export function getPosts() {
     return getMDXData(path.join(process.cwd(), "content/posts"));
 }
 
 export function getArticles() {
     return getMDXData(path.join(process.cwd(), "content/articles"));
 }
+
+export function getTags() {
+    let posts = getPosts();
+    let tags: string[] = [];
+    posts.forEach((post) => {
+        if (post.tags) {
+            tags.push(...post.tags);
+        }
+    });
+    return Array.from(new Set(tags)).sort();
+}
+
+export const contentTypes = {
+    blog: "blog",
+    articles: "articles",
+};

@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
 
-const calloutVariants = cva("p-3 my-4 rounded-lg border border-l-4", {
+const calloutVariants = cva("p-3 mb-4 rounded-lg border border-l-4", {
     variants: {
         variant: {
             callout: "bg-muted/50 border-muted dark:border-muted",

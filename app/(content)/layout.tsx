@@ -1,6 +1,6 @@
 import React from "react";
 
-const BlogLayout = ({ children }: { children: React.ReactNode }) => {
+const ContentLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <div className="h-full">
             <main>{children}</main>
@@ -8,4 +8,4 @@ const BlogLayout = ({ children }: { children: React.ReactNode }) => {
     );
 };
 
-export default BlogLayout;
+export default ContentLayout;

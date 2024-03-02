@@ -38,7 +38,7 @@ function Code({ children, className = "" }: CodeProps) {
         txt: FaCode,
     }[language];
 
-    const DynamicLanguageIcon = languageIcon || FaCode; // Fallback to FaCode if languageIcon is undefined
+    const DynamicLanguageIcon = languageIcon || FaCode;
 
     return (
         <div>

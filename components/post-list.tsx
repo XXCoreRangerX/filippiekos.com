@@ -1,12 +1,13 @@
-import { getArticles, getBlogPosts } from "@/lib/blog";
+import { contentTypes, getArticles, getPosts } from "@/lib/blog";
 import { formatDate } from "@/lib/date";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 export interface PostListProps extends React.HTMLAttributes<HTMLDivElement> {
-    type: "blog" | "articles";
+    type: keyof typeof contentTypes;
     maxPosts?: number;
+    tag?: string;
 }
 
 const PostListItem = ({
@@ -14,51 +15,50 @@ const PostListItem = ({
     type,
 }: {
     post: any;
-    type: "blog" | "articles";
+    type: keyof typeof contentTypes;
 }) => (
     <Link
         key={post.slug}
         href={`/${type}/${post.slug}`}
         className="flex items-center gap-3 rounded-xl p-3 transition-all duration-150 ease-in-out hover:bg-slate-200 active:bg-slate-300 dark:hover:bg-slate-700 dark:active:bg-slate-600"
     >
-        {post.metadata.image && (
+        {post.image && (
             <Image
                 className="rounded-3xl bg-slate-600 ring-2 ring-ring"
-                src={post.metadata.image}
-                alt={post.metadata.title}
+                src={post.image}
+                alt={post.title}
                 width="80"
                 height="80"
             />
         )}
         <div className="grid">
-            {type === "blog" && post.metadata.date && (
+            {post.date && (
                 <p className="text-sm text-muted-foreground">
-                    {formatDate(post.metadata.date)}
+                    {formatDate(post.date)}
                 </p>
             )}
             <h3 className="line-clamp-2 text-lg font-medium sm:line-clamp-3">
-                {post.metadata.title}
+                {post.title}
             </h3>
-            {post.metadata.description && (
-                <h4 className="line-clamp-2">{post.metadata.description}</h4>
+            {post.description && (
+                <h4 className="line-clamp-2">{post.description}</h4>
             )}
         </div>
     </Link>
 );
 
 const PostList = React.forwardRef<HTMLDivElement, PostListProps>(
-    ({ type, maxPosts }, ref) => {
+    ({ type, maxPosts, tag }, ref) => {
         const posts =
             type === "articles"
-                ? getArticles().sort(
-                      (a, b) =>
-                          (a.metadata.order || 0) - (b.metadata.order || 0),
-                  )
-                : getBlogPosts().sort(
-                      (a, b) =>
-                          new Date(b.metadata.date || "").getTime() -
-                          new Date(a.metadata.date || "").getTime(),
-                  );
+                ? getArticles().sort((a, b) => (a.order || 0) - (b.order || 0))
+                : getPosts()
+                      .sort(
+                          (a, b) =>
+                              new Date(b.date || "").getTime() -
+                              new Date(a.date || "").getTime(),
+                      )
+                      .filter((post) => !tag || post.tags?.includes(tag));
         const filteredPosts = maxPosts ? posts.slice(0, maxPosts) : posts;
         return (
             <div ref={ref} className="grid gap-2">

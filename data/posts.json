@@ -1,8 +1,9 @@
 [
     {
+        "date": "2024-02-08",
         "title": "How I built my portfolio and blog with Next.js, MDX, and Tailwind CSS",
-        "slug": "/blog/hello-world",
         "description": "The start of my WebDev journey",
-        "date": "2024-02-08"
+        "tags": ["next.js", "mdx", "tailwind-css"],
+        "slug": "hello-world"
     }
 ]

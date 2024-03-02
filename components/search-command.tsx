@@ -10,7 +10,7 @@ import {
     CommandSeparator,
 } from "@/components/ui/command";
 import { useSearch } from "@/hooks/use-search";
-import { FileText, Laptop, Moon, Sun } from "lucide-react";
+import { FileText, Laptop, Moon, Sun, Tag } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -22,6 +22,7 @@ interface SearchResultItem {
 
 export const SearchCommand = () => {
     const router = useRouter();
+    const { setTheme } = useTheme();
 
     const toggle = useSearch((store) => store.toggle);
     const isOpen = useSearch((store) => store.isOpen);
@@ -44,7 +45,6 @@ export const SearchCommand = () => {
         onClose();
     };
 
-    const { setTheme } = useTheme();
     const onThemeChange = (theme: string) => {
         setTheme(theme);
         onClose();
@@ -67,9 +67,11 @@ export const SearchCommand = () => {
     const [data, setData] = useState<{
         articles: SearchResultItem[];
         posts: SearchResultItem[];
+        tags: string[];
     }>({
         articles: [],
         posts: [],
+        tags: [],
     });
 
     useEffect(() => {
@@ -86,7 +88,9 @@ export const SearchCommand = () => {
                         {data.articles.map((doc) => (
                             <CommandItem
                                 key={doc.slug}
-                                onSelect={() => onSelect(doc.slug)}
+                                onSelect={() =>
+                                    onSelect("/articles/" + doc.slug)
+                                }
                             >
                                 <FileText className="mr-2" />
                                 <span>{doc.title}</span>
@@ -99,10 +103,23 @@ export const SearchCommand = () => {
                         {data.posts.map((doc) => (
                             <CommandItem
                                 key={doc.slug}
-                                onSelect={() => onSelect(doc.slug)}
+                                onSelect={() => onSelect("/blog/" + doc.slug)}
                             >
                                 <FileText className="mr-2" />
                                 <span>{doc.title}</span>
+                            </CommandItem>
+                        ))}
+                    </CommandGroup>
+                )}
+                {data.tags.length > 0 && (
+                    <CommandGroup heading="Tags">
+                        {data.tags.map((tag) => (
+                            <CommandItem
+                                key={tag}
+                                onSelect={() => onSelect("/tags/" + tag)}
+                            >
+                                <Tag className="mr-2" />
+                                <span>{tag}</span>
                             </CommandItem>
                         ))}
                     </CommandGroup>
