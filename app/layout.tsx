@@ -4,11 +4,12 @@ import defaults from "@/constants/defaults";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
-import { Rubik as Font } from "next/font/google";
+import { JetBrains_Mono as FontMono, Rubik as FontSans } from "next/font/google";
 import React from "react";
 import "./globals.css";
 
-const font = Font({ subsets: ["latin"] });
+const fontMono = FontMono({ subsets: ["latin"], variable: "--font-mono" });
+const fontSans = FontSans({ subsets: ["latin"], variable: "--font-sans" });
 
 export const viewport: Viewport = {
     // TODO: themeColor based on current website theme and not user's system theme
@@ -59,7 +60,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
         <html lang="en">
-            <body className={`${font.className} relative antialiased`}>
+            <body className={`${fontMono.variable} ${fontSans.variable} relative font-sans antialiased`}>
                 <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
                     <div className="absolute inset-0 -z-[100] bg-[linear-gradient(to_right,#6b7280_1px,transparent_2px),linear-gradient(to_bottom,#6b7280_1px,transparent_2px)] opacity-5 [background-position:10px_10px] [background-size:30px_30px] [mask-image:radial-gradient(ellipse,#000_75%,transparent_100%)]" />
                     {children}
