@@ -5,12 +5,10 @@ import * as React from "react";
 const calloutVariants = cva("p-3 mb-4 rounded-lg border border-l-4", {
     variants: {
         variant: {
-            callout: "bg-muted/50 border-muted dark:border-muted",
-            warning:
-                "bg-yellow-400/50 border-yellow-400 dark:bg-yellow-600/50 dark:border-yellow-500",
-            danger: "bg-red-400/50 border-red-400 dark:bg-red-600/50 dark:border-red-500",
-            success:
-                "bg-emerald-400/50 border-emerald-400 dark:bg-emerald-600/50 dark:border-emerald-500",
+            callout: "bg-muted/50 border-muted",
+            warning: "bg-yellow-400/50 border-yellow-500 dark:bg-yellow-600/50",
+            danger: "bg-destructive/40 border-red-500 dark:bg-destructive/80",
+            success: "bg-emerald-400/50 border-emerald-500 dark:bg-emerald-600/50",
         },
     },
     defaultVariants: {
@@ -18,29 +16,30 @@ const calloutVariants = cva("p-3 mb-4 rounded-lg border border-l-4", {
     },
 });
 
-export interface CalloutProps
-    extends React.HTMLAttributes<HTMLDivElement>,
-        VariantProps<typeof calloutVariants> {}
+const variantColors = {
+    callout: "text-muted-foreground",
+    warning: "text-yellow-500",
+    danger: "text-red-500",
+    success: "text-emerald-500",
+};
 
-const Callout: React.ForwardRefRenderFunction<HTMLDivElement, CalloutProps> = (
-    { className, variant, title, children, ...props },
-    ref,
-) => {
+export interface CalloutProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof calloutVariants> {
+    name?: boolean | string;
+}
+
+function Callout({ className, variant, name, children, ...props }: CalloutProps) {
+    const colorClass = variant ? variantColors[variant] : "text-muted-foreground";
     return (
-        <div
-            className={cn(calloutVariants({ variant }), className)}
-            ref={ref}
-            {...props}
-        >
-            {title && (
-                <h3 className="not-prose text-lg font-bold capitalize">
-                    {typeof title === "boolean" ? variant : title || variant}
+        <div className={cn(calloutVariants({ variant }), className)} {...props}>
+            {name && (
+                <h3 className={cn("not-prose max-[350px]:text-md text-lg font-bold capitalize lg:text-xl", colorClass)}>
+                    {typeof name === "boolean" ? variant : name || variant}
                 </h3>
             )}
             <div className="text-foreground">{children}</div>
         </div>
     );
-};
+}
 
 Callout.displayName = "Callout";
 export { Callout, calloutVariants };

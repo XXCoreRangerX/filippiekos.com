@@ -17,11 +17,7 @@ export async function generateStaticParams() {
     return getPosts().map((post) => ({ slug: post.slug }));
 }
 
-export async function generateMetadata({
-    params,
-}: {
-    params: { slug: string };
-}): Promise<Metadata | undefined> {
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata | undefined> {
     if (!params) {
         return;
     }
@@ -33,9 +29,7 @@ export async function generateMetadata({
 
     const { title, date: publishedTime, description, image } = post;
     const fullTitle = `${title} | ${defaults.fullName}`;
-    const ogImage = image
-        ? defaults.url + image
-        : `${defaults.url}/og?title=${title}`;
+    const ogImage = image ? defaults.url + image : `${defaults.url}/og?title=${title}`;
 
     return {
         title: fullTitle,
@@ -45,7 +39,7 @@ export async function generateMetadata({
             description,
             type: "article",
             publishedTime,
-            url: `${defaults.url}/blog/${post.slug}`,
+            url: `${defaults.url}/posts/${post.slug}`,
             images: [
                 {
                     url: ogImage,
@@ -61,11 +55,7 @@ export async function generateMetadata({
     };
 }
 
-export default function Blog({
-    params,
-}: {
-    params: { slug: string; metadata: Metadata; content: string };
-}) {
+export default function Blog({ params }: { params: { slug: string; metadata: Metadata; content: string } }) {
     const post = getPosts().find((post) => post.slug === params.slug);
 
     if (!post) {
@@ -89,7 +79,7 @@ export default function Blog({
                             image: post.image
                                 ? `${defaults.url}${post.image}`
                                 : `${defaults.url}/og?title=${post.title}`,
-                            url: `${defaults.url}/blog/${post.slug}`,
+                            url: `${defaults.url}/posts/${post.slug}`,
                             author: {
                                 "@type": "Person",
                                 name: defaults.fullName,
@@ -97,31 +87,15 @@ export default function Blog({
                         }),
                     }}
                 />
-                <Navbar link="/blog" />
-                <Suspense
-                    fallback={
-                        <Skeleton className="description mb-2 mt-5 h-6 w-48" />
-                    }
-                >
-                    <h3 className="description mb-2 mt-5 text-muted-foreground">
-                        {formatDate(post.date)}
-                    </h3>
+                <Navbar link="/posts" />
+                <Suspense fallback={<Skeleton className="description mb-2 mt-5 h-6 w-48" />}>
+                    <h3 className="description mb-2 mt-5 text-muted-foreground">{formatDate(post.date)}</h3>
                 </Suspense>
-                <h1 className="title break-words text-4xl font-bold lg:text-5xl">
-                    {post.title}
-                </h1>
+                <h1 className="title break-words text-4xl font-bold lg:text-5xl">{post.title}</h1>
                 {post.image && (
-                    <Image
-                        src={post.image}
-                        alt={post.title}
-                        width={2000}
-                        height={2000}
-                        className="rounded-3xl"
-                    />
+                    <Image src={post.image} alt={post.title} width={2000} height={2000} className="rounded-3xl" />
                 )}
-                <h2 className="description mt-3 break-words">
-                    {post.description}
-                </h2>
+                <h2 className="description mt-3 break-words">{post.description}</h2>
                 <div className="my-4 flex flex-wrap gap-2">
                     {post.tags?.map((tag: any, index: any) => (
                         <Link key={index} href={`/tags/${tag}`}>
@@ -136,7 +110,7 @@ export default function Blog({
                 </article>
             </div>
             <div className="w-full max-w-screen-lg rounded-3xl border-2 p-6 shadow-md md:p-10">
-                <Footer type="blog" />
+                <Footer type="posts" />
             </div>
         </div>
     );

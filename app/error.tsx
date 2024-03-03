@@ -5,13 +5,7 @@ import * as Sentry from "@sentry/nextjs";
 import { XCircle } from "lucide-react";
 import { useEffect } from "react";
 
-export default function Error({
-    error,
-    reset,
-}: {
-    error: Error & { digest?: string };
-    reset: () => void;
-}) {
+export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
     useEffect(() => {
         console.error(error);
     }, [error]);

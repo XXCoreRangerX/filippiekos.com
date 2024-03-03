@@ -28,7 +28,7 @@ export default function Tag({ params }: { params: { tag: string } }) {
                 </div>
             </div>
             <div className="w-full max-w-screen-lg flex-1 rounded-3xl border-2 bg-card p-5 shadow-md">
-                <PostList type="blog" tag={params.tag} />
+                <PostList type="posts" tag={params.tag} />
             </div>
             <div className="w-full max-w-screen-lg rounded-3xl border-2 p-6 shadow-md md:p-10">
                 <Footer />

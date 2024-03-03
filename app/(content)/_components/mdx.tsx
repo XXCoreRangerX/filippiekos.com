@@ -77,11 +77,5 @@ let components = {
 };
 
 export function CustomMDX(props: any) {
-    return (
-        <MDXRemote
-            {...props}
-            components={{ ...components, ...(props.components || {}) }}
-            options={options}
-        />
-    );
+    return <MDXRemote {...props} components={{ ...components, ...(props.components || {}) }} options={options} />;
 }

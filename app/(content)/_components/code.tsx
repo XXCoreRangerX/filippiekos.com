@@ -18,9 +18,7 @@ export interface CodeProps {
 }
 
 function Code({ children, className = "" }: CodeProps) {
-    const language = (
-        className.replace(/(language-|hljs)/g, "").trim() || "txt"
-    ).toLowerCase();
+    const language = (className.replace(/(language-|hljs)/g, "").trim() || "txt").toLowerCase();
 
     const languageIcon: IconType | undefined = {
         ts: BiLogoTypescript,

@@ -22,19 +22,14 @@ export function About() {
                 priority={true}
             />
             <h1 className="text-4xl font-bold">{defaults.fullName}</h1>
-            <h2 className="text-lg text-muted-foreground">
-                {defaults.subtitle}
-            </h2>
+            <h2 className="text-lg text-muted-foreground">{defaults.subtitle}</h2>
             <div className="my-1 flex flex-wrap items-center justify-center gap-2 text-center">
                 {socials.map((social, index) => (
                     <Link
                         key={index}
                         href={social.url}
                         aria-label={social.name}
-                        className={cn(
-                            buttonVariants({ size: "icon", variant: "ghost" }),
-                            "h-8 w-8",
-                        )}
+                        className={cn(buttonVariants({ size: "icon", variant: "ghost" }), "h-8 w-8")}
                     >
                         <social.icon className="h-6 w-6 lg:h-5 lg:w-5" />
                     </Link>
@@ -51,22 +46,12 @@ export function About() {
                 <Link
                     href={"mailto:" + defaults.email}
                     download
-                    className={cn(
-                        "w-full gap-2",
-                        buttonVariants({ variant: "default" }),
-                    )}
+                    className={cn("w-full gap-2", buttonVariants({ variant: "default" }))}
                 >
                     <Mail className="h-5 w-5" />
                     Contact
                 </Link>
-                <Link
-                    href="cv.pdf"
-                    download
-                    className={cn(
-                        "gap-2",
-                        buttonVariants({ variant: "outline" }),
-                    )}
-                >
+                <Link href="cv.pdf" download className={cn("gap-2", buttonVariants({ variant: "outline" }))}>
                     <Download className="h-5 w-5" />
                     CV
                 </Link>

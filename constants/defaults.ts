@@ -25,11 +25,7 @@ class Defaults {
         ["GitHub", "FaGithub", "https://github.com/XXCoreRangerX"],
         ["Twitter", "FaXTwitter", "https://x.com/XXCoreRangerX"],
         ["Reddit", "FaReddit", "https://reddit.com/user/XXCoreRangerX"],
-        [
-            "Facebook",
-            "FaFacebook",
-            "https://facebook.com/profile.php?id=100029415751380",
-        ],
+        ["Facebook", "FaFacebook", "https://facebook.com/profile.php?id=100029415751380"],
     ];
 
     static skills = [
@@ -55,12 +51,7 @@ class Defaults {
     ];
 
     static achievements = [
-        [
-            "Regeneron ISEF",
-            "2023 (Dallas, USA)",
-            "3rd",
-            "https://www.societyforscience.org/isef/",
-        ],
+        ["Regeneron ISEF", "2023 (Dallas, USA)", "3rd", "https://www.societyforscience.org/isef/"],
         ["IEEE at ISEF", "2023 (Dallas, USA)", "2nd", "https://ieee.org"],
         ["Explory", "2022 (Gdynia, PL)", "1st", "https://explory.pl"],
     ];

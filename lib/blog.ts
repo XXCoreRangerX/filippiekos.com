@@ -69,9 +69,7 @@ export function saveDataToJson(data: any, filePath: string) {
                     return a.order - b.order;
                 }
                 if (a.date && b.date) {
-                    return (
-                        new Date(b.date).getTime() - new Date(a.date).getTime()
-                    );
+                    return new Date(b.date).getTime() - new Date(a.date).getTime();
                 }
             }),
             (key, value) => (key === "content" ? undefined : value),
@@ -101,6 +99,6 @@ export function getTags() {
 }
 
 export const contentTypes = {
-    blog: "blog",
+    posts: "posts",
     articles: "articles",
 };

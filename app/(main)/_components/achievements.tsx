@@ -8,10 +8,7 @@ export function Achievements() {
             <ul className="list-inside list-disc">
                 {achievements.map((achievement, index) => (
                     <li key={index}>
-                        <span className="font-bold">
-                            {achievement.place} place
-                        </span>{" "}
-                        at{" "}
+                        <span className="font-bold">{achievement.place} place</span> at{" "}
                         <Link href={achievement.url}>
                             {achievement.title} {achievement.year}
                         </Link>

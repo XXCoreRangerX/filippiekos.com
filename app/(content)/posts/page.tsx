@@ -7,7 +7,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-    title: "Blog",
+    title: "Posts",
     description: "Read my thoughts on software development, design, and more.",
 };
 
@@ -26,7 +26,7 @@ export default function Blog() {
                 </div>
             </div>
             <div className="w-full max-w-screen-lg flex-1 rounded-3xl border-2 bg-card p-5 shadow-md">
-                <PostList type="blog" />
+                <PostList type="posts" />
             </div>
             <div className="w-full max-w-screen-lg rounded-3xl border-2 p-6 shadow-md md:p-10">
                 <Footer />

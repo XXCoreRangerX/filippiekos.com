@@ -3,12 +3,12 @@ import { getArticles, getPosts, getTags } from "@/lib/blog";
 
 export default async function sitemap() {
     let posts = getPosts().map((post) => ({
-        url: defaults.url + "/blog/" + post.slug,
+        url: defaults.url + "/posts/" + post.slug,
         lastModified: post.date,
     }));
 
     let articles = getArticles().map((article) => ({
-        url: defaults.url + "/article/" + article.slug,
+        url: defaults.url + "/articles/" + article.slug,
         lastModified: article.date,
     }));
 
@@ -16,7 +16,7 @@ export default async function sitemap() {
         url: defaults.url + "/tag/" + tag,
     }));
 
-    let routes = ["", "/blog", "/articles", "/tags"].map((route) => ({
+    let routes = ["", "/posts", "/articles", "/tags"].map((route) => ({
         url: defaults.url + route,
         lastModified: new Date().toISOString().split("T")[0],
     }));

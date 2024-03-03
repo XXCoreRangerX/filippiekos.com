@@ -11,11 +11,7 @@ export async function generateStaticParams() {
     return getArticles().map((post) => ({ slug: post.slug }));
 }
 
-export async function generateMetadata({
-    params,
-}: {
-    params: { slug: string };
-}): Promise<Metadata | undefined> {
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata | undefined> {
     if (!params) {
         return;
     }
@@ -27,9 +23,7 @@ export async function generateMetadata({
 
     const { title, description, image } = post;
     const fullTitle = `${title} | ${defaults.fullName}`;
-    const ogImage = image
-        ? defaults.url + image
-        : `${defaults.url}/og?title=${title}`;
+    const ogImage = image ? defaults.url + image : `${defaults.url}/og?title=${title}`;
 
     return {
         title: fullTitle,
@@ -54,11 +48,7 @@ export async function generateMetadata({
     };
 }
 
-export default function Article({
-    params,
-}: {
-    params: { slug: string; metadata: Metadata; content: string };
-}) {
+export default function Article({ params }: { params: { slug: string; metadata: Metadata; content: string } }) {
     const post = getArticles().find((post) => post.slug === params.slug);
 
     if (!post) {
@@ -89,12 +79,8 @@ export default function Article({
                     }}
                 />
                 <Navbar />
-                <h1 className="title mt-5 break-words text-4xl font-bold lg:text-5xl">
-                    {post.title}
-                </h1>
-                <h2 className="description mb-4 mt-3 break-words">
-                    {post.description}
-                </h2>
+                <h1 className="title mt-5 break-words text-4xl font-bold lg:text-5xl">{post.title}</h1>
+                <h2 className="description mb-4 mt-3 break-words">{post.description}</h2>
             </div>
             <div className="w-full max-w-screen-lg flex-1 rounded-3xl border-2 bg-card p-6 shadow-md md:p-10">
                 <article className="prose prose-slate max-w-none dark:prose-invert max-[350px]:prose-sm lg:prose-lg prose-img:rounded-3xl">

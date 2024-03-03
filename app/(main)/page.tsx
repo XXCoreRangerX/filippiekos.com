@@ -1,7 +1,7 @@
 import { About } from "@/app/(main)/_components/about";
 import { Achievements } from "@/app/(main)/_components/achievements";
 import { Articles } from "@/app/(main)/_components/articles";
-import { Blog } from "@/app/(main)/_components/blog";
+import { Posts } from "@/app/(main)/_components/posts";
 import { GitHubStats } from "./_components/github";
 
 export default function Main() {
@@ -11,7 +11,7 @@ export default function Main() {
                 <About />
             </div>
             <div className="flex flex-col gap-5 lg:w-1/2">
-                <Blog />
+                <Posts />
                 <Achievements />
             </div>
             <div className="flex max-h-screen flex-col gap-5 lg:w-1/4">

@@ -50,16 +50,14 @@ export async function GitHubStats() {
     if (!process.env.GITHUB_TOKEN) {
         throw new Error("GitHub token is not defined.");
     }
-    const { data }: { data?: GitHubData } = await fetch(
-        "https://api.github.com/graphql",
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-            },
-            body: JSON.stringify({
-                query: `
+    const { data }: { data?: GitHubData } = await fetch("https://api.github.com/graphql", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+        },
+        body: JSON.stringify({
+            query: `
                 {
                     user(login: "${defaults.username}") {
                         repositories(first: 100, privacy: PUBLIC) {
@@ -83,15 +81,12 @@ export async function GitHubStats() {
                     }
                 }
             `,
-            }),
-            next: { revalidate: 86400 },
-        },
-    ).then((res) => res.json());
+        }),
+        next: { revalidate: 86400 },
+    }).then((res) => res.json());
 
     if (!data || data.errors) {
-        throw new Error(
-            "Failed to fetch GitHub data: " + (data?.errors || "Unknown error"),
-        );
+        throw new Error("Failed to fetch GitHub data: " + (data?.errors || "Unknown error"));
     }
 
     if (data.user == null) {
@@ -105,10 +100,7 @@ export async function GitHubStats() {
     let totalFollowing = user.following.totalCount;
     let publicRepos = user.repositories.edges.map((edge: any) => edge.node);
     let totalRepos = publicRepos.length;
-    let totalStars = publicRepos.reduce(
-        (acc: number, repo: any) => acc + repo.stargazerCount,
-        0,
-    );
+    let totalStars = publicRepos.reduce((acc: number, repo: any) => acc + repo.stargazerCount, 0);
 
     let stats = {
         totalStars,
@@ -117,9 +109,7 @@ export async function GitHubStats() {
         totalRepos,
     };
 
-    let githubUrl =
-        defaults.socials.find((social) => social[0] === "GitHub")?.[2] ||
-        "https://github.com/";
+    let githubUrl = defaults.socials.find((social) => social[0] === "GitHub")?.[2] || "https://github.com/";
 
     return (
         <Link href={githubUrl} target="blank">
@@ -142,9 +132,7 @@ export async function GitHubStats() {
                     {Object.entries(stats).map(([key, value]) => (
                         <h4 key={key} className="text-md flex justify-between">
                             {key.replace("total", "")}:{" "}
-                            <Suspense
-                                fallback={<Skeleton className="mb-1 w-8" />}
-                            >
+                            <Suspense fallback={<Skeleton className="mb-1 w-8" />}>
                                 <span className="font-semibold">{value}</span>
                             </Suspense>
                         </h4>
