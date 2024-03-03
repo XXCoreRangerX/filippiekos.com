@@ -83,7 +83,7 @@ export const SearchCommand = () => {
             <CommandInput placeholder={`Search...`} />
             <CommandList>
                 <CommandEmpty>No results found.</CommandEmpty>
-                {data.articles.length > 0 && (
+                {data.articles && data.articles.length > 0 && (
                     <CommandGroup heading="Articles">
                         {data.articles.map((doc) => (
                             <CommandItem key={doc.slug} onSelect={() => onSelect("/articles/" + doc.slug)}>
@@ -93,7 +93,7 @@ export const SearchCommand = () => {
                         ))}
                     </CommandGroup>
                 )}
-                {data.posts.length > 0 && (
+                {data.posts && data.posts.length > 0 && (
                     <CommandGroup heading="Posts">
                         {data.posts.map((doc) => (
                             <CommandItem key={doc.slug} onSelect={() => onSelect("/posts/" + doc.slug)}>
@@ -103,7 +103,7 @@ export const SearchCommand = () => {
                         ))}
                     </CommandGroup>
                 )}
-                {data.tags.length > 0 && (
+                {data.tags && data.tags.length > 0 && (
                     <CommandGroup heading="Tags">
                         {data.tags.map((tag) => (
                             <CommandItem key={tag} onSelect={() => onSelect("/tags/" + tag)}>
