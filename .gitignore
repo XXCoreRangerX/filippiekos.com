@@ -40,5 +40,6 @@ next-env.d.ts
 
 # vscode
 .vscode
+
 # Sentry Config File
 .sentryclirc
