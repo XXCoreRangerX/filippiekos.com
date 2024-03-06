@@ -12,11 +12,12 @@ import Link from "next/link";
 
 export function About() {
     return (
-        <div className="flex h-full flex-col items-center rounded-3xl border-2 p-5 text-center shadow-md lg:overflow-auto">
+        <div className="flex h-full flex-col items-center rounded-3xl border-2 p-5 text-center shadow-md lg:overflow-y-auto">
             <Image
                 src="/pfp.jpg"
                 width="250"
                 height="250"
+                quality="80"
                 alt=""
                 className="my-4 rounded-full shadow-xl ring-4 ring-ring dark:ring-slate-200"
                 priority={true}
@@ -51,7 +52,11 @@ export function About() {
                     <Mail className="h-5 w-5" />
                     Contact
                 </Link>
-                <Link href="cv.pdf" download className={cn("gap-2", buttonVariants({ variant: "outline" }))}>
+                <Link
+                    href="/"
+                    download
+                    className={cn("gap-2", buttonVariants({ variant: "outline" }))}
+                >
                     <Download className="h-5 w-5" />
                     CV
                 </Link>

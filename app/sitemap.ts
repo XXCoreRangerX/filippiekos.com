@@ -1,7 +1,8 @@
 import defaults from "@/constants/defaults";
 import { getArticles, getPosts, getTags } from "@/lib/blog";
+import { MetadataRoute } from "next";
 
-export default async function sitemap() {
+export default function sitemap(): MetadataRoute.Sitemap {
     let posts = getPosts().map((post) => ({
         url: defaults.url + "/posts/" + post.slug,
         lastModified: post.date,

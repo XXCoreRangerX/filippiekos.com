@@ -1,12 +1,12 @@
 import defaults from "@/constants/defaults";
+import { MetadataRoute } from "next";
 
-export default function robots() {
+export default function robots(): MetadataRoute.Robots {
     return {
-        rules: [
-            {
-                userAgent: "*",
-            },
-        ],
+        rules: {
+            userAgent: "*",
+            allow: "/",
+        },
         sitemap: defaults.url + "/sitemap.xml",
     };
 }
