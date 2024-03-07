@@ -17,6 +17,7 @@ const config = {
             fontFamily: {
                 sans: ["var(--font-sans)", ...defaultTheme.fontFamily.sans],
                 mono: ["var(--font-mono)", ...defaultTheme.fontFamily.mono],
+                serif: ["var(--font-serif)", ...defaultTheme.fontFamily.serif],
             },
             colors: {
                 border: "hsl(var(--border))",

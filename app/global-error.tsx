@@ -12,9 +12,9 @@ export default function GlobalError({ error, reset }: { error: Error & { digest?
     }, [error]);
 
     return (
-        <html>
+        <html lang="en">
             <body>
-                <div className="flex h-screen flex-col items-center justify-center text-center">
+                <main className="flex h-screen flex-col items-center justify-center text-center">
                     <XCircle className="mb-2 h-10 w-10 text-muted-foreground" />
                     <h1 className="text-8xl font-bold">Error</h1>
                     <h2 className="text-2xl">Something went wrong</h2>
@@ -22,7 +22,7 @@ export default function GlobalError({ error, reset }: { error: Error & { digest?
                         Refresh
                     </Button>
                     <NextError statusCode={undefined as any} />
-                </div>
+                </main>
             </body>
         </html>
     );

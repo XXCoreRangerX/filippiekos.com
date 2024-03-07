@@ -113,7 +113,7 @@ export async function GitHubStats() {
 
     return (
         <Link href={githubUrl} target="blank">
-            <div className="flex items-center justify-center gap-6 rounded-3xl border-2 bg-card p-5 shadow-md">
+            <section className="flex items-center justify-center gap-6 rounded-3xl border-2 bg-card p-5 shadow-md">
                 <Suspense
                     fallback={
                         <Skeleton className="h-24 w-24 rounded-full shadow-2xl ring-2 ring-ring lg:hidden xl:block" />
@@ -138,7 +138,7 @@ export async function GitHubStats() {
                         </h4>
                     ))}
                 </div>
-            </div>
+            </section>
         </Link>
     );
 }

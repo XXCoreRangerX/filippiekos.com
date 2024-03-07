@@ -18,14 +18,14 @@ class Defaults {
     static fullName = "Filip Piękoś";
     static shortName = "Filip";
     static username = "XXCoreRangerX";
-    static subtitle = "Developer, Electronic Engineer";
+    static subtitle = "Developer, Designer, Engineer";
     static email = "mail@filippiekos.com";
 
     static socials = [
-        ["GitHub", "FaGithub", "https://github.com/XXCoreRangerX"],
-        ["Twitter", "FaXTwitter", "https://x.com/XXCoreRangerX"],
-        ["Reddit", "FaReddit", "https://reddit.com/user/XXCoreRangerX"],
-        ["Facebook", "FaFacebook", "https://facebook.com/profile.php?id=100029415751380"],
+        ["GitHub", "https://github.com/XXCoreRangerX"],
+        ["Twitter", "https://x.com/XXCoreRangerX"],
+        ["Reddit", "https://reddit.com/user/XXCoreRangerX"],
+        ["Facebook", "https://facebook.com/profile.php?id=100029415751380"],
     ];
 
     static skills = [
@@ -51,7 +51,7 @@ class Defaults {
     ];
 
     static achievements = [
-        ["Regeneron ISEF", "2023 (Dallas, USA)", "3rd", "https://www.societyforscience.org/isef/"],
+        ["Regeneron ISEF", "2023 (Dallas, USA)", "3rd", "https://www.societyforscience.org/isef"],
         ["IEEE at ISEF", "2023 (Dallas, USA)", "2nd", "https://ieee.org"],
         ["Explory", "2022 (Gdynia, PL)", "1st", "https://explory.pl"],
     ];

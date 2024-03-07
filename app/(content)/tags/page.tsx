@@ -1,5 +1,5 @@
-import { Footer } from "@/app/(content)/_components/footer";
 import { Navbar } from "@/app/(content)/_components/navbar";
+import { Footer } from "@/components/footer";
 import { Badge } from "@/components/ui/badge";
 import { getTags } from "@/lib/blog";
 import type { Metadata } from "next";
@@ -13,11 +13,11 @@ export const metadata: Metadata = {
 export default function Tags() {
     const tags = getTags();
     return (
-        <div className="flex min-h-screen flex-col items-center justify-center gap-5 p-5 sm:p-8 sm:px-24 lg:p-10">
-            <div className="w-full max-w-screen-lg rounded-3xl border-2 bg-card p-6 shadow-md md:p-10">
+        <>
+            <header className="w-full max-w-screen-lg rounded-3xl border-2 bg-card p-6 shadow-md md:p-10">
                 <Navbar link="/posts" />
-            </div>
-            <div className="w-full max-w-screen-lg flex-1 rounded-3xl border-2 bg-card p-6 shadow-md md:p-10">
+            </header>
+            <article className="w-full max-w-screen-lg flex-1 rounded-3xl border-2 bg-card p-6 shadow-md md:p-10">
                 <div className="mb-4 flex flex-wrap gap-2">
                     {tags.map((tag, index) => (
                         <Link key={index} href={`/tags/${tag}`}>
@@ -25,10 +25,8 @@ export default function Tags() {
                         </Link>
                     ))}
                 </div>
-            </div>
-            <div className="w-full max-w-screen-lg rounded-3xl border-2 p-6 shadow-md md:p-10">
-                <Footer />
-            </div>
-        </div>
+            </article>
+            <Footer />
+        </>
     );
 }

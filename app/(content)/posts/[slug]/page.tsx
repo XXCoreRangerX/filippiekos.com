@@ -1,6 +1,6 @@
-import { Footer } from "@/app/(content)/_components/footer";
 import { CustomMDX } from "@/app/(content)/_components/mdx";
 import { Navbar } from "@/app/(content)/_components/navbar";
+import { Footer } from "@/components/footer";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import defaults from "@/constants/defaults";
@@ -63,30 +63,28 @@ export default function Blog({ params }: { params: { slug: string; metadata: Met
     }
 
     return (
-        <div className="flex min-h-screen flex-col items-center justify-center gap-5 p-5 sm:p-8 sm:px-24 lg:p-10">
-            <div className="w-full max-w-screen-lg rounded-3xl border-2 bg-card p-6 shadow-md md:p-10">
-                <script
-                    type="application/ld+json"
-                    suppressHydrationWarning
-                    dangerouslySetInnerHTML={{
-                        __html: JSON.stringify({
-                            "@context": "https://schema.org",
-                            "@type": "BlogPosting",
-                            headline: post.title,
-                            datePublished: post.date,
-                            dateModified: post.date,
-                            description: post.description,
-                            image: post.image
-                                ? `${defaults.url}${post.image}`
-                                : `${defaults.url}/og?title=${post.title}`,
-                            url: `${defaults.url}/posts/${post.slug}`,
-                            author: {
-                                "@type": "Person",
-                                name: defaults.fullName,
-                            },
-                        }),
-                    }}
-                />
+        <>
+            <script
+                type="application/ld+json"
+                suppressHydrationWarning
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "BlogPosting",
+                        headline: post.title,
+                        datePublished: post.date,
+                        dateModified: post.date,
+                        description: post.description,
+                        image: post.image ? `${defaults.url}${post.image}` : `${defaults.url}/og?title=${post.title}`,
+                        url: `${defaults.url}/posts/${post.slug}`,
+                        author: {
+                            "@type": "Person",
+                            name: defaults.fullName,
+                        },
+                    }),
+                }}
+            />
+            <header className="w-full max-w-screen-lg rounded-3xl border-2 bg-card p-6 shadow-md md:p-10">
                 <Navbar link="/posts" />
                 <Suspense fallback={<Skeleton className="description mb-2 mt-5 h-6 w-48" />}>
                     <h3 className="description mb-2 mt-5 text-muted-foreground">{formatDate(post.date)}</h3>
@@ -103,15 +101,11 @@ export default function Blog({ params }: { params: { slug: string; metadata: Met
                         </Link>
                     ))}
                 </div>
-            </div>
-            <div className="w-full max-w-screen-lg flex-1 rounded-3xl border-2 bg-card p-6 shadow-md md:p-10">
-                <article className="prose prose-slate max-w-none dark:prose-invert max-[350px]:prose-sm lg:prose-lg prose-img:rounded-3xl">
-                    <CustomMDX source={post.content} />
-                </article>
-            </div>
-            <div className="w-full max-w-screen-lg rounded-3xl border-2 p-6 shadow-md md:p-10">
-                <Footer type="posts" />
-            </div>
-        </div>
+            </header>
+            <article className="prose prose-slate w-full max-w-screen-lg flex-1 rounded-3xl border-2 bg-card p-6 shadow-md dark:prose-invert max-[350px]:prose-sm lg:prose-lg prose-img:rounded-3xl md:p-10">
+                <CustomMDX source={post.content} />
+            </article>
+            <Footer type="posts" />
+        </>
     );
 }
