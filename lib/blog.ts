@@ -22,12 +22,12 @@ function parseFrontmatter(fileContent: string) {
     frontMatterLines.forEach((line) => {
         const [key, ...valueArr] = line.split(": ");
         let value = valueArr.join(": ").trim();
-        value = value.replace(/^['"](.*)['"]$/, "$1"); // Remove quotes
+        value = value.replace(/^['"](.*)['"]$/, "$1");
 
         if (key === "tags") {
             tags.push(...value.split(",").map((tag) => tag.trim()));
         } else {
-            metadata[key as keyof Metadata] = value as any; // Store the value directly in metadata
+            metadata[key as keyof Metadata] = value as any;
         }
     });
 
@@ -39,7 +39,7 @@ function parseFrontmatter(fileContent: string) {
 }
 
 function getMDXFiles(dir: string) {
-    return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
+    return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx" || path.extname(file) === ".md");
 }
 
 function readMDXFile(filePath: string) {
@@ -78,6 +78,20 @@ export function saveDataToJson(data: any, filePath: string) {
         "utf-8",
     );
 }
+
+/* TODO: Implement a table of contents
+export function getTableOfContents(content: string) {
+    const regex = /^#{1,4}\s+(.*)/gm;
+    return content.match(regex)?.map((heading) => (
+        heading
+            .replace(/#+\s+/, "")
+            .toLowerCase()
+            .replace(/[^\w\s-]/g, "")
+            .replace(/[\s_-]+/g, "-")
+            .replace(/(^-|-$)/g, "")
+    )) || []
+}
+*/
 
 export function getPosts() {
     return getMDXData(path.join(process.cwd(), "content/posts"));

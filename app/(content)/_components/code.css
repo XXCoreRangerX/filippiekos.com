@@ -1,0 +1,172 @@
+/* Highlight.js */
+
+/* Color scheme */
+:root {
+    --hljs-background: #0f172a;
+    --hljs-foreground: #94a3b8;
+
+    --hljs-tag: #64748b;
+    --hljs-comment: #475569;
+    --hljs-operator: #94a3b8;
+
+    --hljs-red: #f87171;
+    --hljs-orange: #fb923c;
+    --hljs-yellow: #fef08a;
+    --hljs-green: #bef264;
+    --hljs-cyan: #22d3ee;
+    --hljs-blue: #60a5fa;
+    --hljs-purple: #c084fc;
+    --hljs-brown: #c2410c;
+}
+
+[class="light"] {
+    --hljs-background: #f8fafc;
+    --hljs-foreground: #334155;
+
+    --hljs-tag: #475569;
+    --hljs-comment: #64748b;
+    --hljs-operator: #94a3b8;
+
+    --hljs-red: #dc2626;
+    --hljs-orange: #f97316;
+    --hljs-yellow: #eab308;
+    --hljs-green: #16a34a;
+    --hljs-cyan: #06b6d4;
+    --hljs-blue: #3b82f6;
+    --hljs-purple: #a855f7;
+    --hljs-brown: #9a3412;
+}
+
+pre code.hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 0.5em;
+}
+
+/* purposely do not highlight these things */
+.hljs-formula,
+.hljs-params,
+.hljs-property {
+}
+
+.hljs-operator {
+    opacity: 0.7;
+}
+
+.hljs-emphasis {
+    font-style: italic;
+}
+
+.hljs-meta .hljs-keyword,
+    /* for v10 compatible themes */
+.hljs-meta-keyword {
+    font-weight: bold;
+}
+
+pre:has(.hljs) {
+    @apply border;
+}
+
+pre:has(.hljs),
+.hljs {
+    background-color: var(--hljs-background);
+    color: var(--hljs-foreground);
+}
+
+/* base03 - #545862 -  Comments, Invisibles, Line Highlighting */
+.hljs-comment {
+    color: var(--hljs-comment);
+}
+
+/* base04 - #565c64 -  Dark Foreground (Used for status bars) */
+.hljs-tag {
+    color: var(--hljs-tag);
+}
+
+/* base05 - #abb2bf -  Default Foreground, Caret, Delimiters, Operators */
+.hljs-subst,
+.hljs-punctuation,
+.hljs-operator {
+    color: var(--hljs-operator);
+}
+
+/* base08 - Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted */
+.hljs-bullet,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-selector-tag,
+.hljs-name,
+.hljs-deletion {
+    color: var(--hljs-red);
+}
+
+/* base09 - Integers, Boolean, Constants, XML Attributes, Markup Link Url */
+.hljs-symbol,
+.hljs-number,
+.hljs-link,
+.hljs-attr,
+.hljs-variable.constant_,
+.hljs-literal {
+    color: var(--hljs-orange);
+}
+
+/* base0A - Classes, Markup Bold, Search Text Background */
+.hljs-title,
+.hljs-class,
+.hljs-strong .hljs-title,
+.hljs-title.class_ {
+    color: var(--hljs-yellow);
+}
+
+.hljs-strong {
+    font-weight: bold;
+}
+
+/* base0B - Strings, Inherited Class, Markup Code, Diff Inserted */
+.hljs-code,
+.hljs-addition,
+.hljs-title.class_.inherited__,
+.hljs-string {
+    color: var(--hljs-green);
+}
+
+/* base0C - Support, Regular Expressions, Escape Characters, Markup Quotes */
+.hljs-built_in,
+.hljs-doctag, /* guessing */
+.hljs-quote,
+.hljs-keyword.hljs-atrule,
+.hljs-regexp {
+    color: var(--hljs-cyan);
+}
+
+/* base0D - Functions, Methods, Attribute IDs, Headings */
+.hljs-function .hljs-title,
+.hljs-attribute,
+.ruby .hljs-property,
+.hljs-title.function_,
+.hljs-section {
+    color: var(--hljs-blue);
+}
+
+/* base0E - Keywords, Storage, Selector, Markup Italic, Diff Changed */
+.hljs-type,
+    /* .hljs-selector-id, */
+    /* .hljs-selector-class, */
+    /* .hljs-selector-attr, */
+    /* .hljs-selector-pseudo, */
+.hljs-template-tag,
+.diff .hljs-meta,
+.hljs-keyword, .hljs-emphasis {
+    color: var(--hljs-purple);
+}
+
+/* base0F - Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?> */
+.hljs-meta,
+    /*
+      prevent top level .keyword and .string scopes
+      from leaking into meta by accident
+    */
+.hljs-meta .hljs-keyword,
+.hljs-meta .hljs-string {
+    color: var(--hljs-brown);
+}

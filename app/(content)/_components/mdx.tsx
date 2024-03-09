@@ -1,5 +1,6 @@
 import Code from "@/app/(content)/_components/code";
-import { TweetComponent } from "@/app/(content)/_components/tweet";
+import { CustomImage } from "@/components/image";
+import Tweet from "@/components/tweet";
 import { Callout } from "@/components/ui/callout";
 import { Separator } from "@/components/ui/separator";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -7,6 +8,7 @@ import Link from "next/link";
 import React from "react";
 import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
+import { visit } from "unist-util-visit";
 
 function slugify(str: string) {
     if (!str) return "";
@@ -17,7 +19,7 @@ function slugify(str: string) {
         .replace(/\s+/g, "-")
         .replace(/&/g, "-and-")
         .replace(/[^\w\-]+/g, "")
-        .replace(/\-\-+/g, "-");
+        .replace(/--+/g, "-");
 }
 
 function createHeading(level: number) {
@@ -52,7 +54,19 @@ function CustomLink(props: any) {
 const options = {
     mdxOptions: {
         remarkPlugins: [remarkGfm],
-        rehypePlugins: [[rehypeHighlight, { detect: true }]],
+        rehypePlugins: [
+            () => (tree: any) => {
+                visit(tree, (node) => {
+                    if (node?.type === "element" && node?.tagName === "code") {
+                        node.properties.raw = node.children[0].value;
+                        node.properties.language = (node.properties.className || [])
+                            .find((c: string) => c.startsWith("language-"))
+                            ?.replace("language-", "");
+                    }
+                });
+            },
+            [rehypeHighlight, { detect: true }],
+        ],
     },
 };
 
@@ -64,16 +78,11 @@ let components = {
     h5: createHeading(5),
     h6: createHeading(6),
     a: CustomLink,
-    Tweet: TweetComponent,
-    Callout: Callout,
-    Separator: Separator,
-    code: ({ children, className, ...props }: any) => {
-        return (
-            <Code className={className} {...props}>
-                {children}
-            </Code>
-        );
-    },
+    Image: CustomImage,
+    Tweet,
+    Callout,
+    Separator,
+    code: Code,
 };
 
 export function CustomMDX(props: any) {

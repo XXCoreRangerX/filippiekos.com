@@ -18,11 +18,12 @@ const PostListItem = ({ post, type }: { post: any; type: keyof typeof contentTyp
     >
         {post.image && (
             <Image
-                className="rounded-3xl bg-slate-600 ring-2 ring-ring"
-                src={post.image}
+                className="h-16 w-16 rounded-xl bg-white object-contain ring-2 ring-ring"
+                src={"/assets/posts/" + post.slug + post.image}
                 alt={post.title}
-                width="80"
-                height="80"
+                width="100"
+                height="100"
+                priority
             />
         )}
         <div className="grid">

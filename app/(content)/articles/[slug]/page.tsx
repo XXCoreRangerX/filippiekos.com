@@ -80,7 +80,7 @@ export default function Article({ params }: { params: { slug: string; metadata: 
                 <h1 className="title mt-5 break-words text-4xl font-bold lg:text-5xl">{post.title}</h1>
                 <h2 className="description mb-4 mt-3 break-words">{post.description}</h2>
             </header>
-            <article className="prose prose-slate w-full max-w-screen-lg flex-1 rounded-3xl border-2 bg-card p-6 shadow-md dark:prose-invert max-[350px]:prose-sm lg:prose-lg prose-img:rounded-3xl md:p-10">
+            <article className="prose prose-slate w-full max-w-screen-lg flex-1 rounded-3xl border-2 bg-card p-6 shadow-md dark:prose-invert max-[350px]:prose-sm lg:prose-lg md:p-10">
                 <CustomMDX source={post.content} />
             </article>
             <Footer />

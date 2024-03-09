@@ -1,5 +1,19 @@
-import achievements from "@/data/achievements";
+import defaults from "@/constants/defaults";
 import Link from "next/link";
+
+export interface IAchievementItem {
+    title: string;
+    year: string;
+    place: string;
+    url: string;
+}
+
+const achievements: IAchievementItem[] = defaults.achievements.map((achievement) => ({
+    title: achievement[0],
+    year: achievement[1],
+    place: achievement[2],
+    url: achievement[3],
+}));
 
 export function Achievements() {
     return (

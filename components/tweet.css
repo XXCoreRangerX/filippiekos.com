@@ -1,0 +1,44 @@
+/* Tweet */
+
+.tweet .react-tweet-theme {
+    --tweet-font-family: inherit;
+    --tweet-font-color: inherit;
+    --tweet-font-color-secondary: theme("colors.muted.foreground");
+    --tweet-twitter-icon-color: theme("colors.muted.foreground");
+
+    --tweet-bg-color: theme("colors.background");
+    --tweet-bg-color-hover: var(--tweet-bg-color);
+    --tweet-border: 1px solid theme("colors.border");
+
+    --tweet-skeleton-gradient: linear-gradient(
+        theme("colors.muted.DEFAULT"),
+        theme("colors.muted.DEFAULT"),
+        theme("colors.muted.DEFAULT")
+    );
+
+    --tweet-color-blue-primary: rgba(14, 165, 233, 1);
+    --tweet-color-blue-primary-hover: rgba(14, 165, 233, 0.1);
+    --tweet-color-blue-secondary: theme("colors.muted.foreground");
+    --tweet-color-blue-secondary-hover: theme("colors.muted.DEFAULT");
+
+    --tweet-verified-old-color: theme("colors.muted.foreground");
+    --tweet-verified-blue-color: var(--tweet-color-blue-primary);
+
+    --tweet-color-red-primary: rgba(220, 38, 38, 1);
+    --tweet-color-red-primary-hover: rgba(220, 38, 38, 0.1);
+
+    --tweet-color-green-primary: rgba(16, 185, 129, 1);
+    --tweet-color-green-primary-hover: rgba(16, 185, 129, 0.1);
+
+    --tweet-actions-font-weight: 500;
+    --tweet-replies-font-weight: 500;
+}
+
+.tweet .react-tweet-theme p {
+    font-size: inherit;
+    line-height: 1.3rem;
+}
+
+.tweet img {
+    @apply rounded-sm;
+}

@@ -91,7 +91,14 @@ export default function Blog({ params }: { params: { slug: string; metadata: Met
                 </Suspense>
                 <h1 className="title break-words text-4xl font-bold lg:text-5xl">{post.title}</h1>
                 {post.image && (
-                    <Image src={post.image} alt={post.title} width={2000} height={2000} className="rounded-3xl" />
+                    <Image
+                        src={"/assets/posts/" + post.slug + post.image}
+                        alt={post.title}
+                        width={2000}
+                        height={2000}
+                        className="rounded-3xl"
+                        priority={true}
+                    />
                 )}
                 <h2 className="description mt-3 break-words">{post.description}</h2>
                 <div className="my-4 flex flex-wrap gap-2">
@@ -102,7 +109,7 @@ export default function Blog({ params }: { params: { slug: string; metadata: Met
                     ))}
                 </div>
             </header>
-            <article className="prose prose-slate w-full max-w-screen-lg flex-1 rounded-3xl border-2 bg-card p-6 shadow-md dark:prose-invert max-[350px]:prose-sm lg:prose-lg prose-img:rounded-3xl md:p-10">
+            <article className="prose prose-slate w-full max-w-screen-lg flex-1 rounded-3xl border-2 bg-card p-6 shadow-md dark:prose-invert max-[350px]:prose-sm lg:prose-lg md:p-10">
                 <CustomMDX source={post.content} />
             </article>
             <Footer type="posts" />

@@ -1,3 +1,4 @@
+import CopyButton from "@/app/(content)/_components/copybutton";
 import { IconType } from "react-icons";
 import {
     BiLogoCPlusPlus,
@@ -9,17 +10,15 @@ import {
     BiLogoTypescript,
 } from "react-icons/bi";
 import { FaCode } from "react-icons/fa6";
+import "./code.css";
 
 export interface CodeProps {
     children: string;
-    className: string;
-    language?: boolean;
-    file?: string;
+    raw: string;
+    language: string;
 }
 
-function Code({ children, className = "" }: CodeProps) {
-    const language = (className.replace(/(language-|hljs)/g, "").trim() || "txt").toLowerCase();
-
+function Code({ children, raw, language, ...props }: CodeProps) {
     const languageIcon: IconType | undefined = {
         ts: BiLogoTypescript,
         tsx: BiLogoTypescript,
@@ -37,19 +36,21 @@ function Code({ children, className = "" }: CodeProps) {
     }[language];
 
     const DynamicLanguageIcon = languageIcon || FaCode;
-
     return (
-        <div>
-            <div className="flex justify-between text-xs text-slate-500">
-                {language && (
-                    <span className="flex select-none items-center gap-2">
-                        <DynamicLanguageIcon className="h-4 w-4" />
-                        <span>{language}</span>
-                    </span>
-                )}
-            </div>
-            <code className={className}>{children}</code>
-        </div>
+        <>
+            {language && (
+                <>
+                    <div className="flex justify-between border-b bg-background p-2 text-xs text-slate-500">
+                        <span className="flex select-none items-center gap-2">
+                            <DynamicLanguageIcon className="h-5 w-5" />
+                            <span>{language}</span>
+                        </span>
+                        <CopyButton raw={raw} />
+                    </div>
+                </>
+            )}
+            <code {...props}>{children}</code>
+        </>
     );
 }
 

@@ -3,22 +3,42 @@ import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import defaults from "@/constants/defaults";
-import skills from "@/data/skills";
-import socials from "@/data/socials";
 import { cn } from "@/lib/utils";
+import profilePic from "@/public/pfp.webp";
 import { Download, Mail } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { IconType } from "react-icons";
+import { FaFacebook, FaGithub, FaReddit, FaXTwitter } from "react-icons/fa6";
+
+export interface ISocialItem {
+    name: string;
+    icon: IconType;
+    url: string;
+}
+
+const icons: { [index: string]: IconType } = {
+    github: FaGithub,
+    twitter: FaXTwitter,
+    reddit: FaReddit,
+    facebook: FaFacebook,
+};
+
+const socials: ISocialItem[] = defaults.socials.map((social) => ({
+    name: social[0],
+    icon: icons[social[0].toLowerCase()],
+    url: social[1],
+}));
 
 export function About() {
     return (
         <section className="grid h-full rounded-3xl border-2 p-5 shadow-md lg:overflow-y-auto">
             <div className="my-auto flex flex-col items-center text-center">
                 <Image
-                    src="/pfp.jpg"
+                    src={profilePic}
                     width="250"
                     height="250"
-                    quality="80"
+                    quality="85"
                     alt=""
                     className="mb-4 rounded-full shadow-xl ring-4 ring-ring dark:ring-slate-200"
                     priority={true}
@@ -38,9 +58,9 @@ export function About() {
                     ))}
                 </div>
                 <div className="my-2 flex max-w-sm flex-wrap justify-center gap-2">
-                    {skills.map((skill, index) => (
+                    {defaults.skills.map((skill, index) => (
                         <Badge key={index} variant="outline">
-                            {skill.name}
+                            {skill}
                         </Badge>
                     ))}
                 </div>
