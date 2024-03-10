@@ -10,7 +10,7 @@ export function Footer({ className, type }: { className?: string; type?: keyof t
     return (
         <footer
             className={cn(
-                "w-full max-w-screen-lg items-center justify-center rounded-3xl border-2 p-6 shadow-md md:p-10",
+                "w-full items-center justify-center rounded-3xl border-2 p-5 shadow-md sm:p-8 md:p-10",
                 className,
             )}
         >

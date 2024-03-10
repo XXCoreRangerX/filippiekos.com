@@ -19,8 +19,8 @@ export const metadata: Metadata = {
 export default function Tag({ params }: { params: { tag: string } }) {
     return (
         <>
-            <header className="w-full max-w-screen-lg rounded-3xl border-2 bg-card p-6 shadow-md md:p-10">
-                <Navbar link="/tags" />
+            <header className="w-full max-w-screen-lg rounded-3xl border-2 bg-card p-5 shadow-md md:p-10">
+                <Navbar link="/posts" />
                 <div className="mt-4 flex flex-wrap gap-2">
                     <Link href={`/tags/${params.tag}`}>
                         <Badge variant="muted">{params.tag}</Badge>
@@ -30,7 +30,7 @@ export default function Tag({ params }: { params: { tag: string } }) {
             <article className="w-full max-w-screen-lg flex-1 rounded-3xl border-2 bg-card p-5 shadow-md">
                 <PostList type="posts" tag={params.tag} />
             </article>
-            <Footer />
+            <Footer className="max-w-screen-lg" />
         </>
     );
 }

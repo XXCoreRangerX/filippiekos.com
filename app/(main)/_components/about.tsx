@@ -57,14 +57,14 @@ export function About() {
                         </Link>
                     ))}
                 </div>
-                <div className="my-2 flex max-w-sm flex-wrap justify-center gap-2">
+                <div className="my-2 flex max-w-lg flex-wrap justify-center gap-2">
                     {defaults.skills.map((skill, index) => (
                         <Badge key={index} variant="outline">
                             {skill}
                         </Badge>
                     ))}
                 </div>
-                <div className="my-2 flex w-full max-w-sm justify-center gap-2">
+                <div className="my-2 flex w-full max-w-md justify-center gap-2">
                     <Link
                         href={"mailto:" + defaults.email}
                         download

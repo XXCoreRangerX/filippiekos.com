@@ -55,7 +55,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     };
 }
 
-export default function Blog({ params }: { params: { slug: string; metadata: Metadata; content: string } }) {
+export default function Post({ params }: { params: { slug: string; metadata: Metadata; content: string } }) {
     const post = getPosts().find((post) => post.slug === params.slug);
 
     if (!post) {
@@ -84,7 +84,7 @@ export default function Blog({ params }: { params: { slug: string; metadata: Met
                     }),
                 }}
             />
-            <header className="w-full max-w-screen-lg rounded-3xl border-2 bg-card p-6 shadow-md md:p-10">
+            <header className="w-full max-w-screen-lg rounded-3xl border-2 bg-card p-5 shadow-md md:p-10">
                 <Navbar link="/posts" />
                 <Suspense fallback={<Skeleton className="description mb-2 mt-5 h-6 w-48" />}>
                     <h3 className="description mb-2 mt-5 text-muted-foreground">{formatDate(post.date)}</h3>
@@ -109,10 +109,10 @@ export default function Blog({ params }: { params: { slug: string; metadata: Met
                     ))}
                 </div>
             </header>
-            <article className="prose prose-slate w-full max-w-screen-lg flex-1 rounded-3xl border-2 bg-card p-6 shadow-md dark:prose-invert max-[350px]:prose-sm lg:prose-lg md:p-10">
+            <article className="prose prose-slate w-full max-w-screen-lg flex-1 rounded-3xl border-2 bg-card p-5 shadow-md dark:prose-invert max-[350px]:prose-sm md:p-10">
                 <CustomMDX source={post.content} />
             </article>
-            <Footer type="posts" />
+            <Footer type="posts" className="max-w-screen-lg" />
         </>
     );
 }
