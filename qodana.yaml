@@ -4,4 +4,4 @@ linter: jetbrains/qodana-js:latest
 exclude:
     - name: pnpm
       paths:
-          - .pnpm-store
+        - ".pnpm-store//*"
