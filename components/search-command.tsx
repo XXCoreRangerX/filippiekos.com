@@ -10,7 +10,7 @@ import {
     CommandSeparator,
 } from "@/components/ui/command";
 import { useSearch } from "@/hooks/use-search";
-import { FileText, Monitor, Moon, Sun, Tag } from "lucide-react";
+import { FileText, Home, Monitor, Moon, Sun, Tag } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -83,6 +83,13 @@ export const SearchCommand = () => {
             <CommandInput placeholder={`Search...`} />
             <CommandList>
                 <CommandEmpty>No results found.</CommandEmpty>
+                <CommandGroup>
+                    <CommandItem onSelect={() => onSelect("/")}>
+                        <Home className="mr-2" />
+                        <span>Home</span>
+                    </CommandItem>
+                </CommandGroup>
+                <CommandSeparator />
                 {data.articles && data.articles.length > 0 && (
                     <CommandGroup heading="Articles">
                         {data.articles.map((doc) => (
