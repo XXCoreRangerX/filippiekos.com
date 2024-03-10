@@ -5,7 +5,7 @@ import defaults from "@/constants/defaults";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
-import { JetBrains_Mono as FontMono, Rubik as FontSans, Domine as FontSerif } from "next/font/google";
+import { Domine as FontSerif, JetBrains_Mono as FontMono, Rubik as FontSans } from "next/font/google";
 import React from "react";
 import "./globals.css";
 
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
-        <html lang="en">
+        <html lang="en" className="scroll-smooth">
             <body
                 className={`${fontMono.variable} ${fontSans.variable} ${fontSerif.variable} relative font-sans antialiased`}
             >
