@@ -1,10 +1,10 @@
 "use client";
 
 import { buttonVariants } from "@/components/ui/button";
+import { Callout } from "@/components/ui/callout";
 import { XCircle } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Callout } from "@/components/ui/callout";
 
 export default function NotFound() {
     const path = usePathname();

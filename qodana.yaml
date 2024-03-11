@@ -1,7 +1,3 @@
 version: "1.0"
 bootstrap: pnpm install
 linter: jetbrains/qodana-js:latest
-exclude:
-    - name: pnpm
-      paths:
-        - ".pnpm-store//*"

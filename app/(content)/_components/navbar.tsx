@@ -15,7 +15,6 @@ export function Navbar({ link = "/" }: { link?: string }) {
                     {link === "/" ? "home" : link.trim().replace(/^\//, "").replace(/\/$/, "").replace(/-/g, " ")}
                 </span>
             </Link>
-            {/*<ThemeToggle />*/}
         </nav>
     );
 }
