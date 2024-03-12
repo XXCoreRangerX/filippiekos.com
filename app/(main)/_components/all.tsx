@@ -8,7 +8,7 @@ import { readMDXFile } from "@/lib/blog";
 
 export function All() {
     return (
-        <section className="relative m-0 h-full overflow-y-auto rounded-3xl border-2 bg-card pb-5 shadow-md">
+        <section className="h-full overflow-y-auto rounded-3xl border-2 bg-card pb-5 shadow-md">
             <Tabs defaultValue="about">
                 <TabsList className="sticky top-0 w-full border-b-2 bg-card min-[400px]:justify-start">
                     <TabsTrigger className="min-[400px]:rounded-tl-[1.2rem]" value="about">
@@ -16,7 +16,7 @@ export function All() {
                     </TabsTrigger>
                     <TabsTrigger value="posts">Posts</TabsTrigger>
                 </TabsList>
-                <section className="mt-1 px-5">
+                <section className="mt-3 px-5">
                     <TabsContent value="about" className="grid gap-3">
                         <h3 className="text-3xl font-bold">About me</h3>
                         <article className="prose prose-slate text-foreground dark:prose-invert">
