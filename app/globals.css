@@ -76,12 +76,17 @@
     }
 }
 
+a,
+button {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+}
+
 pre::-webkit-scrollbar {
     display: none;
 }
 
 .prose pre code {
-    @apply m-3;
+    @apply m-2;
 }
 
 .prose pre {

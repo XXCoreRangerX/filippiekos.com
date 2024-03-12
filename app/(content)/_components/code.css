@@ -64,7 +64,7 @@ pre code.hljs {
 }
 
 pre:has(.hljs) {
-    @apply border;
+    @apply rounded-xl border;
 }
 
 pre:has(.hljs),

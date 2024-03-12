@@ -20,7 +20,7 @@ export function All() {
                 <section className="mt-3 px-5">
                     <TabsContent value="about" className="grid gap-3">
                         <h3 className="text-3xl font-bold">About me</h3>
-                        <article className="prose prose-slate text-foreground dark:prose-invert">
+                        <article className="prose prose-slate max-w-full text-foreground dark:prose-invert">
                             <CustomMDX source={readMDXFile("content/about.mdx").content} />
                         </article>
                         <Separator />

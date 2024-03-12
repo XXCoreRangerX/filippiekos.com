@@ -39,7 +39,7 @@ function Code({ children, raw, language, ...props }: CodeProps) {
     return (
         <>
             {language && (
-                <div className="flex justify-between border-b bg-background p-2 text-xs text-slate-500">
+                <div className="flex justify-between border-b bg-background px-3 py-2 text-xs text-slate-500">
                     <span className="flex select-none items-center gap-2">
                         <DynamicLanguageIcon className="h-5 w-5" />
                         <span>{language}</span>

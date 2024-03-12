@@ -25,9 +25,9 @@ function AchievementCard({ achievement, index }: { achievement: IAchievementItem
                 variant="outline"
                 hover
                 key={index}
-                className="flex min-h-32 cursor-pointer items-center max-lg:min-h-44 max-lg:flex-col max-lg:justify-center max-lg:text-center lg:gap-5"
+                className="flex min-h-32 cursor-pointer items-center gap-1 max-lg:flex-col max-lg:justify-center max-lg:text-center lg:gap-5"
             >
-                <header className="basis-1/5 text-center lg:grid">
+                <header className="basis-1/4 text-center lg:grid">
                     {achievement.type === "Scholarship" && <LuGraduationCap className="mx-auto h-12 w-12" />}
                     {achievement.place != "" && <h1 className="text-5xl font-extrabold">{achievement.place}</h1>}
                     <p className="text-xs">{achievement.type}</p>

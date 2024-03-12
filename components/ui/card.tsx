@@ -2,31 +2,35 @@ import { cn } from "@/lib/utils";
 import { cva, VariantProps } from "class-variance-authority";
 import * as React from "react";
 
-const CardVariants = cva("rounded-xl border bg-card shadow-sm p-5", {
-    variants: {
-        type: {
-            aside: "aside",
-            article: "article",
-            header: "header",
-            nav: "nav",
-            section: "section",
-            footer: "footer",
+const CardVariants = cva(
+    "rounded-xl border shadow-sm p-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+    {
+        variants: {
+            type: {
+                aside: "aside",
+                article: "article",
+                header: "header",
+                nav: "nav",
+                section: "section",
+                footer: "footer",
+            },
+            variant: {
+                default: "bg-card",
+                outline: "bg-transparent",
+                clear: "bg-transparent border-none shadow-none",
+                secondary: "bg-secondary text-secondary-foreground",
+            },
+            hover: {
+                true: "transition-all ease-in-out active:bg-slate-300 hover:bg-muted dark:active:bg-slate-600",
+            },
         },
-        variant: {
-            default: "bg-card",
-            outline: "bg-transparent",
-            secondary: "bg-secondary text-secondary-foreground",
-        },
-        hover: {
-            true: "transition-all duration-150 ease-in-out hover:bg-slate-200 active:bg-slate-300 dark:hover:bg-slate-700/50 dark:active:bg-slate-600",
+        defaultVariants: {
+            type: "section",
+            variant: "default",
+            hover: false,
         },
     },
-    defaultVariants: {
-        type: "section",
-        variant: "default",
-        hover: false,
-    },
-});
+);
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof CardVariants> {
     hover?: boolean;
