@@ -1,9 +1,9 @@
+import defaults from "@/app.config";
 import { CustomMDX } from "@/app/(content)/_components/mdx";
 import { Navbar } from "@/app/(content)/_components/navbar";
 import { Footer } from "@/components/footer";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
-import defaults from "@/constants/defaults";
 import { getPosts, saveDataToJson } from "@/lib/blog";
 import { formatDate } from "@/lib/date";
 import type { Metadata } from "next";
@@ -13,7 +13,7 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
 export async function generateStaticParams() {
-    saveDataToJson(getPosts(), "data/posts.json");
+    saveDataToJson(getPosts(), "content/data/posts.json");
     return getPosts().map((post) => ({ slug: post.slug }));
 }
 
@@ -85,7 +85,7 @@ export default function Post({ params }: { params: { slug: string; metadata: Met
                 }}
             />
             <header className="w-full max-w-screen-lg rounded-3xl border-2 bg-card p-5 shadow-md md:p-10">
-                <Navbar link="/posts" />
+                <Navbar link="/" />
                 <Suspense fallback={<Skeleton className="description mb-2 mt-5 h-6 w-48" />}>
                     <h3 className="description mb-2 mt-5 text-muted-foreground">{formatDate(post.date)}</h3>
                 </Suspense>

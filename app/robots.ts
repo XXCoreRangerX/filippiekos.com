@@ -1,4 +1,4 @@
-import defaults from "@/constants/defaults";
+import defaults from "@/app.config";
 import { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {

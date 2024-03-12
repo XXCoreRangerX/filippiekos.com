@@ -15,7 +15,7 @@ export default function Tags() {
     return (
         <>
             <header className="w-full max-w-screen-lg rounded-3xl border-2 bg-card p-5 shadow-md md:p-10">
-                <Navbar link="/posts" />
+                <Navbar link="/" />
             </header>
             <article className="w-full max-w-screen-lg flex-1 rounded-3xl border-2 bg-card p-5 shadow-md">
                 <div className="mb-4 flex flex-wrap gap-2">

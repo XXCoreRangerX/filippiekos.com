@@ -1,34 +1,46 @@
-import defaults from "@/constants/defaults";
+import defaults from "@/app.config";
+import { Card } from "@/components/ui/card";
 import Link from "next/link";
+import { LuGraduationCap } from "react-icons/lu";
 
 export interface IAchievementItem {
+    type: string;
     title: string;
-    year: string;
-    place: string;
+    date: string;
+    location?: string;
+    place?: string;
     url: string;
 }
 
-const achievements: IAchievementItem[] = defaults.achievements.map((achievement) => ({
-    title: achievement[0],
-    year: achievement[1],
-    place: achievement[2],
-    url: achievement[3],
-}));
+function AchievementCard({ achievement, index }: { achievement: IAchievementItem; index: number }) {
+    return (
+        <Link href={achievement.url || "/"} key={index} passHref legacyBehavior>
+            <Card
+                variant="outline"
+                hover
+                key={index}
+                className="flex min-h-32 cursor-pointer items-center max-lg:min-h-44 max-lg:flex-col max-lg:justify-center max-lg:text-center lg:gap-5"
+            >
+                <div className="basis-1/5 text-center lg:grid">
+                    {achievement.type === "Scholarship" && <LuGraduationCap className="mx-auto h-12 w-12" />}
+                    {achievement.place != "" && <h1 className="text-5xl font-extrabold">{achievement.place}</h1>}
+                    <p className="text-xs">{achievement.type}</p>
+                </div>
+                <div className="grid gap-1">
+                    <h2 className="line-clamp-2 text-lg font-bold">{achievement.title}</h2>
+                    <h4 className="text-sm font-medium uppercase text-muted-foreground">
+                        {achievement.date} {achievement.location && "— " + achievement.location}
+                    </h4>
+                </div>
+            </Card>
+        </Link>
+    );
+}
 
 export function Achievements() {
     return (
-        <section className="rounded-3xl border-2 bg-card p-5 shadow-md">
-            <h3 className="mb-1 text-xl font-medium">Achievements</h3>
-            <ul className="list-inside list-disc">
-                {achievements.map((achievement, index) => (
-                    <li key={index}>
-                        <span className="font-bold">{achievement.place} place</span> at{" "}
-                        <Link href={achievement.url}>
-                            {achievement.title} {achievement.year}
-                        </Link>
-                    </li>
-                ))}
-            </ul>
-        </section>
+        <div className="grid gap-4 min-[500px]:max-lg:grid-cols-2 xl:grid-cols-2">
+            {defaults.achievements.map((achievement, index) => AchievementCard({ achievement, index }))}
+        </div>
     );
 }

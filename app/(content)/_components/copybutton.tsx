@@ -1,8 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Clipboard, ClipboardCheck } from "lucide-react";
 import { useState } from "react";
+import { LuClipboard, LuClipboardCheck } from "react-icons/lu";
 
 export default function CopyButton({ raw }: { raw: string }) {
     const [isCopied, setIsCopied] = useState(false);
@@ -18,8 +18,8 @@ export default function CopyButton({ raw }: { raw: string }) {
 
     return (
         <Button disabled={isCopied} variant="ghost" size="none" className="h-8 w-8" onClick={() => copy(raw)}>
-            <Clipboard className={`absolute h-5 w-5 transition-all duration-500 ${isCopied ? "opacity-0" : ""}`} />
-            <ClipboardCheck className={`h-5 w-5 transition-all duration-500 ${isCopied ? "" : "opacity-0"}`} />
+            <LuClipboard className={`absolute h-5 w-5 transition-all duration-500 ${isCopied ? "opacity-0" : ""}`} />
+            <LuClipboardCheck className={`h-5 w-5 transition-all duration-500 ${isCopied ? "" : "opacity-0"}`} />
         </Button>
     );
 }

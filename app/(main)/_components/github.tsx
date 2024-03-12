@@ -1,5 +1,6 @@
+import defaults from "@/app.config";
+import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import defaults from "@/constants/defaults";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
@@ -113,7 +114,7 @@ export async function GitHubStats() {
 
     return (
         <Link href={githubUrl} target="blank">
-            <section className="flex items-center justify-center gap-6 rounded-3xl border-2 bg-card p-5 shadow-md">
+            <Card className="flex items-center justify-center gap-6 rounded-3xl border-2 shadow-md">
                 <Suspense
                     fallback={
                         <Skeleton className="h-24 w-24 rounded-full shadow-2xl ring-2 ring-ring lg:hidden xl:block" />
@@ -138,7 +139,7 @@ export async function GitHubStats() {
                         </h4>
                     ))}
                 </div>
-            </section>
+            </Card>
         </Link>
     );
 }

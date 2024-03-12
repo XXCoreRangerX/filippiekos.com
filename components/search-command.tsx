@@ -10,10 +10,10 @@ import {
     CommandSeparator,
 } from "@/components/ui/command";
 import { useSearch } from "@/hooks/use-search";
-import { FileText, Home, Monitor, Moon, Sun, Tag } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { LuFileText, LuHome, LuMonitor, LuMoon, LuSun, LuTag } from "react-icons/lu";
 
 interface SearchResultItem {
     title: string;
@@ -85,7 +85,7 @@ export const SearchCommand = () => {
                 <CommandEmpty>No results found.</CommandEmpty>
                 <CommandGroup>
                     <CommandItem onSelect={() => onSelect("/")}>
-                        <Home className="mr-2" />
+                        <LuHome className="mr-2" />
                         <span>Home</span>
                     </CommandItem>
                 </CommandGroup>
@@ -94,8 +94,8 @@ export const SearchCommand = () => {
                     <CommandGroup heading="Articles">
                         {data.articles.map((doc) => (
                             <CommandItem key={doc.slug} onSelect={() => onSelect("/articles/" + doc.slug)}>
-                                <FileText className="mr-2" />
-                                <span>{doc.title}</span>
+                                <LuFileText />
+                                <span className="flex-1">{doc.title}</span>
                             </CommandItem>
                         ))}
                     </CommandGroup>
@@ -104,8 +104,8 @@ export const SearchCommand = () => {
                     <CommandGroup heading="Posts">
                         {data.posts.map((doc) => (
                             <CommandItem key={doc.slug} onSelect={() => onSelect("/posts/" + doc.slug)}>
-                                <FileText className="mr-2" />
-                                <span>{doc.title}</span>
+                                <LuFileText />
+                                <span className="flex-1">{doc.title}</span>
                             </CommandItem>
                         ))}
                     </CommandGroup>
@@ -114,8 +114,8 @@ export const SearchCommand = () => {
                     <CommandGroup heading="Tags">
                         {data.tags.map((tag) => (
                             <CommandItem key={tag} onSelect={() => onSelect("/tags/" + tag)}>
-                                <Tag className="mr-2" />
-                                <span>{tag}</span>
+                                <LuTag />
+                                <span className="flex-1">{tag}</span>
                             </CommandItem>
                         ))}
                     </CommandGroup>
@@ -123,16 +123,16 @@ export const SearchCommand = () => {
                 <CommandSeparator />
                 <CommandGroup heading="Theme">
                     <CommandItem onSelect={() => onThemeChange("light")}>
-                        <Sun className="mr-2" />
-                        Light
+                        <LuSun />
+                        <span className="flex-1">Light</span>
                     </CommandItem>
                     <CommandItem onSelect={() => onThemeChange("dark")}>
-                        <Moon className="mr-2" />
-                        Dark
+                        <LuMoon />
+                        <span className="flex-1">Dark</span>
                     </CommandItem>
                     <CommandItem onSelect={() => onThemeChange("system")}>
-                        <Monitor className="mr-2" />
-                        System
+                        <LuMonitor />
+                        <span className="flex-1">System</span>
                     </CommandItem>
                 </CommandGroup>
             </CommandList>

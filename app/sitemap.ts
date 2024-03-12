@@ -1,4 +1,4 @@
-import defaults from "@/constants/defaults";
+import defaults from "@/app.config";
 import { getArticles, getPosts, getTags } from "@/lib/blog";
 import { MetadataRoute } from "next";
 

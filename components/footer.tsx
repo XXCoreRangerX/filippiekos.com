@@ -1,7 +1,7 @@
+import defaults from "@/app.config";
 import { PostList } from "@/components/post-list";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Separator } from "@/components/ui/separator";
-import defaults from "@/constants/defaults";
 import { contentTypes } from "@/lib/blog";
 import { cn } from "@/lib/utils";
 import Link from "next/link";

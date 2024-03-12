@@ -40,6 +40,6 @@ function Callout({ className, variant, name, children, ...props }: CalloutProps)
         </div>
     );
 }
-
 Callout.displayName = "Callout";
-export { Callout, calloutVariants };
+
+export default Callout;

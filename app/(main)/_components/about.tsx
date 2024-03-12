@@ -1,15 +1,17 @@
+import defaults from "@/app.config";
 import { CustomMDX } from "@/app/(content)/_components/mdx";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import defaults from "@/constants/defaults";
+import { readMDXFile } from "@/lib/blog";
 import { cn } from "@/lib/utils";
 import profilePic from "@/public/pfp.webp";
-import { Download, Mail } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { IconType } from "react-icons";
 import { FaFacebook, FaGithub, FaReddit, FaXTwitter } from "react-icons/fa6";
+import { LuDownload, LuMail } from "react-icons/lu";
 
 export interface ISocialItem {
     name: string;
@@ -32,7 +34,7 @@ const socials: ISocialItem[] = defaults.socials.map((social) => ({
 
 export function About() {
     return (
-        <section className="grid h-full rounded-3xl border-2 p-5 shadow-md lg:overflow-y-auto">
+        <Card variant="outline" className="grid h-full rounded-3xl border-2 shadow-md lg:overflow-y-auto">
             <div className="my-auto flex flex-col items-center text-center">
                 <Image
                     src={profilePic}
@@ -70,20 +72,20 @@ export function About() {
                         download
                         className={cn("w-full gap-2", buttonVariants({ variant: "default" }))}
                     >
-                        <Mail className="h-5 w-5" />
+                        <LuMail className="h-5 w-5" />
                         Contact
                     </Link>
                     <Link href="/" download className={cn("gap-2", buttonVariants({ variant: "outline" }))}>
-                        <Download className="h-5 w-5" />
+                        <LuDownload className="h-5 w-5" />
                         CV
                     </Link>
                 </div>
                 <Separator className="my-3" />
                 <div className="flex flex-col gap-1 text-left">
                     <h3 className="text-xl font-medium">Bio</h3>
-                    <CustomMDX source={defaults.bio} />
+                    <CustomMDX source={readMDXFile("content/bio.mdx").content} />
                 </div>
             </div>
-        </section>
+        </Card>
     );
 }

@@ -1,13 +1,13 @@
+import defaults from "@/app.config";
 import { CustomMDX } from "@/app/(content)/_components/mdx";
 import { Navbar } from "@/app/(content)/_components/navbar";
 import { Footer } from "@/components/footer";
-import defaults from "@/constants/defaults";
 import { getArticles, saveDataToJson } from "@/lib/blog";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
-    saveDataToJson(getArticles(), "data/articles.json");
+    saveDataToJson(getArticles(), "content/data/articles.json");
     return getArticles().map((post) => ({ slug: post.slug }));
 }
 

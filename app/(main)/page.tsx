@@ -1,5 +1,5 @@
 import { About } from "@/app/(main)/_components/about";
-import { Achievements } from "@/app/(main)/_components/achievements";
+import { All } from "@/app/(main)/_components/all";
 import { Posts } from "@/app/(main)/_components/posts";
 import { Footer } from "@/components/footer";
 import { GitHubStats } from "./_components/github";
@@ -10,9 +10,8 @@ export default function Main() {
             <section className="basis-1/4">
                 <About />
             </section>
-            <section className="flex basis-1/2 flex-col gap-5">
-                <Posts type="posts" />
-                <Achievements />
+            <section className="basis-1/2">
+                <All />
             </section>
             <section className="flex basis-1/4 flex-col gap-5">
                 <Posts type="articles" />

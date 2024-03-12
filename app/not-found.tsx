@@ -1,10 +1,10 @@
 "use client";
 
 import { buttonVariants } from "@/components/ui/button";
-import { Callout } from "@/components/ui/callout";
-import { XCircle } from "lucide-react";
+import Callout from "@/components/ui/callout";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { LuXCircle } from "react-icons/lu";
 
 export default function NotFound() {
     const path = usePathname();
@@ -12,7 +12,7 @@ export default function NotFound() {
         <main className="flex h-screen flex-col items-center justify-center p-5 text-center">
             {path !== "/wp-admin" && (
                 <>
-                    <XCircle className="mb-2 h-10 w-10 text-muted-foreground" />
+                    <LuXCircle className="mb-2 h-10 w-10 text-muted-foreground" />
                     <h1 className="text-8xl font-bold">404</h1>
                     <h2 className="mb-2 text-2xl">Not Found</h2>
                 </>

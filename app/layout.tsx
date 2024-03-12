@@ -1,7 +1,7 @@
+import defaults from "@/app.config";
 import { GridBackground } from "@/components/grid-background";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { SearchCommand } from "@/components/search-command";
-import defaults from "@/constants/defaults";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";

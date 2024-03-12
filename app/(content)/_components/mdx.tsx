@@ -1,7 +1,7 @@
 import Code from "@/app/(content)/_components/code";
 import { CustomImage } from "@/components/image";
 import Tweet from "@/components/tweet";
-import { Callout } from "@/components/ui/callout";
+import Callout from "@/components/ui/callout";
 import { Separator } from "@/components/ui/separator";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
