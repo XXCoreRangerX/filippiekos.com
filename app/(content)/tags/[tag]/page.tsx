@@ -2,6 +2,7 @@ import { Navbar } from "@/app/(content)/_components/navbar";
 import { Footer } from "@/components/footer";
 import { PostList } from "@/components/post-list";
 import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
 import { getTags, saveDataToJson } from "@/lib/blog";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -19,17 +20,17 @@ export const metadata: Metadata = {
 export default function Tag({ params }: { params: { tag: string } }) {
     return (
         <>
-            <header className="w-full max-w-screen-lg rounded-3xl border-2 bg-card p-5 shadow-md md:p-10">
+            <Card type="header" className="w-full max-w-screen-lg rounded-3xl border-2 shadow-md md:p-10">
                 <Navbar link="/" />
                 <div className="mt-4 flex flex-wrap gap-2">
                     <Link href={`/tags/${params.tag}`}>
                         <Badge variant="muted">{params.tag}</Badge>
                     </Link>
                 </div>
-            </header>
-            <article className="w-full max-w-screen-lg flex-1 rounded-3xl border-2 bg-card p-5 shadow-md">
+            </Card>
+            <Card type="article" className="w-full max-w-screen-lg flex-1 rounded-3xl border-2 shadow-md">
                 <PostList type="posts" tag={params.tag} />
-            </article>
+            </Card>
             <Footer className="max-w-screen-lg" />
         </>
     );

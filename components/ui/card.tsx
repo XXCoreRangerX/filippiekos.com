@@ -4,6 +4,14 @@ import * as React from "react";
 
 const CardVariants = cva("rounded-xl border bg-card shadow-sm p-5", {
     variants: {
+        type: {
+            aside: "aside",
+            article: "article",
+            header: "header",
+            nav: "nav",
+            section: "section",
+            footer: "footer",
+        },
         variant: {
             default: "bg-card",
             outline: "bg-transparent",
@@ -14,6 +22,7 @@ const CardVariants = cva("rounded-xl border bg-card shadow-sm p-5", {
         },
     },
     defaultVariants: {
+        type: "section",
         variant: "default",
         hover: false,
     },
@@ -23,9 +32,13 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement>, Variant
     hover?: boolean;
 }
 
-const Card = React.forwardRef<HTMLDivElement, CardProps>(({ className, hover = false, variant, ...props }, ref) => (
-    <div ref={ref} className={cn(CardVariants({ hover, variant: variant }), className)} {...props} />
-));
+const Card = React.forwardRef<HTMLDivElement, CardProps>(
+    ({ className, type, hover = false, variant, ...props }, ref) => {
+        const Comp = type || "section";
+        return <Comp ref={ref} className={cn(CardVariants({ hover, variant: variant }), className)} {...props} />;
+    },
+);
+
 Card.displayName = "Card";
 
 export { Card };

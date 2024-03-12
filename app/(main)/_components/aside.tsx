@@ -32,9 +32,13 @@ const socials: ISocialItem[] = defaults.socials.map((social) => ({
     url: social[1],
 }));
 
-export function About() {
+export function Aside() {
     return (
-        <Card variant="outline" className="grid h-full rounded-3xl border-2 shadow-md lg:overflow-y-auto">
+        <Card
+            type="aside"
+            variant="outline"
+            className="grid h-full basis-1/4 rounded-3xl border-2 shadow-md lg:overflow-y-auto"
+        >
             <div className="my-auto flex flex-col items-center text-center">
                 <Image
                     src={profilePic}

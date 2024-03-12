@@ -2,6 +2,7 @@ import defaults from "@/app.config";
 import { CustomMDX } from "@/app/(content)/_components/mdx";
 import { Navbar } from "@/app/(content)/_components/navbar";
 import { Footer } from "@/components/footer";
+import { Card } from "@/components/ui/card";
 import { getArticles, saveDataToJson } from "@/lib/blog";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -75,14 +76,17 @@ export default function Article({ params }: { params: { slug: string; metadata: 
                     }),
                 }}
             />
-            <header className="w-full max-w-screen-lg rounded-3xl border-2 bg-card p-5 shadow-md md:p-10">
+            <Card type="header" className="w-full max-w-screen-lg rounded-3xl border-2 shadow-md md:p-10">
                 <Navbar />
                 <h1 className="title mt-5 break-words text-4xl font-bold lg:text-5xl">{post.title}</h1>
                 <h2 className="description mb-4 mt-3 break-words">{post.description}</h2>
-            </header>
-            <article className="prose prose-slate w-full max-w-screen-lg flex-1 rounded-3xl border-2 bg-card p-5 shadow-md dark:prose-invert max-[350px]:prose-sm md:p-10">
+            </Card>
+            <Card
+                type="article"
+                className="prose prose-slate w-full max-w-screen-lg flex-1 rounded-3xl border-2 shadow-md dark:prose-invert max-[350px]:prose-sm md:p-10"
+            >
                 <CustomMDX source={post.content} />
-            </article>
+            </Card>
             <Footer className="max-w-screen-lg" />
         </>
     );

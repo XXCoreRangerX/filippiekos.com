@@ -1,6 +1,7 @@
 import defaults from "@/app.config";
 import { PostList } from "@/components/post-list";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { contentTypes } from "@/lib/blog";
 import { cn } from "@/lib/utils";
@@ -8,11 +9,10 @@ import Link from "next/link";
 
 export function Footer({ className, type }: { className?: string; type?: keyof typeof contentTypes }) {
     return (
-        <footer
-            className={cn(
-                "w-full items-center justify-center rounded-3xl border-2 p-5 shadow-md sm:p-8 md:p-10",
-                className,
-            )}
+        <Card
+            type="footer"
+            variant="outline"
+            className={cn("w-full items-center justify-center rounded-3xl shadow-md sm:p-8 md:p-10", className)}
         >
             {type && (
                 <div>
@@ -26,6 +26,6 @@ export function Footer({ className, type }: { className?: string; type?: keyof t
                 </Link>
                 <ThemeToggle className="text-muted-foreground" />
             </div>
-        </footer>
+        </Card>
     );
 }

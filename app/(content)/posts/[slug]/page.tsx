@@ -3,6 +3,7 @@ import { CustomMDX } from "@/app/(content)/_components/mdx";
 import { Navbar } from "@/app/(content)/_components/navbar";
 import { Footer } from "@/components/footer";
 import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getPosts, saveDataToJson } from "@/lib/blog";
 import { formatDate } from "@/lib/date";
@@ -84,7 +85,7 @@ export default function Post({ params }: { params: { slug: string; metadata: Met
                     }),
                 }}
             />
-            <header className="w-full max-w-screen-lg rounded-3xl border-2 bg-card p-5 shadow-md md:p-10">
+            <Card type="header" className="w-full max-w-screen-lg rounded-3xl border-2 shadow-md md:p-10">
                 <Navbar link="/" />
                 <Suspense fallback={<Skeleton className="description mb-2 mt-5 h-6 w-48" />}>
                     <h3 className="description mb-2 mt-5 text-muted-foreground">{formatDate(post.date)}</h3>
@@ -108,10 +109,13 @@ export default function Post({ params }: { params: { slug: string; metadata: Met
                         </Link>
                     ))}
                 </div>
-            </header>
-            <article className="prose prose-slate w-full max-w-screen-lg flex-1 rounded-3xl border-2 bg-card p-5 shadow-md dark:prose-invert max-[350px]:prose-sm md:p-10">
+            </Card>
+            <Card
+                type="article"
+                className="prose prose-slate w-full max-w-screen-lg flex-1 rounded-3xl border-2 shadow-md dark:prose-invert max-[350px]:prose-sm md:p-10"
+            >
                 <CustomMDX source={post.content} />
-            </article>
+            </Card>
             <Footer type="posts" className="max-w-screen-lg" />
         </>
     );

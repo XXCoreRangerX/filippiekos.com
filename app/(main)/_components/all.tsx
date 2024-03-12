@@ -2,15 +2,16 @@ import { CustomMDX } from "@/app/(content)/_components/mdx";
 import { Achievements } from "@/app/(main)/_components/achievements";
 import { Projects } from "@/app/(main)/_components/projects";
 import { PostList } from "@/components/post-list";
+import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { readMDXFile } from "@/lib/blog";
 
 export function All() {
     return (
-        <section className="h-full overflow-y-auto rounded-3xl border-2 bg-card pb-5 shadow-md">
+        <Card type="article" className="basis-1/2 overflow-y-auto rounded-3xl border-2 p-0 pb-5 shadow-md">
             <Tabs defaultValue="about">
-                <TabsList className="sticky top-0 w-full border-b-2 bg-card min-[400px]:justify-start">
+                <TabsList className="sticky top-0 z-50 w-full border-b-2 bg-card min-[400px]:justify-start">
                     <TabsTrigger className="min-[400px]:rounded-tl-[1.2rem]" value="about">
                         About
                     </TabsTrigger>
@@ -33,6 +34,6 @@ export function All() {
                     </TabsContent>
                 </section>
             </Tabs>
-        </section>
+        </Card>
     );
 }
