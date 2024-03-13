@@ -4,7 +4,7 @@ import imageminJpegtran from "imagemin-jpegtran";
 import Image from "next/image";
 
 export async function getBase64ImageUrl(imageUrl: string) {
-    const response = await fetch(process.env.NEXT_PUBLIC_API_URL + imageUrl);
+    const response = await fetch(process.env.VERCEL_URL + imageUrl);
     const buffer = await response.arrayBuffer();
     const minified = await imagemin.buffer(Buffer.from(buffer), {
         plugins: [imageminJpegtran()],
