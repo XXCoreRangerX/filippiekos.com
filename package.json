@@ -20,6 +20,8 @@
         "@radix-ui/react-toggle": "^1.0.3",
         "@radix-ui/react-toggle-group": "^1.0.4",
         "@sentry/nextjs": "^7.106.1",
+        "@types/imagemin": "^8.0.5",
+        "@types/imagemin-jpegtran": "^5.0.4",
         "@vercel/analytics": "^1.2.2",
         "@vercel/speed-insights": "^1.0.10",
         "class-variance-authority": "^0.7.0",
