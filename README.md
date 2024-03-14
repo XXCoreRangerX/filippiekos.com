@@ -30,8 +30,8 @@
 ## Run locally
 
 ```bash
-  git clone https://github.com/XXCoreRangerX/filippiekos.com.git
-  cd filippiekos.com
-  pnpm i
-  pnpm run dev
+git clone https://github.com/XXCoreRangerX/filippiekos.com.git
+cd filippiekos.com
+pnpm i
+pnpm run dev
 ```
