@@ -22,9 +22,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
         return;
     }
 
-    const { title, description, image } = post;
-    const fullTitle = `${title} | ${defaults.fullName}`;
-    const ogImage = image ? defaults.url + image : `${defaults.url}/og?title=${title}`;
+    const { title, description } = post;
+    const fullTitle = `${title} | ${defaults.title}`;
 
     return {
         title: fullTitle,
@@ -34,17 +33,12 @@ export async function generateMetadata({ params }: { params: { slug: string } })
             description,
             type: "article",
             url: `${defaults.url}/articles/${post.slug}`,
-            images: [
-                {
-                    url: ogImage,
-                },
-            ],
+            siteName: defaults.title,
         },
         twitter: {
-            card: "summary_large_image",
+            card: "summary",
             title,
             description,
-            images: [ogImage],
         },
     };
 }

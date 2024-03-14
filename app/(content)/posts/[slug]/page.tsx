@@ -28,8 +28,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
         return;
     }
 
-    const { title, date: publishedTime, description, image } = post;
-    const fullTitle = `${title} | ${defaults.fullName}`;
+    const { title, date: publishedTime, updated: modifiedTime, description, image } = post;
+    const fullTitle = `${title} | ${defaults.title}`;
     const ogImage = image ? defaults.url + image : `${defaults.url}/og?title=${title}`;
 
     return {
@@ -40,7 +40,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
             description,
             type: "article",
             publishedTime,
+            modifiedTime,
             url: `${defaults.url}/posts/${post.slug}`,
+            siteName: defaults.title,
             images: [
                 {
                     url: ogImage,
@@ -74,7 +76,7 @@ export default function Post({ params }: { params: { slug: string; metadata: Met
                         "@type": "BlogPosting",
                         headline: post.title,
                         datePublished: post.date,
-                        dateModified: post.date,
+                        dateModified: post.updated,
                         description: post.description,
                         image: post.image ? `${defaults.url}${post.image}` : `${defaults.url}/og?title=${post.title}`,
                         url: `${defaults.url}/posts/${post.slug}`,
