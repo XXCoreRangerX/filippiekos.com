@@ -87,10 +87,15 @@ export default function Post({ params }: { params: { slug: string; metadata: Met
             />
             <Card type="header" className="w-full max-w-screen-lg rounded-3xl border-2 shadow-md md:p-10">
                 <Navbar link="/" />
-                <Suspense fallback={<Skeleton className="description mb-2 mt-5 h-6 w-48" />}>
-                    <h3 className="description mb-2 mt-5 text-muted-foreground">{formatDate(post.date)}</h3>
+                <Suspense fallback={<Skeleton className="description mt-5 h-6 w-48" />}>
+                    <h3 className="description mt-5 text-muted-foreground">{formatDate(post.date)}</h3>
                 </Suspense>
-                <h1 className="title break-words text-4xl font-bold lg:text-5xl">{post.title}</h1>
+                {post.updated && (
+                    <h3 className="description mt-1 text-sm text-muted-foreground">
+                        Updated: {formatDate(post.updated)}
+                    </h3>
+                )}
+                <h1 className="title mt-2 break-words text-4xl font-bold lg:text-5xl">{post.title}</h1>
                 {post.image && (
                     <Image
                         src={"/assets/posts/" + post.slug + post.image}

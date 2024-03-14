@@ -5,6 +5,7 @@ type Metadata = {
     title: string;
     description: string;
     date: string;
+    updated?: string;
     order: number;
     tags?: string[];
     image?: string;

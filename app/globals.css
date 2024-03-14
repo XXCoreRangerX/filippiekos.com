@@ -95,7 +95,6 @@ pre::-webkit-scrollbar {
     scrollbar-width: none; /* Firefox */
 }
 
-/* Remove Safari input shadow on mobile */
 input[type="text"],
 input[type="email"] {
     -webkit-appearance: none;
@@ -120,4 +119,8 @@ table {
     max-width: fit-content;
     overflow-x: auto;
     white-space: nowrap;
+}
+
+.data-footnote-backref {
+    @apply font-mono;
 }

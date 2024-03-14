@@ -1,40 +1,153 @@
 ---
 date: 2024-02-08
-title: How I built my portfolio and blog with Next.js, MDX, and Tailwind CSS
+updated: 2024-03-14
+title: How I built my portfolio and blog
 description: The start of my WebDev journey
 tags: next.js, mdx, tailwind-css
 ---
 
 <Callout>This portfolio is still a work in progress. I'm still working on adding more content and features. Stay tuned for more updates!</Callout>
 
-This marks the first post on my blog. I've been wanting to start a blog for a while now, and I finally got around to it. Along with the entire portfolio website of course.
+> This marks the first post on my blog.
+
+I believe every developer should have a portfolio website. It's a great way to showcase your work and skills. A blog is also a great way to share your experiences and knowledge with others.
 
 I have only very recently started to take web development seriously and beyond the basic HTML/CSS/JS or WordPress.
 
 It is also the first time I've used Next.js, MDX, and Tailwind CSS. I've been wanting to try out these technologies for a while now. I'm really happy with the result, and I'm excited to share my experience with you.
 
-# Tech Stack
+## Motivation
 
-## Next.js
+I've been wanting to build a portfolio and blog for a while now. Thing is, I really wanted a place to showcase my skills and projects. I also wanted to start writing about my experiences and knowledge in web development.
 
-[Next.js](https://nextjs.org) is a React framework that enables functionality such as server-side rendering and generating static websites for React based web applications. Overall, it's a great framework for building web applications, from small to large scale.
+I have had a few portfolios and websites in the past, but I've never really been happy with them. I wanted to build something from scratch, with a focus on performance and minimal dependencies.
 
-## Tailwind CSS
+I also wanted to learn more about modern web development technologies for building web applications, so this all lined up perfectly.
+
+### Inspiration
+
+I owe a lot of my knowledge to all the amazing resources, documentation, tutorials, open-source projects, random Reddit and StackOverflow posts, and more. I'm really grateful for all the resources and knowledge that are available online.
+
+[Lee Robinson](https://leerob.io), [Anthony Fu](https://www.antfu.me), and [Brittanny Chiang](https://brittanychiang.com) were all a great source of inspiration for me. I loved the design and features they've implemented in their portfolios, and I wanted to build something similar myself.
+
+Huge shoutout to [Theo](https://t3.gg), whose YouTube videos helped me a lot throughout the way.
+
+### Learning Web Development
+
+At first, real WebDev seemed like something completly out of my reach, but I've been wanting to learn it for a while now. I started, like usual, by viewing some existing projects and trying to understand how they work. There are a lot of great open-source projects on GitHub that you can learn from.
+
+All the resources and documentation are available online, and there are a lot of great tutorials and courses that you can take to learn web development.
+
+I was already familiar with the standard HTML/CSS/JS, but had never really went beyond that. I started to learn more about modern web development technologies, such as JS frameworks, CSS frameworks, and static site generators. All of this seemed very overwhelming at first, but I started to grasp the basics after a while.
+
+After learning the basics, I started to make some small projects to get a better understanding of web development. I also started to learn about UI/UX design, which is a must-have skill for web developers.
+
+Following this simple approach has helped me a lot:
+<Image width="1124" height="110" src="posts/hello-world/work-approach.webp" alt="Sketch to Figma to Code" />
+
+Sketching out the design, then creating a wireframe in Figma, and finally implementing the design in code has been a great way for me to streamline the process of building web apps.
+
+Organizing the project into small tasks and working on them one by one has also been a great way for me to stay focused and motivated. Some great tools that have helped me with this are [Notion](https://notion.so) and [Linear](https://linear.app).
+
+### Blogging
+
+Including a blog in my portfolio was a great way for me to start writing, which is a skill I've been wanting to improve.
+
+I'm planning to write about my experiences and knowledge in web development, as well as other topics that interest me.
+
+## Building the Portfolio and Blog
+
+I decided to build my portfolio with minimal dependencies and a focus on performance.
+
+Most of the UI components, content parsing, search functionality, and more are built from scratch. This has been a great learning experience for me, and I'm really happy with the result.
+
+### Design
+
+<Image width="900" height="176" src="posts/hello-world/m3.webp" alt="Apple M3 Presentation"
+       caption="Bento grid layout on Apple's M3 SoC presentation" />
+
+The bento grid layout, which I use for the main page here on desktop, is a great way to organize the content of the portfolio and blog. This trend surfaced with Microsoft's [metro design](https://en.wikipedia.org/wiki/Metro_(design_language)), but has been popularized by Apple's product presentation pages and keynote slides.
+
+*Check out [bentogrids](https://bentogrids.com) for more examples of this layout.*
+
+The rest of the website is a simple grid layout, with a focus on both readability and aesthetics.
+
+Also, adding a grid background is somewhat of a trend in modern web design recently, and I really like the look of it. It's a great way to add some depth and texture to the website.
+
+I'm a fan of using a lot of white space for readability and focus, along with a lot of rounded corners, which I find amazing for aesthetics and accessibility.
+
+The color scheme for my website is Tailwind CSS's **Slate**, which I find really calming and easy on the eyes.
+
+I went with the [Rubik](https://fonts.google.com/specimen/Rubik) font for the entire website, and [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono) for the code snippets. I also added [Domine](https://fonts.google.com/specimen/Domine) for serif (if I ever even decide to use it).
+
+### Content management
+
+I'm using [MDX](https://mdxjs.com) to write blog posts. MDX is a great format that lets you write JSX in your Markdown documents. This means you can import and use React components in your Markdown files. This is great for writing blog posts, as you can use React components to embed code snippets, images, and more.
+
+Every blog post is a separate MDX file, and I use [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote) along with some of my code to make it into a static page.
+
+All post metadata is saved to json files, which are then parsed by the search API for search functionality.
+
+### Performance
+
+<Image width="900" height="176" src="posts/hello-world/lighthouse.webp" alt="Lighthouse Report"
+       caption="Lighthouse report of filippiekos.com" />
+
+I wanted to make sure my portfolio and blog are fast and performant. I use [Lighthouse](https://developers.google.com/web/tools/lighthouse) and [Vercel Analytics](https://vercel.com/analytics) to monitor and improve the performance of my website.
+
+### Monitoring and Analytics
+
+I use the following technologies for monitoring and analytics:
+
+- [Vercel Analytics](https://vercel.com/analytics) to monitor the performance and usage of my website
+- [Cloudflare](https://www.cloudflare.com) for DNS, CDN, and security
+- [Sentry](https://sentry.io) for error monitoring and basic tracking
+- [New Relic](https://newrelic.com) for dashboarding and monitoring
+
+### Tech Stack
+
+I used the following technologies to build my portfolio and blog. This is subject to change as I learn more and improve my web development skills and as new technologies emerge.
+
+#### Vercel
+
+I'm using [Vercel](https://vercel.com) to deploy my portfolio and blog. It's a great platform for deploying all kinds of web applications, from small to large scale. The deployment process is really easy, and their free tier is actually quite generous. I might consider using the Hobby plan in the future, as it provides a little bit more flexibility and features.
+
+Vercel also provides a lot of features, such as Analytics, Monitoring, and more, which are great for monitoring and improving the performance of your web applications.
+
+#### Next.js
+
+[Next.js](https://nextjs.org) is a full-fledged, advanced and powerful React framework that enables functionality such as server-side rendering and generating static websites for React based web applications. Overall, it's a great framework for building web applications, from small to large scale.
+
+#### Tailwind CSS
 
 [Tailwind CSS](https://tailwindcss.com) is a utility-first CSS framework that allows you to build custom designs without having to leave your HTML.
 
 Ever since I started using Tailwind CSS, I've been loving it. It's a great framework for building web applications, and I'm really happy with the results. It's a great alternative to using a CSS framework like Bootstrap or writing custom CSS manually.
 
-## MDX
+#### MDX
 
 [MDX](https://mdxjs.com) is a format that lets you write JSX in your Markdown documents. This means you can import and use React components in your Markdown files. This is great for writing blog posts, as you can use React components to embed code snippets, images, and more.
 
 I'm using [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote) to render MDX content in my Next.js application. With remark and rehype plugins, including [remarkGfm](https://github.com/remarkjs/remark-gfm) and [rehype-highlight](https://github.com/hashicorp/next-mdx-remote/tree/main/packages/rehype-highlight), I can render GitHub flavored Markdown and syntax highlight code blocks.
 
-## shadcn/ui
+#### shadcn/ui
 
 I'm using the [shadcn/ui](https://ui.shadcn.com) component library to build some of the UI of my blog. It's a great library that provides a lot of components out of the box, and it's really easy to use.
 
-# Conclusion
+#### Cloudflare
 
-I'm really happy with the result of my portfolio and blog. I'm excited to start writing more blog posts and sharing my experiences with you. I hope you enjoyed reading about how I built my portfolio and blog with Next.js, MDX, and Tailwind CSS.
+I'm using [Cloudflare](https://www.cloudflare.com) for DNS, CDN, and security. It's a great platform for improving the performance and security of your web applications. It's also free to use for small projects, and it provides a lot of features, such as caching, security, and more.
+
+#### Sentry
+
+[Sentry](https://sentry.io) it my primary tool for error monitoring. It's a great platform for monitoring and fixing errors in your web applications. It's free to use for small projects, and it provides a lot of features, such as error tracking, performance monitoring, and more.
+
+#### New Relic
+
+[New Relic](https://newrelic.com) is a pretty great tool for dashboarding and monitoring your web applications. It's free for students with the GitHub Student Developer Pack, and it provides a lot of features, such as monitoring, alerting, and more.
+
+## Conclusion
+
+I'm really happy with the result of my portfolio and blog. I still have a lot to learn about web development, and I'm excited to continue learning and improving my skills.
+
+Additionally, my whole portfolio and blog are open-source, and you can find the source code on [GitHub](https://github.com/XXCoreRangerX/filippiekos.com). Feel free to use it as a reference or a starting point for your own projects.
