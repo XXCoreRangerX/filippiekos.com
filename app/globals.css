@@ -115,10 +115,7 @@ img {
 }
 
 table {
-    display: block;
-    max-width: fit-content;
-    overflow-x: auto;
-    white-space: nowrap;
+    @apply block overflow-x-auto;
 }
 
 .data-footnote-backref {

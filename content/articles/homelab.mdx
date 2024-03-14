@@ -8,4 +8,53 @@ I've been interested in computers and networking for a long time. I've always ki
 
 I started with a simple NAS on a Raspberry Pi 4. I used a 2x2TB Seagate Barracuda (these from 2012, noted to be one of the most failing drives ever made) and OpenMediaVault. It worked well, but I wanted to do more. I wanted to run VMs and containers, so I decided to build a proper server.
 
-# Gear
+## About homelabbing
+
+Homelabbing is a hobby where people build and maintain their own datacenters at home. It's a great way to learn about networking, servers, and other IT stuff. It's also a great way to have a lot of fun and to have a lot of control over your data.
+
+I'm not a professional sysadmin or anything, so I'm not doing anything too fancy. I'm just doing this for fun and to learn.
+
+### My homelab
+
+#### Apollo
+
+Apollo is my main server. It's running Proxmox, which is a hypervisor based on Debian. I'm running a few VMs and containers on it.
+
+**Software**
+
+I'm running the following VMs and LXCs:
+
+| Name                                | Type | Description                                                | Additional notes            |
+|-------------------------------------|------|------------------------------------------------------------|-----------------------------|
+| [TrueNAS](https://www.truenas.com/) | VM   | Temporarily my NAS, to be replaced by a dedicated one      | SATA controller passthrough |
+| [OPNsense](https://opnsense.org/)   | VM   | Temporarily my router, to be replaced by a Ubiquiti router | 2-port NIC passthrough      |
+| Debian with Docker                  | LXC  | For running various services                               | iGPU and QSV passthrough    |
+| Windows 11                          | VM   | For remote gaming and other Windows-only stuff             | GPU passthrough             |
+
+[Proxmox](https://www.proxmox.com/) is my hypervisor of choice. It's based on Debian and it's a great choice for homelabbing. Much less headache than Hyper-V or ESXi in my opinion.
+
+[TrueNAS](https://www.truenas.com/) is my absolute go-to for NAS operating systems. I'm currently running it virtualized on Apollo, but I'm planning to build a dedicated machine for it soon. I'm passing through a SATA controller to it, so it has direct access to the hard drives.
+
+[OPNsense](https://opnsense.org/) is *temporarily* my router. I'm planning to replace it with a Ubiquiti router once the UDM Pro Max comes out (hopefully soon). I'm passing through a 2-port NIC to it, so it has direct access to the network.
+
+My Debian LXC is running Docker. I'm using it to run various services, like Jellyfin, Servarr stack, and other stuff.
+
+
+**Specs**
+
+- CPU: Intel Core i3-14100
+- RAM: HyperX Fury DDR4 3200MHz 64GB (2x32GB)
+- GPU: MSI GTX 1660 Gaming X
+- Motherboard: Asrock H660M-HDV
+- Case: Chieftec Cube Pro mATX
+- Cooler: Intel Stock
+- Storage:
+  - 1x 500GB Samsung Evo 970 Plus M2 (Proxmox, VMs, LXC containers)
+  - 1x Seagate EXOS 16TB (main) - soon to be put in a RAID with more drives
+- Network:
+  - 1x 1Gbps NIC
+  - 1x 2-port 1Gbps NIC
+
+#### Athena
+
+Athena is my Raspberry Pi 4 8GB. It mainly serves as a reverse proxy, Pi-hole, and a monitoring server.
