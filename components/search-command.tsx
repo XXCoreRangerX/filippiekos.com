@@ -9,7 +9,7 @@ import {
     CommandList,
     CommandSeparator,
 } from "@/components/ui/command";
-import { useSearch } from "@/hooks/use-search";
+import { useSearch } from "@/lib/hooks/use-search";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";

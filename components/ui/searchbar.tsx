@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useSearch } from "@/hooks/use-search";
+import { useSearch } from "@/lib/hooks/use-search";
 
 export default function SearchBar() {
     const toggle = useSearch((store) => store.toggle);
