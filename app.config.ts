@@ -64,7 +64,7 @@ export default class App {
             date: "2022",
             location: "Gdynia, PL",
             place: "1st",
-            url: "https://www.explory.pl/laureat/filip-piekos,188/",
+            url: "https://www.explory.pl/laureat/filip-piekos,188",
         },
         {
             title: "IEEE at ISEF",
