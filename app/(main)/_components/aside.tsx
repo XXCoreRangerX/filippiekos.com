@@ -47,7 +47,7 @@ export function Aside() {
                     quality="85"
                     alt=""
                     className="mb-4 rounded-full shadow-xl ring-4 ring-ring dark:ring-slate-200"
-                    priority={true}
+                    priority
                 />
                 <h1 className="text-4xl font-bold">{defaults.fullName}</h1>
                 <h2 className="text-lg text-muted-foreground">{defaults.subtitle}</h2>
