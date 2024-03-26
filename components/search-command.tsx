@@ -9,16 +9,13 @@ import {
     CommandList,
     CommandSeparator,
 } from "@/components/ui/command";
-import { useSearch } from "@/lib/hooks/use-search";
+import { useKeyboardShortcut } from "@/hooks/use-keyboard";
+import { useSearch } from "@/hooks/use-search";
+import { SearchResultItem } from "@/types/blog";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { LuFileText, LuHome, LuMonitor, LuMoon, LuSun, LuTag } from "react-icons/lu";
-
-interface SearchResultItem {
-    title: string;
-    slug: string;
-}
 
 export const SearchCommand = () => {
     const router = useRouter();
@@ -28,17 +25,7 @@ export const SearchCommand = () => {
     const isOpen = useSearch((store) => store.isOpen);
     const onClose = useSearch((store) => store.onClose);
 
-    useEffect(() => {
-        const down = (e: KeyboardEvent) => {
-            if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-                e.preventDefault();
-                toggle();
-            }
-        };
-
-        window.addEventListener("keydown", down);
-        return () => window.removeEventListener("keydown", down);
-    }, [toggle]);
+    useKeyboardShortcut("k", toggle);
 
     const onSelect = (slug: string) => {
         router.push(slug);
@@ -52,7 +39,7 @@ export const SearchCommand = () => {
 
     const fetchData = async () => {
         try {
-            const response = await fetch("/api/search");
+            const response = await fetch("/api/blog");
             if (response.ok) {
                 return await response.json();
             } else {
@@ -85,32 +72,31 @@ export const SearchCommand = () => {
                 <CommandEmpty>No results found.</CommandEmpty>
                 <CommandGroup>
                     <CommandItem onSelect={() => onSelect("/")}>
-                        <LuHome className="mr-2" />
-                        <span>Home</span>
+                        <LuHome />
+                        <span className="flex-1">Home</span>
                     </CommandItem>
                 </CommandGroup>
-                <CommandSeparator />
-                {data.articles && data.articles.length > 0 && (
+                {data?.articles?.length > 0 && (
                     <CommandGroup heading="Articles">
-                        {data.articles.map((doc) => (
-                            <CommandItem key={doc.slug} onSelect={() => onSelect("/articles/" + doc.slug)}>
+                        {data.articles.map((article) => (
+                            <CommandItem key={article.slug} onSelect={() => onSelect("/articles/" + article.slug)}>
                                 <LuFileText />
-                                <span className="flex-1">{doc.title}</span>
+                                <span className="flex-1">{article.title}</span>
                             </CommandItem>
                         ))}
                     </CommandGroup>
                 )}
-                {data.posts && data.posts.length > 0 && (
+                {data?.posts?.length > 0 && (
                     <CommandGroup heading="Posts">
-                        {data.posts.map((doc) => (
-                            <CommandItem key={doc.slug} onSelect={() => onSelect("/posts/" + doc.slug)}>
+                        {data.posts.map((post) => (
+                            <CommandItem key={post.slug} onSelect={() => onSelect("/posts/" + post.slug)}>
                                 <LuFileText />
-                                <span className="flex-1">{doc.title}</span>
+                                <span className="flex-1">{post.title}</span>
                             </CommandItem>
                         ))}
                     </CommandGroup>
                 )}
-                {data.tags && data.tags.length > 0 && (
+                {data?.tags?.length > 0 && (
                     <CommandGroup heading="Tags">
                         {data.tags.map((tag) => (
                             <CommandItem key={tag} onSelect={() => onSelect("/tags/" + tag)}>

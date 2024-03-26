@@ -1,5 +1,5 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 import Image from "next/image";
 
 export function CustomImage(props: any) {
@@ -32,10 +32,14 @@ export function CustomImage(props: any) {
                             />
                         </a>
                     </div>
-                    {props.caption && <p className="text-center text-sm text-muted-foreground">{props.caption}</p>}
+                    {props.caption && (
+                        <figcaption className="text-center text-sm text-muted-foreground">{props.caption}</figcaption>
+                    )}
                 </DialogContent>
             </Dialog>
-            {props.caption && <p className="text-center text-sm text-muted-foreground">{props.caption}</p>}
+            {props.caption && (
+                <figcaption className="text-center text-sm text-muted-foreground">{props.caption}</figcaption>
+            )}
         </>
     );
 }

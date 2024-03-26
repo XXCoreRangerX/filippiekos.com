@@ -1,6 +1,6 @@
 import defaults from "@/app.config";
-import { getArticles, getPosts, getTags } from "@/lib/blog";
-import { MetadataRoute } from "next";
+import { getArticles, getPosts, getTags } from "@/utils/blogUtils";
+import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
     let posts = getPosts().map((post) => ({
@@ -24,3 +24,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     return [...routes, ...posts, ...articles, ...tags];
 }
+
+export const dynamic = "error";

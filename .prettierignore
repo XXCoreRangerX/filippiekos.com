@@ -1,3 +1,7 @@
-# Ignore all markdown files
+# markdown and json files
 **/*.md
 **/*.mdx
+**/*.json
+
+# lockfiles
+pnpm-lock.yaml

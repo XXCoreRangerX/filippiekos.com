@@ -1,12 +1,12 @@
 import defaults from "@/app.config";
-import { CustomMDX } from "@/app/(content)/_components/mdx";
-import { Navbar } from "@/app/(content)/_components/navbar";
+import { CustomMDX } from "@/components/blog/mdx";
+import { Navbar } from "@/components/blog/navbar";
 import { Footer } from "@/components/footer";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { getPosts, saveDataToJson } from "@/lib/blog";
-import { formatDate } from "@/lib/date";
+import { getPosts, saveDataToJson } from "@/utils/blogUtils";
+import { formatDate } from "@/utils/dateUtils";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";

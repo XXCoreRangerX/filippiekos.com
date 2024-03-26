@@ -4,7 +4,11 @@
         "updated": "2024-03-14",
         "title": "How I built my portfolio and blog",
         "description": "The start of my WebDev journey",
-        "tags": ["next.js", "mdx", "tailwind-css"],
+        "tags": [
+            "next.js",
+            "mdx",
+            "tailwind-css"
+        ],
         "slug": "hello-world"
     }
 ]

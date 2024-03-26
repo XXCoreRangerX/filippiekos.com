@@ -3,11 +3,11 @@ import { PostList } from "@/components/post-list";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { contentTypes } from "@/lib/blog";
-import { cn } from "@/lib/utils";
+import { ContentTypes } from "@/types/blog";
+import { cn } from "@/utils/cn";
 import Link from "next/link";
 
-export function Footer({ className, type }: { className?: string; type?: keyof typeof contentTypes }) {
+export function Footer({ className, type }: { className?: string; type?: keyof typeof ContentTypes }) {
     return (
         <Card
             type="footer"

@@ -1,8 +1,7 @@
-import { All } from "@/app/(main)/_components/all";
-import { Aside } from "@/app/(main)/_components/aside";
-import { Posts } from "@/app/(main)/_components/posts";
-import { Footer } from "@/components/footer";
-import { GitHubStats } from "./_components/github";
+import { All } from "@/components/main/all";
+import { Aside } from "@/components/main/aside";
+import { GitHubStats } from "@/components/main/github";
+import { Posts } from "@/components/main/posts";
 
 export default function Main() {
     return (
@@ -12,7 +11,6 @@ export default function Main() {
             <section className="flex basis-1/4 flex-col gap-5">
                 <Posts type="articles" />
                 <GitHubStats />
-                <Footer className="lg:hidden" />
             </section>
         </>
     );

@@ -1,12 +1,11 @@
 "use client";
 
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { cn } from "@/utils/cn";
 import { type DialogProps } from "@radix-ui/react-dialog";
 import { Command as CommandPrimitive } from "cmdk";
 import * as React from "react";
 import { LuSearch } from "react-icons/lu";
-
-import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { cn } from "@/lib/utils";
 
 const Command = React.forwardRef<
     React.ElementRef<typeof CommandPrimitive>,
@@ -62,7 +61,7 @@ const CommandList = React.forwardRef<
 >(({ className, ...props }, ref) => (
     <CommandPrimitive.List
         ref={ref}
-        className={cn("max-h-[300px] overflow-y-auto overflow-x-hidden", className)}
+        className={cn("max-h-[500px] overflow-y-auto overflow-x-hidden", className)}
         {...props}
     />
 ));

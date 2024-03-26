@@ -1,9 +1,9 @@
 import defaults from "@/app.config";
-import { CustomMDX } from "@/app/(content)/_components/mdx";
-import { Navbar } from "@/app/(content)/_components/navbar";
+import { CustomMDX } from "@/components/blog/mdx";
+import { Navbar } from "@/components/blog/navbar";
 import { Footer } from "@/components/footer";
 import { Card } from "@/components/ui/card";
-import { getArticles, saveDataToJson } from "@/lib/blog";
+import { getArticles, saveDataToJson } from "@/utils/blogUtils";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 

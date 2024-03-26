@@ -1,15 +1,6 @@
+import { Metadata } from "@/types/blog";
 import fs from "fs";
 import path from "path";
-
-type Metadata = {
-    title: string;
-    description: string;
-    date: string;
-    updated?: string;
-    order: number;
-    tags?: string[];
-    image?: string;
-};
 
 function parseFrontmatter(fileContent: string) {
     const frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
@@ -44,7 +35,7 @@ function getMDXFiles(dir: string) {
 }
 
 export function readMDXFile(filePath: string) {
-    let rawContent = fs.readFileSync(filePath, "utf-8");
+    let rawContent = fs.readFileSync(path.resolve(filePath), "utf-8");
     return parseFrontmatter(rawContent);
 }
 
@@ -63,7 +54,7 @@ function getMDXData(dir: string) {
 
 export function saveDataToJson(data: any, filePath: string) {
     fs.writeFileSync(
-        path.join(process.cwd(), filePath),
+        path.join(path.resolve(filePath)),
         JSON.stringify(
             data.sort((a: any, b: any) => {
                 if (a.order && b.order) {
@@ -95,11 +86,19 @@ export function getTableOfContents(content: string) {
 */
 
 export function getPosts() {
-    return getMDXData(path.join(process.cwd(), "content/posts"));
+    return getMDXData(path.join(path.resolve("content/posts")));
+}
+
+export function getSortedPosts() {
+    return getPosts().sort((a, b) => new Date(b.date || "").getTime() - new Date(a.date || "").getTime());
 }
 
 export function getArticles() {
-    return getMDXData(path.join(process.cwd(), "content/articles"));
+    return getMDXData(path.join(path.resolve("content/articles")));
+}
+
+export function getSortedArticles() {
+    return getArticles().sort((a, b) => (a.order || 0) - (b.order || 0));
 }
 
 export function getTags() {
@@ -112,8 +111,3 @@ export function getTags() {
     });
     return Array.from(new Set(tags)).sort();
 }
-
-export const contentTypes = {
-    posts: "posts",
-    articles: "articles",
-};

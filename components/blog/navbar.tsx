@@ -1,11 +1,12 @@
 import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import SearchBar from "@/components/ui/searchbar";
+import { cn } from "@/utils/cn";
 import Link from "next/link";
 import { FaChevronLeft } from "react-icons/fa6";
 
 export function Navbar({ link = "/" }: { link?: string }) {
     return (
-        <nav className="flex items-center justify-between">
+        <nav className="flex items-center justify-between gap-5">
             <Link
                 className={cn("items-center", buttonVariants({ variant: "linkSecondary", size: "none" }))}
                 href={link}
@@ -15,6 +16,7 @@ export function Navbar({ link = "/" }: { link?: string }) {
                     {link === "/" ? "home" : link.trim().replace(/^\//, "").replace(/\/$/, "").replace(/-/g, " ")}
                 </span>
             </Link>
+            <SearchBar className="w-full max-w-40" />
         </nav>
     );
 }

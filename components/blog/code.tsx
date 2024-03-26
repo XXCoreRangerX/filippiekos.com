@@ -1,4 +1,4 @@
-import CopyButton from "@/app/(content)/_components/copybutton";
+import CopyButton from "@/components/blog/copybutton";
 import { IconType } from "react-icons";
 import {
     BiLogoCPlusPlus,

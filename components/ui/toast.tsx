@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
 import { LuX } from "react-icons/lu";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 
 const ToastProvider = ToastPrimitives.Provider;
 

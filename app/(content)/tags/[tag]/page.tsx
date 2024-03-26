@@ -1,9 +1,9 @@
-import { Navbar } from "@/app/(content)/_components/navbar";
+import { Navbar } from "@/components/blog/navbar";
 import { Footer } from "@/components/footer";
 import { PostList } from "@/components/post-list";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { getTags, saveDataToJson } from "@/lib/blog";
+import { getTags, saveDataToJson } from "@/utils/blogUtils";
 import type { Metadata } from "next";
 import Link from "next/link";
 

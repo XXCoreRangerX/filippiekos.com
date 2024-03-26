@@ -1,21 +1,18 @@
 import { PostListItem } from "@/components/post-item";
-import { contentTypes, getArticles, getPosts } from "@/lib/blog";
+import { ContentTypes } from "@/types/blog";
+import { getSortedArticles, getSortedPosts } from "@/utils/blogUtils";
 import Link from "next/link";
 import React from "react";
 
 export interface PostListProps extends React.HTMLAttributes<HTMLDivElement> {
-    type: keyof typeof contentTypes;
+    type: keyof typeof ContentTypes;
     maxPosts?: number;
     tag?: string;
 }
 
 const PostList = React.forwardRef<HTMLDivElement, PostListProps>(({ type, maxPosts, tag }, ref) => {
     const posts =
-        type === "articles"
-            ? getArticles().sort((a, b) => (a.order || 0) - (b.order || 0))
-            : getPosts()
-                  .sort((a, b) => new Date(b.date || "").getTime() - new Date(a.date || "").getTime())
-                  .filter((post) => !tag || post.tags?.includes(tag));
+        type === "articles" ? getSortedArticles() : getSortedPosts().filter((post) => !tag || post.tags?.includes(tag));
     const filteredPosts = maxPosts ? posts.slice(0, maxPosts) : posts;
     return (
         <div ref={ref} className="grid gap-2">

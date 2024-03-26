@@ -1,11 +1,11 @@
 import { Card } from "@/components/ui/card";
-import { contentTypes } from "@/lib/blog";
-import { formatDate } from "@/lib/date";
+import { ContentTypes } from "@/types/blog";
+import { formatDate } from "@/utils/dateUtils";
 import Image from "next/image";
 import Link from "next/link";
 import { LuArrowUpRight } from "react-icons/lu";
 
-export const PostListItem = ({ post, type }: { post: any; type: keyof typeof contentTypes }) => (
+export const PostListItem = ({ post, type }: { post: any; type: keyof typeof ContentTypes }) => (
     <Link key={post.slug} href={`/${type}/${post.slug}`}>
         <Card variant="clear" hover className="group flex items-center gap-3 border-none p-3">
             {post.image && (

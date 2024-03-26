@@ -1,12 +1,12 @@
 import defaults from "@/app.config";
-import { CustomMDX } from "@/app/(content)/_components/mdx";
+import { CustomMDX } from "@/components/blog/mdx";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { readMDXFile } from "@/lib/blog";
-import { cn } from "@/lib/utils";
-import profilePic from "@/public/pfp.webp";
+import profilePic from "@/public/assets/pfp.webp";
+import { readMDXFile } from "@/utils/blogUtils";
+import { cn } from "@/utils/cn";
 import Image from "next/image";
 import Link from "next/link";
 import { IconType } from "react-icons";
@@ -33,6 +33,17 @@ const socials: ISocialItem[] = defaults.socials.map((social) => ({
 }));
 
 export function Aside() {
+    function readBio() {
+        try {
+            return readMDXFile("content/bio.md").content;
+        } catch (error) {
+            console.error(error);
+            return "No bio found.";
+        }
+    }
+
+    const bio = readBio();
+
     return (
         <Card
             type="aside"
@@ -85,9 +96,9 @@ export function Aside() {
                     </Link>
                 </div>
                 <Separator className="my-3" />
-                <div className="flex flex-col gap-1 text-left">
+                <div className="flex w-full flex-col gap-1 text-left">
                     <h3 className="text-xl font-medium">Bio</h3>
-                    <CustomMDX source={readMDXFile("content/bio.mdx").content} />
+                    <CustomMDX source={bio} />
                 </div>
             </div>
         </Card>

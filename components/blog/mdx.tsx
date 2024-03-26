@@ -1,5 +1,5 @@
-import Code from "@/app/(content)/_components/code";
-import { CustomImage } from "@/components/image";
+import Code from "@/components/blog/code";
+import { CustomImage } from "@/components/blog/image";
 import Tweet from "@/components/tweet";
 import Callout from "@/components/ui/callout";
 import { Separator } from "@/components/ui/separator";

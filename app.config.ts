@@ -10,10 +10,11 @@ export default class App {
     static url = "https://filippiekos.com";
 
     static fullName = "Filip Piękoś";
-    static shortName = "Filip";
     static username = "XXCoreRangerX";
     static subtitle = "Developer, Designer, Engineer";
     static email = "mail@filippiekos.com";
+    static darkColor = "#0f172a";
+    static lightColor = "#f8f8f8";
 
     static socials = [
         ["GitHub", "https://github.com/XXCoreRangerX"],

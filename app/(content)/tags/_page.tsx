@@ -1,7 +1,7 @@
-import { Navbar } from "@/app/(content)/_components/navbar";
+import { Navbar } from "@/components/blog/navbar";
 import { Footer } from "@/components/footer";
 import { Badge } from "@/components/ui/badge";
-import { getTags } from "@/lib/blog";
+import { getTags } from "@/utils/blogUtils";
 import type { Metadata } from "next";
 import Link from "next/link";
 
