@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/command";
 import { useKeyboardShortcut } from "@/hooks/use-keyboard";
 import { useSearch } from "@/hooks/use-search";
-import { SearchResultItem } from "@/types/blog";
+import { ContentItem } from "@/types/blog";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -52,8 +52,8 @@ export const SearchCommand = () => {
     };
 
     const [data, setData] = useState<{
-        articles: SearchResultItem[];
-        posts: SearchResultItem[];
+        articles: ContentItem[];
+        posts: ContentItem[];
         tags: string[];
     }>({
         articles: [],

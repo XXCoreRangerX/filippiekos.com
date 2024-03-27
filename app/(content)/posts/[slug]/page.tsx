@@ -7,7 +7,7 @@ import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getPosts, saveDataToJson } from "@/utils/blogUtils";
 import { formatDate } from "@/utils/dateUtils";
-import type { Metadata } from "next";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
         return;
     }
 
-    let post = getPosts().find((post) => post.slug === params.slug);
+    const post = getPosts().find((post) => post.slug === params.slug);
     if (!post) {
         return;
     }
@@ -110,7 +110,7 @@ export default function Post({ params }: { params: { slug: string; metadata: Met
                 )}
                 <h2 className="description mt-3 break-words">{post.description}</h2>
                 <div className="my-4 flex flex-wrap gap-2">
-                    {post.tags?.map((tag: any, index: any) => (
+                    {post.tags?.map((tag: string, index: number) => (
                         <Link key={index} href={`/tags/${tag}`}>
                             <Badge variant="muted">{tag}</Badge>
                         </Link>

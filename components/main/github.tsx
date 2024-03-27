@@ -94,23 +94,26 @@ export async function GitHubStats() {
         throw new Error("Failed to fetch GitHub data: User not found");
     }
 
-    let user = data.user as GitHubUser;
+    const user = data.user;
 
-    let avatarUrl = user.avatarUrl;
-    let totalFollowers = user.followers.totalCount;
-    let totalFollowing = user.following.totalCount;
-    let publicRepos = user.repositories.edges.map((edge: any) => edge.node);
-    let totalRepos = publicRepos.length;
-    let totalStars = publicRepos.reduce((acc: number, repo: any) => acc + repo.stargazerCount, 0);
+    const avatarUrl = user.avatarUrl;
+    const totalFollowers = user.followers.totalCount;
+    const totalFollowing = user.following.totalCount;
+    const publicRepos = user.repositories.edges.map((edge: RepositoryNode) => edge.node);
+    const totalRepos = publicRepos.length;
+    const totalStars = publicRepos.reduce(
+        (acc: number, repo: { stargazerCount: number }) => acc + repo.stargazerCount,
+        0,
+    );
 
-    let stats = {
+    const stats = {
         totalStars,
         totalFollowers,
         totalFollowing,
         totalRepos,
     };
 
-    let githubUrl = defaults.socials.find((social) => social[0] === "GitHub")?.[2] || "https://github.com/";
+    const githubUrl = defaults.socials.find((social) => social[0] === "GitHub")?.[2] || "https://github.com/";
 
     return (
         <Link href={githubUrl} target="blank">

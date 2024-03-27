@@ -1,9 +1,9 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { cn } from "@/utils/cn";
-import Image from "next/image";
+import Image, { ImageProps } from "next/image";
 
-export function CustomImage(props: any) {
-    const img = "/assets/" + props.src;
+export function CustomImage(props: ImageProps & { caption?: string }) {
+    const img = "/assets/" + (props.src as string);
     return (
         <>
             <Dialog>

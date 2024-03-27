@@ -4,7 +4,7 @@ import { Navbar } from "@/components/blog/navbar";
 import { Footer } from "@/components/footer";
 import { Card } from "@/components/ui/card";
 import { getArticles, saveDataToJson } from "@/utils/blogUtils";
-import type { Metadata } from "next";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
         return;
     }
 
-    let post = getArticles().find((post) => post.slug === params.slug);
+    const post = getArticles().find((post) => post.slug === params.slug);
     if (!post) {
         return;
     }

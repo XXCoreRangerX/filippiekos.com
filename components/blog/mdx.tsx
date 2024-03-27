@@ -4,7 +4,7 @@ import Tweet from "@/components/tweet";
 import Callout from "@/components/ui/callout";
 import { Separator } from "@/components/ui/separator";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import Link from "next/link";
+import Link, { LinkProps } from "next/link";
 import React from "react";
 import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
@@ -33,18 +33,12 @@ function createHeading(level: number) {
     };
 }
 
-function CustomLink(props: any) {
-    let href = props.href;
-
-    if (href.startsWith("/")) {
-        return (
-            <Link href={href} {...props}>
-                {props.children}
-            </Link>
-        );
+function CustomLink(props: LinkProps & { href: string; children: React.ReactNode }) {
+    if (props.href.startsWith("/")) {
+        return <Link {...props}>{props.children}</Link>;
     }
 
-    if (href.startsWith("#")) {
+    if (props.href.startsWith("#")) {
         return <a {...props} />;
     }
 
@@ -55,6 +49,8 @@ const options = {
     mdxOptions: {
         remarkPlugins: [remarkGfm],
         rehypePlugins: [
+            // TODO: fix types
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             () => (tree: any) => {
                 visit(tree, (node) => {
                     if (node?.type === "element" && node?.tagName === "code") {
@@ -70,7 +66,7 @@ const options = {
     },
 };
 
-let components = {
+const components = {
     h1: createHeading(1),
     h2: createHeading(2),
     h3: createHeading(3),
@@ -85,6 +81,8 @@ let components = {
     code: Code,
 };
 
+// TODO: fix types when MDXRemoteProps is fixed in next-mdx-remote
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function CustomMDX(props: any) {
     return <MDXRemote {...props} components={{ ...components, ...(props.components || {}) }} options={options} />;
 }

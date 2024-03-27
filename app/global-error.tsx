@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import * as Sentry from "@sentry/nextjs";
-import NextError from "next/error";
 import { useEffect } from "react";
 import { LuXCircle } from "react-icons/lu";
 
@@ -21,7 +20,6 @@ export default function GlobalError({ error, reset }: { error: Error & { digest?
                     <Button className="mt-5" onClick={() => reset()}>
                         Refresh
                     </Button>
-                    <NextError statusCode={undefined as any} />
                 </main>
             </body>
         </html>

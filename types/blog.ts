@@ -8,7 +8,7 @@ export type Metadata = {
     image?: string;
 };
 
-export interface SearchResultItem extends Metadata {
+export interface ContentItem extends Metadata {
     slug: string;
 }
 
