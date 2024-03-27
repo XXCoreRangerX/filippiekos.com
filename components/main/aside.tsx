@@ -5,7 +5,6 @@ import { buttonVariants } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import profilePic from "@/public/assets/pfp.webp";
-import { readMDXFile } from "@/utils/blogUtils";
 import { cn } from "@/utils/cn";
 import Image from "next/image";
 import Link from "next/link";
@@ -33,16 +32,11 @@ const socials: ISocialItem[] = defaults.socials.map((social) => ({
 }));
 
 export function Aside() {
-    function readBio() {
-        try {
-            return readMDXFile("content/bio.md").content;
-        } catch (error) {
-            console.error(error);
-            return "No bio found.";
-        }
-    }
+    const bio = `
+    Aspiring DevOps engineer and developer. I'm a **tech enthusiast** interested in programming, computer science, design and tinkering with electronics.
 
-    const bio = readBio();
+    Studying at ZSTiO in Jarosław, Poland.
+    `;
 
     return (
         <Card
