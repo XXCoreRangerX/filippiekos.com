@@ -94,7 +94,6 @@ pre::-webkit-scrollbar {
 }
 
 .prose pre {
-    @apply p-0;
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
 }
@@ -112,10 +111,6 @@ code {
 
 img {
     @apply rounded-2xl shadow-md;
-}
-
-.prose img {
-    @apply m-0;
 }
 
 table {

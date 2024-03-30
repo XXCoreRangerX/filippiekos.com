@@ -52,6 +52,17 @@ const config = {
                 md: "calc(var(--radius) - 2px)",
                 sm: "calc(var(--radius) - 4px)",
             },
+            typography: {
+                DEFAULT: {
+                    css: {
+                        "blockquote p:first-of-type::before": { content: "none" },
+                        "blockquote p:first-of-type::after": { content: "none" },
+                        blockquote: { fontWeight: "inherit", color: "inherit", margin: "1em 0" },
+                        img: { margin: "0" },
+                        pre: { padding: "0" },
+                    },
+                },
+            },
         },
     },
     future: {
