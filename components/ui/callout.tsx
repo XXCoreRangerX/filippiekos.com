@@ -46,7 +46,7 @@ function Callout({ className, variant = "note", name, children, ...props }: Call
                     <h3
                         className={cn(
                             "not-prose max-[350px]:text-md text-lg font-bold capitalize lg:text-xl",
-                            colorClass
+                            colorClass,
                         )}
                     >
                         {typeof name === "boolean" ? variant : name || variant}

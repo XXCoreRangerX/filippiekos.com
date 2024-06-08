@@ -1,7 +1,8 @@
 import { withSentryConfig } from "@sentry/nextjs";
 
-/** @type {import('next').NextConfig} */
+/** @type {import("next").NextConfig} */
 const nextConfig = {
+    //transpilePackages: ['next-mdx-remote'], // https://github.com/vercel/next.js/issues/64525
     images: {
         remotePatterns: [
             {
