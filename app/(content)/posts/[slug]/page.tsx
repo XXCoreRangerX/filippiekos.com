@@ -88,7 +88,7 @@ export default function Post({ params }: { params: { slug: string; metadata: Met
                 }}
             />
             <Card type="header" className="w-full max-w-screen-lg rounded-3xl border-2 shadow-md md:p-10">
-                <Navbar link="/" />
+                <Navbar />
                 <Suspense fallback={<Skeleton className="description mt-5 h-6 w-48" />}>
                     <h3 className="description mt-5 text-muted-foreground">{formatDate(post.date)}</h3>
                 </Suspense>

@@ -4,6 +4,7 @@ import { Navbar } from "@/components/blog/navbar";
 import { Footer } from "@/components/footer";
 import { Card } from "@/components/ui/card";
 import { getArticles, saveDataToJson } from "@/utils/blogUtils";
+import { formatDate } from "@/utils/dateUtils";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -22,7 +23,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
         return;
     }
 
-    const { title, description } = post;
+    const { title, updated: modifiedTime, description } = post;
     const fullTitle = `${title} | ${defaults.title}`;
 
     return {
@@ -32,6 +33,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
             title,
             description,
             type: "article",
+            modifiedTime,
             url: `${defaults.url}/articles/${post.slug}`,
             siteName: defaults.title,
         },
@@ -60,6 +62,7 @@ export default function Article({ params }: { params: { slug: string; metadata: 
                         "@context": "https://schema.org",
                         "@type": "BlogPosting",
                         headline: post.title,
+                        dateModified: post.updated,
                         description: post.description,
                         image: post.image ? `${defaults.url}${post.image}` : `${defaults.url}/og?title=${post.title}`,
                         url: `${defaults.url}/articles/${post.slug}`,
@@ -72,7 +75,12 @@ export default function Article({ params }: { params: { slug: string; metadata: 
             />
             <Card type="header" className="w-full max-w-screen-lg rounded-3xl border-2 shadow-md md:p-10">
                 <Navbar />
-                <h1 className="title mt-5 break-words text-4xl font-bold lg:text-5xl">{post.title}</h1>
+                {post.updated && (
+                    <h3 className="description mt-5 text-sm text-muted-foreground">
+                        Updated: {formatDate(post.updated)}
+                    </h3>
+                )}
+                <h1 className="title mt-2 break-words text-4xl font-bold lg:text-5xl">{post.title}</h1>
                 <h2 className="description mb-4 mt-3 break-words">{post.description}</h2>
             </Card>
             <Card

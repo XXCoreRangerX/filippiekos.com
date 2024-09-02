@@ -1,60 +1,234 @@
 ---
+updated: 2024-09-02
 title: Homelab
-description: My homelabbing journey
+description: My homelabbing journey and current setup
 order: 2
 ---
 
-I've been interested in computers and networking for a long time. I've always kinda wanted to have something resembling homelab, before I even knew that this is an actual hobby thing. This is the story of my journey.
+I've been interested in computers and networking for a long time. I've always kinda wanted to have something resembling homelab, before I even knew that this was an actual thing.
 
-I started with a simple NAS on a Raspberry Pi 4. I used a 2x2TB Seagate Barracuda (these from 2012, noted to be one of the most failing drives ever made) and OpenMediaVault. It worked well, but I wanted to do more. I wanted to run VMs and containers, so I decided to build a proper server.
+Back in the day I had my files backup up to a D-Link NAS with 2 drive slots. Once that ancient machine started to show its age, I decided to build a simple NAS on a Raspberry Pi 4 with OpenMediaVault. I used 2x 3TB Seagate Barracuda hard drives (these from 2012, noted to be some of the most failing drives ever made). It worked well, but I wanted to do more. I got hooked on homelabbing, having tried running containers and selfhosting services. I wanted to run VMs and containers, so I decided to build a proper server. Then I got into advanced networking, enterprise software, clusters... and now here we are, with a full-blown homelab.. Damn.
 
 ## About homelabbing
 
-Homelabbing is a hobby where people build and maintain their own datacenters at home. It's a great way to learn about networking, servers, and other IT stuff. It's also a great way to have a lot of fun and to have a lot of control over your data.
+Homelabbing is a hobby where people build and maintain their own "datacenters" at home. It's a great way to learn about networking, servers, and software. It's also a great way to run your own services, like a media server, game server or even a personal cloud storage array. You can also use it to test new software, experiment with different configurations, and learn new skills. Homelabbing allows you to get hands-on experience with real-world datacenter technology, without the pressure of a production environment *(unless your family members get upset when the media server goes down for maintenance again)*.
 
-I'm not a professional sysadmin or anything, so I'm not doing anything too fancy. I'm just doing this for fun and to learn.
+I'm not a professional sysadmin or anything, so I'm not doing anything too fancy. I'm just homelabbing to have fun and learn.
 
-### My homelab
+## Networking
 
-#### Apollo
+<Image alt="Unifi Dashboard" width="1150" height="1000" src="articles/homelab/unifi.webp" />
 
-Apollo is my main server. It's running Proxmox, which is a hypervisor based on Debian. I'm running a few VMs and containers on it.
+For my networking needs I'm heavily using Ubiquiti gear. I have their router, an aggregation switch, a 48-port PoE switch, and a few APs and other gear. I quickly fell in love with their ecosystem after learning more about the Unifi product line, and knew this would be my future networking upgrade.
 
-**Software**
+### Devices
+
+| Name | Type | Description |
+|------|------|-------------|
+| [UDM SE](https://techspecs.ui.com/unifi/unifi-cloud-gateways/udm-se) | Router | Main router / gateway / controller |
+| [USW-Pro-Aggregation](https://techspecs.ui.com/unifi/switching/usw-pro-aggregation) | Switch | Main / Aggregation switch |
+| [USW-Pro-Max-48-PoE](https://techspecs.ui.com/unifi/switching/usw-pro-max-48-poe) | Switch | General devices switch |
+| [USW-Flex-Mini](https://techspecs.ui.com/unifi/switching/usw-flex-mini) | Switch | General devices switch |
+| [U7-Pro-Max](https://techspecs.ui.com/unifi/wifi/u7-pro-max) | AP | Main AP |
+| [U6-Enterprise-IW](https://techspecs.ui.com/unifi/wifi/u6-enterprise-iw) | AP | Secondary AP |
+| [U6-IW](https://techspecs.ui.com/unifi/wifi/u6-iw) | AP | Garage AP |
+
+### Internet
+
+My main connection is Starlink. I'm using it as my main connection, and I have a backup connection from a local ISP wirelessly. Starlink has been a huge upgrade for me and I love it so far. There is some limitations here and there, but I'm still yet to have fiber in my area, so that's the best I can get for now.
+
+| Name | Type | Speed | Description | Notes |
+|------|------| ----- | -------------| ----- |
+| Starlink | Satellite | 350/75 Mbps | Main connection | Dynamic IP, CGNAT, DHCPv4, SLAAC /56 |
+| OXYNET | Wireless | 8/4 Mbps (yup) | Backup connection | No IPv6, PPPoE |
+
+### Networks
+
+Second octet represents the VLAN ID, third octet is the unique server ID in the Homelab network.
+
+| VLAN | ID | Subnet | Description | Notes |
+|------|----|--------| ----------- | ----- |
+| Default | 1 | 10.0.0.0/24 | Unifi devices | |
+| Main | 10 | 10.10.0.0/24 | Main network | |
+| Homelab | 20 | 10.20.0.0/20 | Homelab network | Third octet is the unique server ID |
+| IoT | 30 | 10.30.0.0/24 | IoT devices | **No access to other VLANs** |
+| Cameras | 40 | 10.40.0.0/24 | Security cameras | **No access to other VLANs** |
+| Guest | 100 | 10.100.0.0/24 | Guest network | **Isolated**, speed limited |
+| DMZ | 255 | 10.255.0.0/24 | DMZ network | **Isolated** |
+
+### WiFi
+
+All hotspots use 2.4, 5, and 6 GHz bands.
+
+| SSID | Network | Description | Notes |
+|------|---------| ----------- | ----- |
+| Rancho | Main | Main network | |
+| Rancho IoT | IoT | IoT network | Hidden |
+| Rancho Guest | Guest | Guest network | Hotspot Portal |
+
+| Band | Width | Channel |
+|------|-------|---------|
+| 2.4 GHz | 20 MHz | 1 |
+| 5 GHz | 80 MHz | 40 |
+| 6 GHz | 160 MHz | 37 |
+
+### DNS
+
+I'm using AdGuard Home as my main DNS server, which is blocking ads and trackers. It's running on my Raspberry Pi cluster, and it's providing me with DNS-over-HTTPS and DNS-over-TLS. It also caches DNS queries, so it's faster than using a public DNS server only. For my upstream DNS servers, I'm using Cloudflare and Quad9. I also utilize selective routing with OpenNIC for alternate, open TLDs.
+
+### VPNs
+
+My UDM SE is running Teleport by Unifi to provide me with a VPN connection to my home network. Additionally, I have Tailscale installed on all my devices to provide me with a secure connection to my servers.
+
+## Servers
+
+### Zeus
+
+Zeus is my main server. It's running Proxmox, which is a hypervisor based on Debian. I'm running a few VMs and containers on it. Zeus is my primary machine for storage, running VMs and virtualized Kubernetes, as well as a testbed for new software I want to experiment with.
+
+#### Hardware
+
+| Type | Name |
+|------|------|
+| **Case** | Inter-Tech IPC 4U-4129-L |
+| **Motherboard** | Supermicro H12SSL-i-o |
+| **CPU** | AMD EPYC 7282 |
+| **RAM** | 4x SK Hynix 64GB DDR4 3200MHz ECC REG 2Rx4 RDIMM |
+| **Storage** | - 1x Samsung PM9A3 1.92TB U.2 (Proxmox, VMs, LXC containers) on a PCIe to 2x U.2 adapter<br/>- 2x Intel OPTANE P1600X 118GB M.2 (ZFS metadata, mirror) on ASUS Hyper X16 PCIE 5.0 M.2 card<br/>- 4x Toshiba MG08ACA16TE 16TB SATA |
+| **NIC** | - IPMI MGMT<br/>- Dell Intel X710-DA2 Dual 10GbE SFP+ (unlocked) |
+| **Cooler** | Arctic Freezer 4U-M |
+| **Fans** | - Arctic P12 MAX 5-pack (intake)<br/>- 2x Noctua NF-A8 PWM Chromax (exhuast) |
+| **PSU** | Corsair HX1000i |
+
+#### Software
+
+Host OS: Proxmox
 
 I'm running the following VMs and LXCs:
 
-| Name                                | Type | Description                                                | Additional notes            |
-|-------------------------------------|------|------------------------------------------------------------|-----------------------------|
-| [TrueNAS](https://www.truenas.com/) | VM   | Temporarily my NAS, to be replaced by a dedicated one      | SATA controller passthrough |
-| [OPNsense](https://opnsense.org/)   | VM   | Temporarily my router, to be replaced by a Ubiquiti router | 2-port NIC passthrough      |
-| Debian with Docker                  | LXC  | For running various services                               | iGPU and QSV passthrough    |
-| Windows 11                          | VM   | For remote gaming and other Windows-only stuff             | GPU passthrough             |
+| Name | Type | Description | Additional notes |
+|------|------|-------------|------------------|
+| distcc | LXC | Distributed compiler server | |
+| Docker Test | VM | Test Docker environment | |
+| Kubernetes (k8s) | VM | Primary Kubernetes cluster | 3x Controlplane, 3x Workers |
+| Kubernetes (RKE2) | VM | Test Kubernetes cluster | 1x Controlplane, 3x Workers |
+| TrueNAS | VM | NAS server | To be moved to a dedicated machine (someday) |
+| Home Assistant OS | VM | Home automation server | To be moved to a dedicated machine |
+| Windows Server 2022 | VM | Windows server | Active Directory, DNS, DHCP, IIS |
 
-[Proxmox](https://www.proxmox.com/) is my hypervisor of choice. It's based on Debian, and it's a great choice for homelabbing. Much less headache than Hyper-V or ESXi in my opinion.
+...and various other machines that I'm spinning up for testing.
 
-[TrueNAS](https://www.truenas.com/) is my absolute go-to for NAS operating systems. I'm currently running it virtualized on Apollo, but I'm planning to build a dedicated machine for it soon. I'm passing through a SATA controller to it, so it has direct access to the hard drives.
+##### k8s (main)
 
-[OPNsense](https://opnsense.org/) is *temporarily* my router. I'm planning to replace it with a Ubiquiti router once the UDM Pro Max comes out (hopefully soon). I'm passing through a 2-port NIC to it, so it has direct access to the network.
+| Name | Namespace | Description | Pods |
+|------|-----------|-------------|------|
+| Traefik | ingress | Ingress controller | Traefik |
+| Network | networking | Load balancer | MetalLB |
+| Storage stack | storage | Storage services | Longhorn, MinIO |
+| Monitoring stack | monitoring | Monitoring services | Prometheus, Loki, Grafana, Graphite, Telegraf, Alertmanager |
+| Database stack | database | Database services | InfluxDB, Elasticsearch, Postgres, Redis |
+| CI/CD stack | cicd | CI/CD services | Flux, ArgoCD, GitHub runners |
+| Dev stack | dev | Development services | SonarQube, Gitea, GitLab |
+| Cloud stack | cloud | Cloud services | Coolify |
+| Media stack | media | Media services | Sonarr, Radarr, Lidarr, Readarr, Prowlarr, qBittorrent, Jellyseerr, reiverr, Autobrr, OpenBooks, Komga, Kaizoku, Ente, Immich |
 
-My Debian LXC is running Docker. I'm using it to run various services, like Jellyfin, Servarr stack, and other stuff.
+##### RKE2
 
+| Name | Namespace | Description | Pods |
+|------|-----------|-------------|------|
+| Traefik | ingress | Ingress controller | Traefik |
+| Network | networking | Load balancer | MetalLB |
+| Storage stack | storage | Storage services | Longhorn, MinIO |
+| Monitoring stack | monitoring | Monitoring services | Prometheus, Loki, Grafana, Graphite, Telegraf, Alertmanager |
+| Mattermost | mattermost | Chat service for teams | Mattermost |
+| TeamSpeak 5 | teamspeak | Voice chat server | TeamSpeak |
 
-**Specs**
+##### TrueNAS
 
-- CPU: Intel Core i3-14100
-- RAM: HyperX Fury DDR4 3200MHz 64GB (2x32GB)
-- GPU: MSI GTX 1660 Gaming X
-- Motherboard: Asrock H660M-HDV
-- Case: Chieftec Cube Pro mATX
-- Cooler: Intel Stock
-- Storage:
-  - 1x 500GB Samsung Evo 970 Plus M2 (Proxmox, VMs, LXC containers)
-  - 1x Seagate EXOS 16TB (main) - soon to be put in a RAID with more drives
-- Network:
-  - 1x 1Gbps NIC
-  - 1x 2-port 1Gbps NIC
+Pool: Main
 
-#### Athena
+| VDEV | Type | Disks | Description |
+|------|------|-------|-------------|
+| Data | 2x Mirror | 4x 16TB | Main storage |
+| Metadata Special | 1x Mirror | 2x 118GB | ZFS metadata |
 
-Athena is my Raspberry Pi 4 8GB. It mainly serves as a reverse proxy, Pi-hole, and a monitoring server.
+| Dataset | Description |
+|---------|-------------|
+| data/* | User data |
+| media | Media library |
+| backups | Various backups |
+
+### Apollo
+
+Apollo serves as a media server and a Windows gaming machine.
+
+#### Hardware
+
+| Type | Name |
+|------|------|
+| **Case** | Chieftec Cube Pro mATX (soon to be swapped for a rack-mount) |
+| **Motherboard** | ASRock B660M-HDV |
+| **CPU** | Intel Core i3-13100 |
+| **RAM** | 2x HyperX Fury 32GB DDR4 3200MHz |
+| **GPU** | - Intel UHD Graphics 730 (Jellyfin)<br/>- MSI GTX 1660 Gaming X (Windows) |
+| **Storage** | - 1x Samsung Evo 970 Plus 500GB M.2 (Proxmox, VMs, LXC containers)<br/>- NFS connection to Zeus's media share |
+| **NIC** | - Built-in<br/>- IOCREST Realtek 8125B Quad 2.5GBase-T RJ45 |
+| **Cooler** | Arctic Freezer 34 eSports |
+| **Fans** | 2x Noctua Redux 120mm |
+| **PSU** | Corsair RM550x |
+
+#### Software
+
+Host OS: Proxmox
+
+I'm running the following VMs and LXCs:
+
+| Name | Type | Description | Additional notes |
+|------|------|-------------|------------------|
+| Jellyfin | LXC | Media server | iGPU and QSV passthrough |
+| Windows 11 | VM | Remote Windows machine | GPU passthrough |
+| TrueNAS | VM | Backup server | Temporarily, until I build a dedicated backup NAS |
+
+### Hephaestus
+
+Hephaestus is the name of my Raspberry Pi cluster. It's still in the works, but I'm planning to run k3s on it for running various critical services that need the HA.
+
+(coming soon)
+
+#### Hardware
+
+| Device | Role |
+|--------|------|
+| Raspberry Pi 5 8GB | Server node (etcd) |
+| Raspberry Pi 5 8GB | Server node (etcd) |
+| Raspberry Pi 5 8GB | Server node (etcd) |
+
+#### Software
+
+Host OS: DietPi
+
+##### k3s
+
+| Name | Namespace | Description | Pods |
+|------|-----------|-------------|------|
+| Traefik | ingress | Ingress controller | Traefik |
+| Network | networking | Load balancer, certificate manager, dns server, authentication | MetalLB, Cert Manager, AdGuard Home, Authelia, lldap |
+| Rancher | rancher | Rancher management | Rancher |
+| Storage stack | storage | Storage services | Longhorn, MinIO |
+| Monitoring stack | monitoring | Monitoring services | Uptime Kuma, OneUptime, Plausible, Prometheus, Loki, Grafana, Graphite, Telegraf, Alertmanager |
+| Database stack | database | Database services | InfluxDB, Elasticsearch, Postgres, Redis, undb |
+| CI/CD stack | cicd | CI/CD services | Flux, ArgoCD, GitHub runners, n8n, ansible gui, |
+| Other | other | Other services | Bitwarden, FreshRSS, Homarr, Portainer, Dockge, Wiki.js, Sink, your_spotify, OpenSign, Paperless, Outline, Mattermost, Plane, penpot, Excalidraw, cal.com, memos, draw.io, mastodon |
+
+### Other devices
+
+I have a few other devices running in my Homelab that I'm using for various purposes:
+
+| Device | Role |
+|--------|------|
+| ZimaBlade | Testing environment |
+| Raspberry Pi 4 4GB | ADS-B receiver, NTP server |
+| Raspberry Pi 4 2GB | PiKVM |
+| Raspberry Pi 3 B+ | OctoPrint (Prusa MK3S+) |
+| Raspberry Pi Zero W | NUT server |
+| Raspberry Pi Zero | Currently unemployed 😔 |

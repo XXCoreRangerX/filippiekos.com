@@ -16,7 +16,7 @@ export function Navbar({ link = "/" }: { link?: string }) {
                     {link === "/" ? "home" : link.trim().replace(/^\//, "").replace(/\/$/, "").replace(/-/g, " ")}
                 </span>
             </Link>
-            <SearchBar className="w-full max-w-40" />
+            <SearchBar className="max-w-40" />
         </nav>
     );
 }

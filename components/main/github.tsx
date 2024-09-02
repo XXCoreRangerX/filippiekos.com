@@ -86,12 +86,16 @@ export async function GitHubStats() {
         next: { revalidate: 86400 },
     }).then((res) => res.json());
 
-    if (!data || data.errors) {
-        throw new Error("Failed to fetch GitHub data: " + (data?.errors || "Unknown error"));
-    }
-
-    if (data.user == null) {
-        throw new Error("Failed to fetch GitHub data: User not found");
+    if (!data || data.errors || data.user == null) {
+        console.warn("Failed to fetch GitHub data: " + (data?.errors || "Check your username and token"));
+        return (
+            <Card className="flex items-center justify-center gap-6 rounded-3xl border-2 shadow-md">
+                <div className="p-6 text-center">
+                    <h3 className="mb-1 text-xl font-medium">GitHub Stats Unavailable</h3>
+                    <p className="text-gray-500">Could not fetch GitHub data. Please try again later.</p>
+                </div>
+            </Card>
+        );
     }
 
     const user = data.user;

@@ -1,25 +1,29 @@
 [
     {
+        "updated": "2024-09-02",
         "title": "My setup",
         "description": "My PC build, peripherals, and other tech I use",
         "order": "1",
         "slug": "setup"
     },
     {
+        "updated": "2024-09-02",
         "title": "Homelab",
-        "description": "My homelabbing journey",
+        "description": "My homelabbing journey and current setup",
         "order": "2",
         "slug": "homelab"
     },
     {
+        "updated": "2024-09-02",
         "title": "Keyboards",
         "description": "All my custom keyboards",
         "order": "3",
         "slug": "keyboards"
     },
     {
+        "updated": "2024-09-02",
         "title": "Audio",
-        "description": "My hi-fi audio gear",
+        "description": "My Hi-Fi audio gear and some thoughts",
         "order": "4",
         "slug": "audio"
     }

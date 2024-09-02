@@ -6,6 +6,7 @@ import { Separator } from "@/components/ui/separator";
 import { ContentTypes } from "@/types/blog";
 import { cn } from "@/utils/cn";
 import Link from "next/link";
+import SearchBar from "./ui/searchbar";
 
 export function Footer({ className, type }: { className?: string; type?: keyof typeof ContentTypes }) {
     return (
@@ -24,7 +25,10 @@ export function Footer({ className, type }: { className?: string; type?: keyof t
                 <Link href="/" className="text-muted-foreground transition-colors hover:text-foreground">
                     &copy; {new Date().getFullYear()} {defaults.title}
                 </Link>
-                <ThemeToggle className="text-muted-foreground" />
+                <div className="flex items-center gap-2">
+                    <SearchBar variant="ghost" text={false} className="text-muted-foreground" />
+                    <ThemeToggle className="text-muted-foreground" />
+                </div>
             </div>
         </Card>
     );

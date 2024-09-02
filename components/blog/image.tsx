@@ -13,7 +13,7 @@ export function CustomImage(props: ImageProps & { caption?: string }) {
                         alt={props.alt}
                         width={props.width}
                         height={props.height}
-                        className={cn("cursor-pointer", props.className)}
+                        className={cn("max-h-[500px] w-fit cursor-pointer", props.className)}
                     />
                 </DialogTrigger>
                 <DialogContent className="flex max-h-screen max-w-none flex-col overflow-y-auto sm:max-h-[calc(100vh-5rem)] sm:max-w-[calc(100vw-5rem)] xl:max-w-[1200px]">
