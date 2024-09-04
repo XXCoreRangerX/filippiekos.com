@@ -1,3 +1,4 @@
+import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { ContentItem, ContentTypes } from "@/types/blog";
 import { formatDate } from "@/utils/dateUtils";
@@ -7,7 +8,7 @@ import { LuArrowUpRight } from "react-icons/lu";
 
 export const PostListItem = ({ post, type }: { post: ContentItem; type: keyof typeof ContentTypes }) => (
     <Link key={post.slug} href={`/${type}/${post.slug}`}>
-        <Card variant="clear" hover className="group flex items-center gap-3 border-none p-3">
+        <Card variant="clear" hover className="group flex gap-3 border-none p-3">
             {post.image && (
                 <Image
                     className="h-16 w-16 rounded-xl bg-white object-contain ring-2 ring-ring"
@@ -27,6 +28,14 @@ export const PostListItem = ({ post, type }: { post: ContentItem; type: keyof ty
                     <LuArrowUpRight className="inline-block h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </h3>
                 {post.description && <h4 className="line-clamp-2">{post.description}</h4>}
+            </div>
+            <div className="flex-1" />
+            <div className="flex gap-1 max-md:hidden">
+                {post.tags?.slice(0, 3).map((tag: string, index: number) => (
+                    <Link key={index} href={`/tags/${tag}`}>
+                        <Badge variant="muted">{tag}</Badge>
+                    </Link>
+                ))}
             </div>
         </Card>
     </Link>

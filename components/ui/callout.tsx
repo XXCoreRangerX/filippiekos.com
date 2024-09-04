@@ -31,7 +31,7 @@ export interface CalloutProps extends React.HTMLAttributes<HTMLDivElement>, Vari
 
 function Callout({ className, variant = "note", name, children, ...props }: CalloutProps) {
     const colorClass = variant ? variantColors[variant] : "text-muted-foreground";
-    const LanguageIcon: IconType = {
+    const Icon: IconType = {
         note: LuInfo,
         warning: LuAlertTriangle,
         danger: LuAlertCircle,
@@ -42,7 +42,7 @@ function Callout({ className, variant = "note", name, children, ...props }: Call
         <div className={cn(calloutVariants({ variant }), className)} {...props}>
             {name && (
                 <div className="inline-flex w-full items-center gap-2">
-                    <LanguageIcon className={cn("h-5 w-5", colorClass)} />
+                    <Icon className={cn("h-5 w-5", colorClass)} />
                     <h3
                         className={cn(
                             "not-prose max-[350px]:text-md text-lg font-bold capitalize lg:text-xl",
