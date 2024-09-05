@@ -8,13 +8,20 @@ export function CustomImage(props: ImageProps & { caption?: string }) {
         <>
             <Dialog>
                 <DialogTrigger asChild>
-                    <Image
-                        src={img}
-                        alt={props.alt}
-                        width={props.width}
-                        height={props.height}
-                        className={cn("max-h-[500px] w-fit cursor-pointer", props.className)}
-                    />
+                    <figure className="flex flex-col items-center">
+                        <Image
+                            src={img}
+                            alt={props.alt}
+                            width={props.width}
+                            height={props.height}
+                            className={cn("max-h-[500px] w-fit cursor-pointer", props.className)}
+                        />
+                        {props.caption && (
+                            <figcaption className="text-center text-sm text-muted-foreground">
+                                {props.caption}
+                            </figcaption>
+                        )}
+                    </figure>
                 </DialogTrigger>
                 <DialogContent className="flex max-h-screen max-w-none flex-col overflow-y-auto sm:max-h-[calc(100vh-5rem)] sm:max-w-[calc(100vw-5rem)] xl:max-w-[1200px]">
                     <DialogHeader>
@@ -37,9 +44,6 @@ export function CustomImage(props: ImageProps & { caption?: string }) {
                     )}
                 </DialogContent>
             </Dialog>
-            {props.caption && (
-                <figcaption className="text-center text-sm text-muted-foreground">{props.caption}</figcaption>
-            )}
         </>
     );
 }
