@@ -72,18 +72,18 @@ export function saveDataToJson(data: any, filePath: string) {
 }
 
 /* TODO: Implement a table of contents
-export function getTableOfContents(content: string) {
-    const regex = /^#{1,4}\s+(.*)/gm;
-    return content.match(regex)?.map((heading) => (
-        heading
-            .replace(/#+\s+/, "")
-            .toLowerCase()
-            .replace(/[^\w\s-]/g, "")
-            .replace(/[\s_-]+/g, "-")
-            .replace(/(^-|-$)/g, "")
-    )) || []
-}
-*/
+    export function getTableOfContents(content: string) {
+        const regex = /^#{1,4}\s+(.*)/gm;
+        return content.match(regex)?.map((heading) => (
+            heading
+                .replace(/#+\s+/, "")
+                .toLowerCase()
+                .replace(/[^\w\s-]/g, "")
+                .replace(/[\s_-]+/g, "-")
+                .replace(/(^-|-$)/g, "")
+        )) || []
+    }
+    */
 
 export function getPosts() {
     return getMDXData(path.join(path.resolve("content/posts")));
@@ -102,12 +102,12 @@ export function getSortedArticles() {
 }
 
 export function getTags() {
-    let posts = getPosts();
-    let tags: string[] = [];
-    posts.forEach((post) => {
+    const tags: Set<string> = new Set();
+
+    getPosts().forEach((post) => {
         if (post.tags) {
-            tags.push(...post.tags);
+            post.tags.forEach((tag) => tags.add(tag));
         }
     });
-    return Array.from(new Set(tags)).sort();
+    return Array.from(tags);
 }
