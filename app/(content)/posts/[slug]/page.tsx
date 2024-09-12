@@ -43,11 +43,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
             modifiedTime,
             url: `${defaults.url}/posts/${post.slug}`,
             siteName: defaults.title,
-            images: [
-                {
-                    url: ogImage,
-                },
-            ],
+            images: ogImage,
         },
         twitter: {
             card: "summary_large_image",

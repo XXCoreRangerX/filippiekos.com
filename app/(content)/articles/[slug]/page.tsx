@@ -25,6 +25,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
     const { title, updated: modifiedTime, description } = post;
     const fullTitle = `${title} | ${defaults.title}`;
+    const ogImage = `${defaults.url}/og?title=${title}`;
 
     return {
         title: fullTitle,
@@ -36,11 +37,13 @@ export async function generateMetadata({ params }: { params: { slug: string } })
             modifiedTime,
             url: `${defaults.url}/articles/${post.slug}`,
             siteName: defaults.title,
+            images: ogImage,
         },
         twitter: {
             card: "summary",
             title,
             description,
+            images: [ogImage],
         },
     };
 }

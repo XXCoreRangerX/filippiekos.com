@@ -11,7 +11,7 @@ export default async function generateRssFeed() {
         language: "en",
         id: defaults.url,
         link: defaults.url,
-        //image: `${defaults.url}/website.jpg`,
+        image: `${defaults.url}/og-image.png`,
         favicon: `${defaults.url}/favicon.ico`,
         copyright: `© ${new Date().getFullYear()} ${defaults.title}`,
     });

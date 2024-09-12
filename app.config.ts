@@ -5,6 +5,7 @@
 
 export default class App {
     static title = "Filip Piękoś | Portfolio";
+    static shortTitle = "Filip Piękoś";
     static description =
         "Filip Piękoś's portfolio website. An aspiring developer, engineer, sysadmin, UI/UX/CAD/EDA designer, and a tech enthusiast. Studying at ZSTiO, Jarosław, Poland.";
     static url = "https://filippiekos.com";
