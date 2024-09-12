@@ -57,7 +57,7 @@ export function Aside() {
                 />
                 <h1 className="text-4xl font-bold">{defaults.fullName}</h1>
                 <h2 className="text-lg text-muted-foreground">{defaults.subtitle}</h2>
-                <div className="my-1 flex flex-wrap justify-center gap-2">
+                <div className="my-1 flex flex-wrap justify-center gap-1.5">
                     {socials.map((social, index) => (
                         <Link
                             key={index}
@@ -69,7 +69,7 @@ export function Aside() {
                         </Link>
                     ))}
                 </div>
-                <div className="my-2 flex max-w-lg flex-wrap justify-center gap-2">
+                <div className="my-2 flex max-w-lg flex-wrap justify-center gap-2 lg:max-xl:hidden">
                     {defaults.skills.map((skill, index) => (
                         <Badge key={index} variant="outline">
                             {skill}
@@ -83,11 +83,11 @@ export function Aside() {
                         className={cn("w-full gap-2", buttonVariants({ variant: "default" }))}
                     >
                         <LuMail className="h-5 w-5" />
-                        Contact
+                        <span>Contact</span>
                     </Link>
                     <Link href="/" download className={cn("gap-2", buttonVariants({ variant: "outline" }))}>
                         <LuDownload className="h-5 w-5" />
-                        CV
+                        <span className="max-xl:hidden">CV</span>
                     </Link>
                 </div>
                 <Separator className="my-3" />

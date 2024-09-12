@@ -19,7 +19,7 @@ export function All() {
                         </TabsTrigger>
                         <TabsTrigger value="posts">Posts</TabsTrigger>
                     </div>
-                    <SearchBar className="max-w-56 rounded-tr-[1.2rem] max-[380px]:hidden" />
+                    <SearchBar className="max-w-56 rounded-tr-[1.2rem] max-[300px]:hidden" />
                 </TabsList>
                 <section className="mt-3 px-5">
                     <TabsContent value="about" className="grid gap-3">

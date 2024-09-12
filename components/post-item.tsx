@@ -8,7 +8,7 @@ import { LuArrowUpRight } from "react-icons/lu";
 
 export const PostListItem = ({ post, type }: { post: ContentItem; type: keyof typeof ContentTypes }) => (
     <Link key={post.slug} href={`/${type}/${post.slug}`}>
-        <Card variant="clear" hover className="group flex gap-3 border-none p-3">
+        <Card variant="clear" hover className="group flex gap-2 border-none p-3">
             {post.image && (
                 <Image
                     className="h-16 w-16 rounded-xl bg-white object-contain ring-2 ring-ring"
@@ -33,7 +33,9 @@ export const PostListItem = ({ post, type }: { post: ContentItem; type: keyof ty
             <div className="flex gap-1 max-md:hidden">
                 {post.tags?.slice(0, 3).map((tag: string, index: number) => (
                     <Link key={index} href={`/tags/${tag}`}>
-                        <Badge variant="muted">{tag}</Badge>
+                        <Badge variant="muted" className="line-clamp-1">
+                            {tag}
+                        </Badge>
                     </Link>
                 ))}
             </div>

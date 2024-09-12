@@ -21,7 +21,7 @@ export default function SearchBar({ variant = "outline", className, text = true 
         >
             <span className="inline-flex items-center gap-2">
                 <LuSearch className="h-6 w-6" />
-                {text && <span>Search</span>}
+                {text && <span className="max-[384px]:hidden">Search</span>}
             </span>
             {text && <kbd className="max-md:hidden">{cmdKey}K</kbd>}
         </Button>
