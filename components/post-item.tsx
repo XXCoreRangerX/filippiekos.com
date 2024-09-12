@@ -1,4 +1,3 @@
-import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { ContentItem, ContentTypes } from "@/types/blog";
 import { formatDate } from "@/utils/dateUtils";
@@ -8,7 +7,7 @@ import { LuArrowUpRight } from "react-icons/lu";
 
 export const PostListItem = ({ post, type }: { post: ContentItem; type: keyof typeof ContentTypes }) => (
     <Link key={post.slug} href={`/${type}/${post.slug}`}>
-        <Card variant="clear" hover className="group flex gap-2 border-none p-3">
+        <Card variant="clear" type="article" hover className="group flex gap-2 border-none p-3">
             {post.image && (
                 <Image
                     className="h-16 w-16 rounded-xl bg-white object-contain ring-2 ring-ring"
@@ -29,16 +28,17 @@ export const PostListItem = ({ post, type }: { post: ContentItem; type: keyof ty
                 </h3>
                 {post.description && <h4 className="line-clamp-2">{post.description}</h4>}
             </div>
-            <div className="flex-1" />
-            <div className="flex gap-1 max-md:hidden">
-                {post.tags?.slice(0, 3).map((tag: string, index: number) => (
-                    <Link key={index} href={`/tags/${tag}`}>
-                        <Badge variant="muted" className="line-clamp-1">
-                            {tag}
-                        </Badge>
-                    </Link>
-                ))}
-            </div>
+            {/*TODO: Temporarily disabled because of hydration errors*/}
+            {/*<div className="flex-1" />*/}
+            {/*<div className="flex gap-1 max-md:hidden">*/}
+            {/*    {post.tags?.slice(0, 3).map((tag: string, index: number) => (*/}
+            {/*        <Link key={index} href={`/tags/${tag}`}>*/}
+            {/*            <Badge variant="muted" className="line-clamp-1">*/}
+            {/*                {tag}*/}
+            {/*            </Badge>*/}
+            {/*        </Link>*/}
+            {/*    ))}*/}
+            {/*</div>*/}
         </Card>
     </Link>
 );

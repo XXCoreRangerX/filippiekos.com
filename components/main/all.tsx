@@ -12,15 +12,15 @@ export function All() {
     return (
         <Card type="article" className="basis-1/2 overflow-y-auto rounded-3xl border-2 p-0 pb-5 shadow-md">
             <Tabs defaultValue="about">
-                <TabsList className="sticky top-0 z-50 w-full justify-between gap-2 border-b-2 bg-card shadow-md">
-                    <div className="flex flex-nowrap gap-1 text-nowrap">
+                <nav className="sticky top-0 z-50 flex w-full items-center justify-between gap-2 border-b-2 bg-card pr-1 text-muted-foreground shadow-md">
+                    <TabsList className="flex flex-nowrap gap-1 text-nowrap">
                         <TabsTrigger className="rounded-tl-[1.2rem]" value="about">
                             About
                         </TabsTrigger>
                         <TabsTrigger value="posts">Posts</TabsTrigger>
-                    </div>
+                    </TabsList>
                     <SearchBar className="max-w-56 rounded-tr-[1.2rem] max-[300px]:hidden" />
-                </TabsList>
+                </nav>
                 <section className="mt-3 px-5">
                     <TabsContent value="about" className="grid gap-3">
                         <h3 className="text-3xl font-bold">About me</h3>

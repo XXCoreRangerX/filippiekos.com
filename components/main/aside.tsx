@@ -81,11 +81,17 @@ export function Aside() {
                         href={"mailto:" + defaults.email}
                         download
                         className={cn("w-full gap-2", buttonVariants({ variant: "default" }))}
+                        aria-label="Contact"
                     >
                         <LuMail className="h-5 w-5" />
                         <span>Contact</span>
                     </Link>
-                    <Link href="/" download className={cn("gap-2", buttonVariants({ variant: "outline" }))}>
+                    <Link
+                        href="/"
+                        download
+                        className={cn("gap-2", buttonVariants({ variant: "outline" }))}
+                        aria-label="CV"
+                    >
                         <LuDownload className="h-5 w-5" />
                         <span className="max-xl:hidden">CV</span>
                     </Link>

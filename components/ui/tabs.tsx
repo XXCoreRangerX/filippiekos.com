@@ -12,7 +12,8 @@ const TabsList = React.forwardRef<
 >(({ className, ...props }, ref) => (
     <TabsPrimitive.List
         ref={ref}
-        className={cn("inline-flex items-center justify-center bg-muted p-1 text-muted-foreground", className)}
+        className={cn("inline-flex items-center justify-center bg-card p-1 text-muted-foreground", className)}
+        role="tablist"
         {...props}
     />
 ));
@@ -28,6 +29,8 @@ const TabsTrigger = React.forwardRef<
             "inline-flex items-center justify-center whitespace-nowrap rounded-lg px-6 py-3 font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-muted data-[state=active]:text-foreground data-[state=active]:shadow-sm",
             className,
         )}
+        role="tab"
+        aria-controls={props.id}
         {...props}
     />
 ));
@@ -43,6 +46,8 @@ const TabsContent = React.forwardRef<
             "ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
             className,
         )}
+        role="tabpanel"
+        id={props.id}
         {...props}
     />
 ));
