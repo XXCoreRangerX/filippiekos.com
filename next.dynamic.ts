@@ -33,7 +33,7 @@ export const PAGE_METADATA = {
         description: defaults.description,
         creator: "@" + defaults.username,
         card: "summary_large_image",
-        images: defaults.url + "/og-image.png",
+        images: defaults.url + "/twitter-image.png",
     },
     icons: {
         icon: [

@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
     const { title, updated: modifiedTime, description } = post;
     const fullTitle = `${title} | ${defaults.title}`;
-    const ogImage = `${defaults.url}/og?title=${title}`;
+    const ogImage = `${defaults.url}/og-image.png`;
 
     return {
         title: fullTitle,

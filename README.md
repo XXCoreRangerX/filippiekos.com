@@ -17,7 +17,6 @@
 </p>
 <p align="center">
 <img alt="GitHub Tag" src="https://img.shields.io/github/v/tag/XXCoreRangerX/filippiekos.com?style=for-the-badge&labelColor=0f172a&color=1e293b">
-<img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/XXCoreRangerX/filippiekos.com/code_quality.yml?style=for-the-badge&labelColor=0f172a&label=Qodana">
 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/XXCoreRangerX/filippiekos.com?style=for-the-badge&labelColor=0f172a&color=1e293b">
 <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/XXCoreRangerX/filippiekos.com?style=for-the-badge&labelColor=0f172a&color=1e293b">
 </p>

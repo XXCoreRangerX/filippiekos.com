@@ -117,7 +117,7 @@ export async function GitHubStats() {
         totalRepos,
     };
 
-    const githubUrl = defaults.socials.find((social) => social[0] === "GitHub")?.[2] || "https://github.com/";
+    const githubUrl = defaults.socials.find(([name]) => name === "GitHub")?.[1] || "https://github.com/";
 
     return (
         <Link href={githubUrl} target="blank">
