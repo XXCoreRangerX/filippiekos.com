@@ -36,10 +36,10 @@ export default class App {
 
     static socials = [
         ["GitHub", "https://github.com/XXCoreRangerX"],
-        ["Twitter", "https://x.com/XXCoreRangerX"],
-        ["Reddit", "https://reddit.com/user/XXCoreRangerX"],
-        ["Facebook", "https://facebook.com/profile.php?id=100029415751380"],
+        ["Bluesky", "https://bsky.app/profile/filippiekos.com"],
         ["LinkedIn", "https://linkedin.com/in/filippiekos"],
+        ["Facebook", "https://facebook.com/fpiekos"],
+        ["Instagram", "https://instagram.com/filip_piekos"],
     ];
 
     static skills = [

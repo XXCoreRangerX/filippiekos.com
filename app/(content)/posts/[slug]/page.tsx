@@ -18,14 +18,16 @@ export async function generateStaticParams() {
     return getPosts().map((post) => ({ slug: post.slug }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata | undefined> {
-    if (!params) {
-        return;
-    }
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ slug: string; metadata: Metadata; content: string }>;
+}) {
+    const { slug } = await params;
 
-    const post = getPosts().find((post) => post.slug === params.slug);
+    const post = getPosts().find((post) => post.slug === slug);
     if (!post) {
-        return;
+        notFound();
     }
 
     const { title, date: publishedTime, updated: modifiedTime, description, image } = post;
@@ -54,8 +56,14 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     };
 }
 
-export default function Post({ params }: { params: { slug: string; metadata: Metadata; content: string } }) {
-    const post = getPosts().find((post) => post.slug === params.slug);
+export default async function Post({
+    params,
+}: {
+    params: Promise<{ slug: string; metadata: Metadata; content: string }>;
+}) {
+    const { slug } = await params;
+
+    const post = getPosts().find((post) => post.slug === slug);
 
     if (!post) {
         notFound();

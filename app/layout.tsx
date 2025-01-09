@@ -14,9 +14,9 @@ export const metadata: Metadata = { ...PAGE_METADATA };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
             <body className={`${fontMono.variable} ${fontSans.variable} ${fontSerif.variable}`}>
-                <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+                <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
                     <GridBackground />
                     {children}
                     <SearchCommand />

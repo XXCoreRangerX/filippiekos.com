@@ -15,7 +15,7 @@ import { ContentItem } from "@/types/blog";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { LuFileText, LuHome, LuMonitor, LuMoon, LuSun, LuTag } from "react-icons/lu";
+import { LuFileText, LuHouse, LuMonitor, LuMoon, LuSun, LuTag } from "react-icons/lu";
 
 export const SearchCommand = () => {
     const router = useRouter();
@@ -72,7 +72,7 @@ export const SearchCommand = () => {
                 <CommandEmpty>No results found.</CommandEmpty>
                 <CommandGroup>
                     <CommandItem onSelect={() => onSelect("/")}>
-                        <LuHome />
+                        <LuHouse />
                         <span className="flex-1">Home</span>
                     </CommandItem>
                 </CommandGroup>

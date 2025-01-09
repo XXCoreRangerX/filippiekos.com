@@ -9,7 +9,7 @@ import { cn } from "@/utils/cn";
 import Image from "next/image";
 import Link from "next/link";
 import { IconType } from "react-icons";
-import { FaFacebook, FaGithub, FaLinkedin, FaRedditAlien, FaXTwitter } from "react-icons/fa6";
+import { FaBluesky, FaFacebook, FaGithub, FaInstagram, FaLinkedin, FaRedditAlien, FaXTwitter } from "react-icons/fa6";
 import { LuDownload, LuMail } from "react-icons/lu";
 
 export interface ISocialItem {
@@ -20,10 +20,12 @@ export interface ISocialItem {
 
 const icons: { [index: string]: IconType } = {
     github: FaGithub,
-    twitter: FaXTwitter,
+    bluesky: FaBluesky,
     reddit: FaRedditAlien,
-    facebook: FaFacebook,
+    twitter: FaXTwitter,
     linkedin: FaLinkedin,
+    instagram: FaInstagram,
+    facebook: FaFacebook,
 };
 
 const socials: ISocialItem[] = defaults.socials.map((social) => ({

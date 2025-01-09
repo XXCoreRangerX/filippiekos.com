@@ -2,7 +2,7 @@ import { cn } from "@/utils/cn";
 import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
 import { IconType } from "react-icons";
-import { LuAlertCircle, LuAlertTriangle, LuCheck, LuInfo } from "react-icons/lu";
+import { LuCheck, LuCircleAlert, LuInfo, LuTriangleAlert } from "react-icons/lu";
 
 const calloutVariants = cva("p-3 mb-4 rounded-lg border-2 border-l-[0.4rem]", {
     variants: {
@@ -33,8 +33,8 @@ function Callout({ className, variant = "note", name, children, ...props }: Call
     const colorClass = variant ? variantColors[variant] : "text-muted-foreground";
     const Icon: IconType = {
         note: LuInfo,
-        warning: LuAlertTriangle,
-        danger: LuAlertCircle,
+        warning: LuTriangleAlert,
+        danger: LuCircleAlert,
         success: LuCheck,
     }[variant || "note"];
 
