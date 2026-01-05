@@ -48,26 +48,20 @@ export function Aside() {
             className="grid h-full basis-1/4 rounded-3xl border-2 shadow-md lg:overflow-y-auto"
         >
             <div className="my-auto flex flex-col items-center text-center">
-                <Image
-                    src={profilePic}
-                    width="250"
-                    height="250"
-                    quality="85"
-                    alt=""
-                    className="mb-4 rounded-full shadow-xl ring-4 ring-ring dark:ring-slate-200"
-                    priority
-                />
+                <span className="ring-ring mb-4 overflow-hidden rounded-full shadow-xl ring-4 dark:ring-slate-200">
+                    <Image src={profilePic} width="250" height="250" quality="85" alt="" priority />
+                </span>
                 <h1 className="text-4xl font-bold">{defaults.fullName}</h1>
-                <h2 className="text-lg text-muted-foreground">{defaults.subtitle}</h2>
+                <h2 className="text-muted-foreground text-lg">{defaults.subtitle}</h2>
                 <div className="my-1 flex flex-wrap justify-center gap-1.5">
                     {socials.map((social, index) => (
                         <Link
                             key={index}
                             href={social.url}
                             aria-label={social.name}
-                            className={cn(buttonVariants({ size: "icon", variant: "ghost" }), "h-8 w-8")}
+                            className={cn(buttonVariants({ size: "icon", variant: "ghost" }), "size-8")}
                         >
-                            <social.icon className="h-6 w-6 lg:h-5 lg:w-5" />
+                            <social.icon className="size-6 lg:h-5 lg:w-5" />
                         </Link>
                     ))}
                 </div>
@@ -85,7 +79,7 @@ export function Aside() {
                         className={cn("w-full gap-2", buttonVariants({ variant: "default" }))}
                         aria-label="Contact"
                     >
-                        <LuMail className="h-5 w-5" />
+                        <LuMail className="size-5" />
                         <span>Contact</span>
                     </Link>
                     <Link
@@ -94,7 +88,7 @@ export function Aside() {
                         className={cn("gap-2", buttonVariants({ variant: "outline" }))}
                         aria-label="CV"
                     >
-                        <LuDownload className="h-5 w-5" />
+                        <LuDownload className="size-5" />
                         <span className="max-xl:hidden">CV</span>
                     </Link>
                 </div>

@@ -1,9 +1,10 @@
-import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import * as React from "react";
 
+import { cn } from "@/utils/cn";
+
 const CardVariants = cva(
-    "rounded-xl border shadow-sm p-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+    "rounded-xl border shadow-xs p-5 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
     {
         variants: {
             type: {
@@ -36,13 +37,9 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement>, Variant
     hover?: boolean;
 }
 
-const Card = React.forwardRef<HTMLDivElement, CardProps>(
-    ({ className, type, hover = false, variant, ...props }, ref) => {
-        const Comp = type || "section";
-        return <Comp ref={ref} className={cn(CardVariants({ hover, variant: variant }), className)} {...props} />;
-    },
-);
-
-Card.displayName = "Card";
+function Card({ className, type, hover = false, variant, ...props }: CardProps) {
+    const Comp = type || "section";
+    return <Comp className={cn(CardVariants({ hover, variant: variant }), className)} {...props} />;
+}
 
 export { Card };

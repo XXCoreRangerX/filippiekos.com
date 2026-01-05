@@ -15,7 +15,7 @@ export default function Posts() {
     const tags = getTags();
     return (
         <>
-            <header className="w-full max-w-screen-lg rounded-3xl border-2 bg-card p-5 shadow-md md:p-10">
+            <header className="bg-card w-full max-w-(--breakpoint-lg) rounded-3xl border-2 p-5 shadow-md md:p-10">
                 <Navbar />
                 <div className="mt-4 flex flex-wrap gap-2">
                     {tags.map((tag, index) => (
@@ -25,10 +25,10 @@ export default function Posts() {
                     ))}
                 </div>
             </header>
-            <article className="w-full max-w-screen-lg flex-1 rounded-3xl border-2 bg-card p-5 shadow-md">
+            <article className="bg-card w-full max-w-(--breakpoint-lg) flex-1 rounded-3xl border-2 p-5 shadow-md">
                 <PostList type="posts" />
             </article>
-            <Footer className="max-w-screen-lg" />
+            <Footer className="max-w-(--breakpoint-lg)" />
         </>
     );
 }

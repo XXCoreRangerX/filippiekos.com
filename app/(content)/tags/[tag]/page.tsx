@@ -21,7 +21,7 @@ export default async function Tag({ params }: { params: Promise<{ tag: string }>
     const { tag } = await params;
     return (
         <>
-            <Card type="header" className="w-full max-w-screen-lg rounded-3xl border-2 shadow-md md:p-10">
+            <Card type="header" className="w-full max-w-(--breakpoint-lg) rounded-3xl border-2 shadow-md md:p-10">
                 <Navbar link="/" />
                 <div className="mt-4 flex flex-wrap gap-2">
                     <Link href={`/tags/${tag}`}>
@@ -29,10 +29,10 @@ export default async function Tag({ params }: { params: Promise<{ tag: string }>
                     </Link>
                 </div>
             </Card>
-            <Card type="article" className="w-full max-w-screen-lg flex-1 rounded-3xl border-2 shadow-md">
+            <Card type="article" className="w-full max-w-(--breakpoint-lg) flex-1 rounded-3xl border-2 shadow-md">
                 <PostList type="posts" tag={tag} />
             </Card>
-            <Footer className="max-w-screen-lg" />
+            <Footer className="max-w-(--breakpoint-lg)" />
         </>
     );
 }

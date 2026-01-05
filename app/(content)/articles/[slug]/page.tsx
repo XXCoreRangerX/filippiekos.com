@@ -84,23 +84,23 @@ export default async function Article({
                     }),
                 }}
             />
-            <Card type="header" className="w-full max-w-screen-lg rounded-3xl border-2 shadow-md md:p-10">
+            <Card type="header" className="w-full max-w-(--breakpoint-lg) rounded-3xl border-2 shadow-md md:p-10">
                 <Navbar />
                 {post.updated && (
-                    <h3 className="description mt-5 text-sm text-muted-foreground">
+                    <h3 className="description text-muted-foreground mt-5 text-sm">
                         Updated: {formatDate(post.updated)}
                     </h3>
                 )}
-                <h1 className="title mt-2 break-words text-4xl font-bold lg:text-5xl">{post.title}</h1>
-                <h2 className="description mb-4 mt-3 break-words">{post.description}</h2>
+                <h1 className="title mt-2 text-4xl font-bold break-words lg:text-5xl">{post.title}</h1>
+                <h2 className="description mt-3 mb-4 break-words">{post.description}</h2>
             </Card>
             <Card
                 type="article"
-                className="prose prose-slate w-full max-w-screen-lg flex-1 rounded-3xl border-2 shadow-md dark:prose-invert max-[350px]:prose-sm md:p-10"
+                className="prose prose-slate dark:prose-invert max-[350px]:prose-sm w-full max-w-(--breakpoint-lg) flex-1 rounded-3xl border-2 shadow-md md:p-10"
             >
                 <CustomMDX source={post.content} />
             </Card>
-            <Footer className="max-w-screen-lg" />
+            <Footer className="max-w-(--breakpoint-lg)" />
         </>
     );
 }

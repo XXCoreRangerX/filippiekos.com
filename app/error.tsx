@@ -16,7 +16,7 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
 
     return (
         <main className="flex h-screen flex-col items-center justify-center p-5 text-center">
-            <LuCircleX className="mb-2 h-10 w-10 text-muted-foreground" />
+            <LuCircleX className="text-muted-foreground mb-2 size-10" />
             <h1 className="text-8xl font-bold">Error</h1>
             <h2 className="mb-2 text-2xl">Something went wrong</h2>
             <Button onClick={() => reset()}>Refresh</Button>

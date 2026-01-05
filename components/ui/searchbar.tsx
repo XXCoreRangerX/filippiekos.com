@@ -23,7 +23,7 @@ export default function SearchBar({ variant = "outline", className, text = true 
             role="button"
         >
             <span className="inline-flex items-center gap-2">
-                <LuSearch className="h-6 w-6" />
+                <LuSearch className="size-6" />
                 {text && <span className="max-[384px]:hidden">Search</span>}
                 <span className="sr-only">Search button</span>
             </span>

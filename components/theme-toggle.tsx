@@ -13,7 +13,7 @@ import * as React from "react";
 import { LuMonitor, LuMoon, LuSun } from "react-icons/lu";
 
 const themeToggleVariants = cva(
-    "inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 ring-blue-400",
+    "inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium transition-colors focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50 ring-blue-400",
     {
         variants: {
             variant: {
@@ -44,22 +44,22 @@ const ThemeToggle = React.forwardRef<HTMLButtonElement, ThemeToggleProps>(({ cla
                     ref={ref}
                     {...props}
                 >
-                    <LuSun className="h-6 w-6 rotate-0 scale-100 transition-transform dark:-rotate-90 dark:scale-0" />
-                    <LuMoon className="absolute h-6 w-6 rotate-90 scale-0 transition-transform dark:rotate-0 dark:scale-100" />
+                    <LuSun className="size-6 scale-100 rotate-0 transition-transform dark:scale-0 dark:-rotate-90" />
+                    <LuMoon className="absolute size-6 scale-0 rotate-90 transition-transform dark:scale-100 dark:rotate-0" />
                     <span className="sr-only">Toggle theme</span>
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
                 <DropdownMenuItem onClick={() => setTheme("light")}>
-                    <LuSun className="mr-2 h-4 w-4" />
+                    <LuSun className="mr-2 size-4" />
                     Light
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => setTheme("dark")}>
-                    <LuMoon className="mr-2 h-4 w-4" />
+                    <LuMoon className="mr-2 size-4" />
                     Dark
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => setTheme("system")}>
-                    <LuMonitor className="mr-2 h-4 w-4" />
+                    <LuMonitor className="mr-2 size-4" />
                     System
                 </DropdownMenuItem>
             </DropdownMenuContent>

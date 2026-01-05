@@ -12,7 +12,7 @@ export function All() {
     return (
         <Card type="article" className="basis-1/2 overflow-y-auto rounded-3xl border-2 p-0 pb-5 shadow-md">
             <Tabs defaultValue="about">
-                <nav className="sticky top-0 z-50 flex w-full items-center justify-between gap-2 border-b-2 bg-card pr-1 text-muted-foreground shadow-md">
+                <nav className="bg-card text-muted-foreground sticky top-0 z-50 flex w-full items-center justify-between gap-2 border-b-2 pr-1 shadow-md">
                     <TabsList className="flex flex-nowrap gap-1 text-nowrap">
                         <TabsTrigger className="rounded-tl-[1.2rem]" value="about">
                             About
@@ -21,10 +21,10 @@ export function All() {
                     </TabsList>
                     <SearchBar className="max-w-56 rounded-tr-[1.2rem] max-[300px]:hidden" />
                 </nav>
-                <section className="mt-3 px-5">
+                <section className="px-5">
                     <TabsContent value="about" className="grid gap-3">
                         <h3 className="text-3xl font-bold">About me</h3>
-                        <article className="prose prose-slate max-w-full text-foreground dark:prose-invert">
+                        <article className="prose prose-slate text-foreground dark:prose-invert max-w-full">
                             <CustomMDX source={defaults.about} />
                         </article>
                         <Separator />

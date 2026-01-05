@@ -1,27 +1,25 @@
 /* Tweet */
 
+@import "tailwindcss";
+
 .tweet .react-tweet-theme {
     --tweet-font-family: inherit;
     --tweet-font-color: inherit;
-    --tweet-font-color-secondary: theme("colors.muted.foreground");
-    --tweet-twitter-icon-color: theme("colors.muted.foreground");
+    --tweet-font-color-secondary: var(--color-muted-foreground);
+    --tweet-twitter-icon-color: var(--color-muted-foreground);
 
-    --tweet-bg-color: theme("colors.background");
+    --tweet-bg-color: var(--color-background);
     --tweet-bg-color-hover: var(--tweet-bg-color);
-    --tweet-border: 1px solid theme("colors.border");
+    --tweet-border: 1px solid var(--color-border);
 
-    --tweet-skeleton-gradient: linear-gradient(
-        theme("colors.muted.DEFAULT"),
-        theme("colors.muted.DEFAULT"),
-        theme("colors.muted.DEFAULT")
-    );
+    --tweet-skeleton-gradient: linear-gradient(var(--color-muted), var(--color-muted), var(--color-muted));
 
     --tweet-color-blue-primary: rgba(14, 165, 233, 1);
     --tweet-color-blue-primary-hover: rgba(14, 165, 233, 0.1);
-    --tweet-color-blue-secondary: theme("colors.muted.foreground");
-    --tweet-color-blue-secondary-hover: theme("colors.muted.DEFAULT");
+    --tweet-color-blue-secondary: var(--color-muted-foreground);
+    --tweet-color-blue-secondary-hover: var(--color-muted);
 
-    --tweet-verified-old-color: theme("colors.muted.foreground");
+    --tweet-verified-old-color: var(--color-muted-foreground);
     --tweet-verified-blue-color: var(--tweet-color-blue-primary);
 
     --tweet-color-red-primary: rgba(220, 38, 38, 1);

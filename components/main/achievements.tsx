@@ -28,13 +28,13 @@ function AchievementCard({ achievement, index }: { achievement: IAchievementItem
                 className="flex min-h-32 cursor-pointer items-center gap-1 max-lg:flex-col max-lg:justify-center max-lg:text-center lg:gap-5"
             >
                 <header className="basis-1/4 text-center lg:grid">
-                    {achievement.type === "Scholarship" && <LuGraduationCap className="mx-auto h-12 w-12" />}
+                    {achievement.type === "Scholarship" && <LuGraduationCap className="mx-auto size-12" />}
                     {achievement.place != "" && <h1 className="text-5xl font-extrabold">{achievement.place}</h1>}
                     <p className="text-xs">{achievement.type}</p>
                 </header>
                 <div className="grid gap-1">
                     <h2 className="line-clamp-2 text-lg font-bold">{achievement.title}</h2>
-                    <h3 className="text-sm font-medium uppercase text-muted-foreground">
+                    <h3 className="text-muted-foreground text-sm font-medium uppercase">
                         {achievement.date} {achievement.location && "— " + achievement.location}
                     </h3>
                 </div>

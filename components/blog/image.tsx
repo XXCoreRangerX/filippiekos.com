@@ -17,7 +17,7 @@ export function CustomImage(props: ImageProps & { caption?: string }) {
                             className={cn("max-h-[500px] w-fit cursor-pointer", props.className)}
                         />
                         {props.caption && (
-                            <figcaption className="text-center text-sm text-muted-foreground">
+                            <figcaption className="text-muted-foreground text-center text-sm">
                                 {props.caption}
                             </figcaption>
                         )}
@@ -40,7 +40,7 @@ export function CustomImage(props: ImageProps & { caption?: string }) {
                         </a>
                     </div>
                     {props.caption && (
-                        <figcaption className="text-center text-sm text-muted-foreground">{props.caption}</figcaption>
+                        <figcaption className="text-muted-foreground text-center text-sm">{props.caption}</figcaption>
                     )}
                 </DialogContent>
             </Dialog>

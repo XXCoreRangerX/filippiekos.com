@@ -22,7 +22,7 @@ export function Footer({ className, type }: { className?: string; type?: keyof t
                 </div>
             )}
             <div className="flex items-center justify-between">
-                <Link href="/" className="text-muted-foreground transition-colors hover:text-foreground">
+                <Link href="/" className="text-muted-foreground hover:text-foreground transition-colors">
                     &copy; {new Date().getFullYear()} {defaults.title}
                 </Link>
                 <div className="flex items-center gap-2">

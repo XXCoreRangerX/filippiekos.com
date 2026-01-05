@@ -39,9 +39,9 @@ function Code({ children, raw, language, ...props }: CodeProps) {
     return (
         <>
             {language && (
-                <div className="flex justify-between border-b bg-background px-3 py-2 text-xs text-slate-500">
-                    <span className="flex select-none items-center gap-2">
-                        <DynamicLanguageIcon className="h-5 w-5" />
+                <div className="bg-background flex justify-between border-b px-3 py-2 text-xs text-slate-500">
+                    <span className="flex items-center gap-2 select-none">
+                        <DynamicLanguageIcon className="size-5" />
                         <span>{language}</span>
                     </span>
                     <CopyButton raw={raw} />

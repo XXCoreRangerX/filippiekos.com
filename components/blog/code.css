@@ -1,5 +1,7 @@
 /* Highlight.js */
 
+@import "tailwindcss";
+
 /* Color scheme */
 :root {
     --hljs-background: #0f172a;

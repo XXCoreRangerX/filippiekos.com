@@ -91,17 +91,17 @@ export default async function Post({
                     }),
                 }}
             />
-            <Card type="header" className="w-full max-w-screen-lg rounded-3xl border-2 shadow-md md:p-10">
+            <Card type="header" className="w-full max-w-(--breakpoint-lg) rounded-3xl border-2 shadow-md md:p-10">
                 <Navbar />
                 <Suspense fallback={<Skeleton className="description mt-5 h-6 w-48" />}>
-                    <h3 className="description mt-5 text-muted-foreground">{formatDate(post.date)}</h3>
+                    <h3 className="description text-muted-foreground mt-5">{formatDate(post.date)}</h3>
                 </Suspense>
                 {post.updated && (
-                    <h3 className="description mt-1 text-sm text-muted-foreground">
+                    <h3 className="description text-muted-foreground mt-1 text-sm">
                         Updated: {formatDate(post.updated)}
                     </h3>
                 )}
-                <h1 className="title mt-2 break-words text-4xl font-bold lg:text-5xl">{post.title}</h1>
+                <h1 className="title mt-2 text-4xl font-bold break-words lg:text-5xl">{post.title}</h1>
                 {post.image && (
                     <Image
                         src={"/assets/posts/" + post.slug + post.image}
@@ -123,11 +123,11 @@ export default async function Post({
             </Card>
             <Card
                 type="article"
-                className="prose prose-slate w-full max-w-screen-lg flex-1 rounded-3xl border-2 shadow-md dark:prose-invert max-[350px]:prose-sm md:p-10"
+                className="prose prose-slate dark:prose-invert max-[350px]:prose-sm w-full max-w-(--breakpoint-lg) flex-1 rounded-3xl border-2 shadow-md md:p-10"
             >
                 <CustomMDX source={post.content} />
             </Card>
-            <Footer type="posts" className="max-w-screen-lg" />
+            <Footer type="posts" className="max-w-(--breakpoint-lg)" />
         </>
     );
 }

@@ -22,7 +22,7 @@ const PostList = React.forwardRef<HTMLDivElement, PostListProps>(({ type, maxPos
             {maxPosts && (
                 <Link
                     href={`/`}
-                    className="text-center text-lg font-semibold text-muted-foreground transition duration-200 ease-in-out hover:text-foreground active:text-slate-400 dark:active:text-slate-600"
+                    className="text-muted-foreground hover:text-foreground text-center text-lg font-semibold transition duration-200 ease-in-out active:text-slate-400 dark:active:text-slate-600"
                 >
                     All posts
                 </Link>

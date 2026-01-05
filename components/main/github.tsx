@@ -124,7 +124,7 @@ export async function GitHubStats() {
             <Card className="flex items-center justify-center gap-6 rounded-3xl border-2 shadow-md">
                 <Suspense
                     fallback={
-                        <Skeleton className="h-24 w-24 rounded-full shadow-2xl ring-2 ring-ring lg:hidden xl:block" />
+                        <Skeleton className="ring-ring size-24 rounded-full shadow-2xl ring-2 lg:hidden xl:block" />
                     }
                 >
                     <Image
@@ -132,7 +132,7 @@ export async function GitHubStats() {
                         alt="GitHub Avatar"
                         width={100}
                         height={100}
-                        className="rounded-full shadow-2xl ring-2 ring-ring lg:hidden xl:block"
+                        className="ring-ring rounded-full shadow-2xl ring-2 lg:hidden xl:block"
                     />
                 </Suspense>
                 <div>
