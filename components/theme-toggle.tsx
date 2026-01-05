@@ -31,9 +31,8 @@ export interface ThemeToggleProps
     extends React.ButtonHTMLAttributes<HTMLButtonElement>,
         VariantProps<typeof themeToggleVariants> {}
 
-const ThemeToggle = React.forwardRef<HTMLButtonElement, ThemeToggleProps>(({ className, variant, ...props }, ref) => {
+const ThemeToggle: React.FC<ThemeToggleProps> = ({ className, variant, ...props }) => {
     const { setTheme } = useTheme();
-
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -41,7 +40,6 @@ const ThemeToggle = React.forwardRef<HTMLButtonElement, ThemeToggleProps>(({ cla
                     variant={variant === "fixed" ? "outline" : "ghost"}
                     size="icon"
                     className={themeToggleVariants({ variant, className })}
-                    ref={ref}
                     {...props}
                 >
                     <LuSun className="size-6 scale-100 rotate-0 transition-transform dark:scale-0 dark:-rotate-90" />
@@ -65,7 +63,7 @@ const ThemeToggle = React.forwardRef<HTMLButtonElement, ThemeToggleProps>(({ cla
             </DropdownMenuContent>
         </DropdownMenu>
     );
-});
+};
 
 ThemeToggle.displayName = "Theme";
 

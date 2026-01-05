@@ -10,12 +10,12 @@ export interface PostListProps extends React.HTMLAttributes<HTMLDivElement> {
     tag?: string;
 }
 
-const PostList = React.forwardRef<HTMLDivElement, PostListProps>(({ type, maxPosts, tag }, ref) => {
+const PostList: React.FC<PostListProps> = ({ type, maxPosts, tag }) => {
     const posts =
         type === "articles" ? getSortedArticles() : getSortedPosts().filter((post) => !tag || post.tags?.includes(tag));
     const filteredPosts = maxPosts ? posts.slice(0, maxPosts) : posts;
     return (
-        <div ref={ref} className="grid gap-2">
+        <div className="grid gap-2">
             {filteredPosts.map((post) => (
                 <PostListItem key={post.slug} post={post} type={type} />
             ))}
@@ -29,7 +29,7 @@ const PostList = React.forwardRef<HTMLDivElement, PostListProps>(({ type, maxPos
             )}
         </div>
     );
-});
+};
 PostList.displayName = "PostList";
 
 export { PostList };

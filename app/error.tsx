@@ -1,17 +1,12 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import * as Sentry from "@sentry/nextjs";
 import { useEffect } from "react";
 import { LuCircleX } from "react-icons/lu";
 
 export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
     useEffect(() => {
         console.error(error);
-    }, [error]);
-
-    useEffect(() => {
-        Sentry.captureException(error);
     }, [error]);
 
     return (

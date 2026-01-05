@@ -1,12 +1,6 @@
-import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
 
 const nextConfig = {
-    experimental: {
-        turbo: {
-            resolveExtensions: [".mdx", ".tsx", ".ts", ".jsx", ".js", ".mjs", ".json"],
-        },
-    },
     images: {
         remotePatterns: [
             {
@@ -16,13 +10,9 @@ const nextConfig = {
             },
         ],
     },
+    turbopack: {
+        resolveExtensions: [".mdx", ".tsx", ".ts", ".jsx", ".js", ".mjs", ".json"]
+    },
 } satisfies NextConfig;
 
-export default withSentryConfig(nextConfig, {
-    org: "zhelta",
-    project: "filippiekos-com",
-    authToken: process.env.SENTRY_AUTH_TOKEN,
-
-    // Suppresses source map uploading logs during build
-    silent: true,
-});
+export default nextConfig;

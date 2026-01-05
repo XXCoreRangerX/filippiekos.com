@@ -49,7 +49,7 @@ export function Aside() {
         >
             <div className="my-auto flex flex-col items-center text-center">
                 <span className="ring-ring mb-4 overflow-hidden rounded-full shadow-xl ring-4 dark:ring-slate-200">
-                    <Image src={profilePic} width="250" height="250" quality="85" alt="" priority />
+                    <Image src={profilePic} width="250" height="250" quality="75" alt="" priority />
                 </span>
                 <h1 className="text-4xl font-bold">{defaults.fullName}</h1>
                 <h2 className="text-muted-foreground text-lg">{defaults.subtitle}</h2>
